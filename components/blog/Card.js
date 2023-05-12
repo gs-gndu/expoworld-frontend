@@ -1,10 +1,8 @@
 // /blogs ----- page
 import Link from 'next/link';
-import renderHTML from 'react-render-html';
 import { API } from '../../config';
 import styles from "../../styles/blogs.module.css"
 import { format } from 'date-fns';
-
 
 const Card = ({ blog }) => {
 
@@ -29,7 +27,7 @@ const Card = ({ blog }) => {
             </div>
         ));
 
-
+        
     // Date Conversion
     const date = new Date(blog.date);
     const formattedDate = format(date, 'dd MMM, yyyy');
@@ -62,13 +60,12 @@ const Card = ({ blog }) => {
                 {showBlogTags(blog)}
 
                 <section>
-                    <div className={styles.para}>{renderHTML(blog.excerpt)}</div>
+                    <div className={styles.para}>{(blog.excerpt)}</div>
+                   
                 </section>
             </div>
 
-            {/* <section>
-                <Link className={styles.readmore} href={`/${blog.slug}`}> Read More  </Link>
-            </section> */}
+        
 
         </>
 

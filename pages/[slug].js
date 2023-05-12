@@ -1,29 +1,25 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { isAuth } from '../actions/auth'
-
+import parse from 'html-react-parser';
 import Link from 'next/link';
 const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
-
-
 import { useState, useEffect } from 'react';
 import { singleBlog, listRelated } from '../actions/blog';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../config"
-import renderHTML from 'react-render-html';
-
-
 const SmallCard = dynamic(() => import('../components/blog/SmallCard'), { ssr: false });
-
 import styles from "../styles/blogposts.module.css"
 const Search = dynamic(() => import('@/components/blog/Search'), { ssr: false });
 import { format } from 'date-fns';
 const DisqusThread = dynamic(() => import('../components/DisqusThread'), { ssr: false });
-
 import {
     FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon,
-    TelegramShareButton, TelegramIcon, LinkedinShareButton, LinkedinIcon,
+    TelegramShareButton, TelegramIcon,
     RedditShareButton, RedditIcon, TwitterShareButton, TwitterIcon,
 } from 'next-share'
+
+
+
 
 
 const SingleBlog0 = ({ blog, errorCode }) => {
@@ -41,7 +37,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
     }
 
 
-
+    
     const head = () => (
         <Head>
             <title >{`${blog.title} - ${APP_NAME}`}</title>
@@ -191,7 +187,9 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
                             <section>
-                                {renderHTML(blog.body)}
+              
+                          {parse(blog.body)}
+                                {/* {renderHTML(blog.body)} */}
                                 <div style={{ textAlign: "center" }}>
                                     <br /><br />
                                     {showBlogCategories(blog)}
