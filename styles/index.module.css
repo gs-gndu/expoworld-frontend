@@ -1,0 +1,30 @@
+.backImg{
+    background-image: url(/wall.jpg);
+    /* object-fit: cover; */
+  opacity: 0.97;
+}
+
+.resizeimg {
+ font-size: 80px;
+  }
+
+  
+.topsection{
+    text-align: center;
+    color: white;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+
+.latestposts{
+    color: white;
+    text-align: center;
+}
+
+
+.latestpostheading{
+    /* text-decoration-line: underline; */
+    /* text-decoration-style: double; */
+    color: rgb(85, 238, 43);
+}
