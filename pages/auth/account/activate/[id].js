@@ -50,7 +50,7 @@ const ActivateAccount = ({ router }) => {
         <Layout>
            <div  style={{textAlign:"center"}}>
                 <br/><br/><br/><br/>
-                <h2>Hey {name}, Click on This Button to Activate Your Account</h2>
+                <h2 style={{padding:"8px"}}>Hey {name}, Click on This Button to Activate Your Account</h2>
                 {showLoading()}
 
                {/* <div className={styles.showError} > {error && error}</div> */}
