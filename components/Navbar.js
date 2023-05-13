@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { APP_NAME } from "../config"
 import { isAuth } from '../actions/auth';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import styles from "../styles/NavbarFooter.module.css"
 
 

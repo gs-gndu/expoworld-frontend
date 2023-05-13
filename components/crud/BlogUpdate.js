@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
-import { withRouter } from 'next/router';
 import { getCookie, isAuth, signout } from '../../actions/auth';
 import { getCategories } from '../../actions/category';
 import { getTags } from '../../actions/tag';
@@ -20,7 +19,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { parseISO } from 'date-fns';
 
 
-const BlogUpdate = ({ router, errorCode }) => {
+const BlogUpdate = ({ router}) => {
 
 
 
@@ -169,7 +168,7 @@ const BlogUpdate = ({ router, errorCode }) => {
             } else {
                 setValues({ ...values, title: '', success: `Blog titled "${data.title}" is successfully updated` });
 
-                // Router.replace(`/${router.query.slug}`);
+                
 
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
@@ -177,10 +176,9 @@ const BlogUpdate = ({ router, errorCode }) => {
                 }
                 setTimeout(redirect, 400)
 
-                //      function redirect() {
-                //          Router.replace(`/${router.query.slug}`);
-                //      }
-                //    setTimeout(redirect, 500)
+                for (var pair of formData.entries()) {
+                    console.log(pair[0]+ ' - ' + pair[1]); 
+                }
 
 
             }
@@ -473,6 +471,6 @@ const BlogUpdate = ({ router, errorCode }) => {
     );
 };
 
-export default withRouter(BlogUpdate);
+export default BlogUpdate;
 
 // export default dynamic(() => Promise.resolve(withRouter(BlogUpdate)), { ssr: false })

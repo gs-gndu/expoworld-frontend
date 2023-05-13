@@ -70,19 +70,19 @@ const Tag = () => {
 
     const showSuccess = () => {
         if (success) {
-            return <p>Category is created</p>;
+            return <p>Tag is created</p>;
         }
     };
 
     const showError = () => {
         if (error) {
-            return <p>Category already exist</p>;
+            return <p>Tag already exist</p>;
         }
     };
 
     const showRemoved = () => {
         if (removed) {
-            return <p>Category is removed</p>;
+            return <p>Tag is removed</p>;
         }
     };
 
@@ -165,7 +165,7 @@ const Tag = () => {
         <AdminDashLayout>
             {head()}
             <h1 className={styles0.Catname}>Tags</h1>
-            <div style={{ height: "20px" }}>
+            <div style={{ height: "20px", marginBottom:"10px" }}>
                 {showSuccess()}
                 {showError()}
                 {showRemoved()}
