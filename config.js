@@ -7,6 +7,7 @@ const publicRuntimeConfig = {
     APP_NAME: 'Coding4u',
     API_DEVELOPMENT: 'http://localhost:8000/api',
     API_PRODUCTION:"https://coding4u.onrender.com/",
+    API_PRODUCTION:"https://coding4u-backend.vercel.app/api",
     PRODUCTION: true,
     DOMAIN_DEVELOPMENT:"http://localhost:3000",
     DOMAIN_PRODUCTION:"https://coding4u-project.vercel.app/",
