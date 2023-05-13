@@ -401,7 +401,4 @@ const CreateBlog = ({ router }) => {
     );
 };
 
-// export default withRouter(CreateBlog);
 export default CreateBlog
-
-// export default dynamic(() => Promise.resolve(CreateBlog), { ssr: false })

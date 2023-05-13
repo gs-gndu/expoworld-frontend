@@ -174,11 +174,6 @@ const BlogUpdate = ({ router}) => {
                 }
                 setTimeout(redirect, 400)
 
-                for (var pair of formData.entries()) {
-                    console.log(pair[0]+ ' - ' + pair[1]); 
-                }
-
-
             }
         });
     };
@@ -470,5 +465,3 @@ const BlogUpdate = ({ router}) => {
 };
 
 export default withRouter(BlogUpdate);
-
-// export default dynamic(() => Promise.resolve(withRouter(BlogUpdate)), { ssr: false })
