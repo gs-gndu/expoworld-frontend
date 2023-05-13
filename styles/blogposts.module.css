@@ -181,16 +181,18 @@
   color: white;
   padding: 8px;
   text-decoration: none;
-  border: 1px solid grey;
+  border: 1px solid rgb(87, 86, 86);
   margin: 8px;
 }
 
 .blogtag:hover {
-  opacity: 0.8;
+  
+  border: 1px solid white;
 }
 
 .blogcat:hover {
-  opacity: 0.8;
+  
+  border: 1px solid white;
 }
 
 .related {
