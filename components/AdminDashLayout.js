@@ -41,7 +41,7 @@ const AdminDashLayout = ({ children }) => {
           <div className={styles.row}>
             <div className={styles.dashbar} id="mydashbar">
               <ul className={styles.dashbarul}>
-                <Link className={styles.Link} href="/"><li className={styles.list}><Image className={styles.Myicon} src="/HomeIcon.png" width={22} height={22} alt="image"/>Home</li></Link>
+                <a className={styles.Link} href="/"><li className={styles.list}><Image className={styles.Myicon} src="/HomeIcon.png" width={22} height={22} alt="image"/>Home</li></a>
                 <Link target="_blank" className={styles.Link} href="/admin/blog"><li className={styles.list}><Image className={styles.Myicon} src="/Plus.png" width={20} height={20} alt="image"/>Add Post</li></Link>
                 <Link className={styles.Link} href="/admin/category"><li className={styles.list}><Image className={styles.Myicon} src="/Categories.png" width={20} height={20} alt="image" />Categories</li></Link>
                 <Link className={styles.Link} href="/admin/tag"><li className={styles.list}><Image className={styles.Myicon} src="/Tag.png" width={20} height={20} alt="image"/>Tags</li></Link>
