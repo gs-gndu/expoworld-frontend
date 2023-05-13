@@ -334,6 +334,10 @@
     display: block;
   }
 
+  .resizeimg {
+    max-width: 90%;
+  }
+
   .box{
     margin-right: auto;
     margin-left: auto;

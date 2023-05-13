@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
+import { withRouter } from 'next/router';
 import { getCookie, isAuth, signout } from '../../actions/auth';
 import { getCategories } from '../../actions/category';
-import { withRouter } from 'next/router';
 import { getTags } from '../../actions/tag';
 import { singleBlog, updateBlog } from '../../actions/blog';
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
@@ -13,18 +13,15 @@ import styles0 from "../../styles/editor.module.css"
 import Image from 'next/image';
 import { API } from '../../config';
 import slugify from 'slugify';
-function darkmode() { document.body.classList.toggle("darkmode"); }
-function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { parseISO } from 'date-fns';
 
 
+function darkmode() { document.body.classList.toggle("darkmode"); }
+function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
+
 const BlogUpdate = ({ router}) => {
-
-
-
-
 
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
