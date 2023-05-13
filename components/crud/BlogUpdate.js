@@ -4,7 +4,7 @@ import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import { getCookie, isAuth, signout } from '../../actions/auth';
 import { getCategories } from '../../actions/category';
-import withRouter from 'next/router';
+import { withRouter } from 'next/router';
 import { getTags } from '../../actions/tag';
 import { singleBlog, updateBlog } from '../../actions/blog';
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
