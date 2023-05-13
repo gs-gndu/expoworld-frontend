@@ -222,19 +222,6 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 };
 
 
-// SingleBlog0.getInitialProps = async ({ query, res }) => {
-//     try {
-//         const data = await singleBlog(query.slug);
-//         if (!data) {
-//             res.statusCode = 404;
-//             return { errorCode: 404 };
-//         }
-//         return { blog: data };
-//     } catch (error) {
-//         console.error(error);
-//         return { errorCode: 500 };
-//     }
-// };
 
 
 export async function getServerSideProps({ query, res }) {
