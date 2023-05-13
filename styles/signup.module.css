@@ -77,17 +77,17 @@
   .button0000{
     font-size: 1.1rem;
     margin-top: 2rem;
-    padding: 10px 0;
+    padding: 12px;
     border-radius: 5px;
     outline: none;
     border: none;
-    width: 17%;
     background-color: #050014;
     color: #fff;
     font-weight: 700;
     cursor: pointer;
     letter-spacing: 0.8px;
     border: 1px solid white;
+    min-width: 15%;
   }
 
 

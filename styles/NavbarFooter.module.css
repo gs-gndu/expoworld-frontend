@@ -274,6 +274,7 @@
     margin-bottom: 20px;
     text-align: center;
   }
+
 }
 
 @media screen and (max-width:538px) {
@@ -287,6 +288,7 @@
 
   .footerbox1 {
     padding-left: 0px;
+    margin: 7px;
   }
 }
 
