@@ -1,7 +1,6 @@
 // import Link from 'next/link';
 import Layout from "@/components/Layout"
-import styles from "../styles/index.module.css"
-import styles0 from "../styles/blogposts.module.css"
+import styles from "../styles/blogposts.module.css"
 import { listBlogsWithCategoriesAndTags } from '../actions/blog';
 import Card from '../components/blog/Card';
 
@@ -9,7 +8,7 @@ const Index = ({ blogs, router }) => {
 
     const showAllBlogs = () => {
         return blogs.map((blog, i) => (
-            <article key={i} className={styles0.box}>
+            <article key={i} className={styles.box}>
                 <Card blog={blog} />
             </article>
         )).slice(0, 12); ;
@@ -39,7 +38,7 @@ const Index = ({ blogs, router }) => {
 
                 <section className={styles.latestposts}>
                     <h1 className={styles.latestpostheading} >📕 Latest Post 📕</h1>
-                    <div className={styles0.grid}>{showAllBlogs()}</div>
+                    <div className={styles.grid}>{showAllBlogs()}</div>
                     <br/>
                     <br/>
                 </section>

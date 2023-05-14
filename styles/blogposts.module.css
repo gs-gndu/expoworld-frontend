@@ -286,6 +286,45 @@
   color: white;
 }
 
+
+
+
+.backImg{
+  background-image: url(/wall.jpg);
+  /* object-fit: cover; */
+opacity: 0.97;
+}
+
+.resizeimg {
+font-size: 80px;
+}
+
+
+.topsection{
+  text-align: center;
+  color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+
+.latestposts{
+  color: white;
+  text-align: center;
+}
+
+
+.latestpostheading{
+  color: rgb(85, 238, 43);
+}
+
+
+
+
+
+
+
+
 @media screen and (max-width:1278px) {
 
   .search{
