@@ -1,7 +1,7 @@
 // import Layout from '../../components/Layout';
 import Admin from '../../components/auth/Admin';
 import BlogCreate from '../../components/crud/CreateBlog';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
 
 const Blog = () => {
