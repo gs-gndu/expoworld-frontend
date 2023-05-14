@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { getCookie } from '../../actions/auth';
 import { create, getTags, removeTag } from '../../actions/tag';
 import dynamic from 'next/dynamic';
-const AdminDashLayout = dynamic(() => import('../AdminDashLayout'), {ssr: false});
-
+const AdminDashLayout = dynamic(() => import('../AdminDashLayout'), { ssr: false });
 import styles0 from "../../styles/tagsCategory.module.css"
 import Head from 'next/head';
 
@@ -25,6 +24,45 @@ const Tag = () => {
         </Head>
     );
 
+
+
+    const [ModalOpen, setModalOpen] = useState(false);
+    const [currentBlogSlug, setCurrentBlogSlug] = useState("");
+
+
+    const showModal = (slug) => {
+        setModalOpen(true);
+        setCurrentBlogSlug(slug);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const hideModel = () => {
+        setModalOpen(false);
+        setCurrentBlogSlug("");
+        document.body.style.overflow = 'auto';
+
+    };
+
+
+    const deleteTag = (slug) => {
+        
+        removeTag(slug, token).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
+            }
+        });
+    };
+
+
+    const handleConfirmDelete = () => {
+        deleteTag(currentBlogSlug);
+        setModalOpen(false);
+    };
+
+
+
     const { name, description, error, success, tags, removed, reload } = values;
     const token = getCookie('token');
 
@@ -42,21 +80,16 @@ const Tag = () => {
         });
     };
 
-    const deleteConfirm = (slug) => {
-        let answer = window.confirm('Are you sure you want to delete this Tag?');
-        if (answer) {
-            deleteTag(slug);
-        }
-    };
+
 
     const clickSubmit = e => {
         e.preventDefault();
-        // console.log('create category', name);
+
         create({ name, description }, token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, success: false });
             } else {
-                setValues({ ...values, error: false, success: false, name: '', description: '', removed: !removed, reload: !reload });
+                setValues({ ...values, error: false, success: true, name: '', description: '', removed: false, reload: !reload });
             }
         });
     };
@@ -70,19 +103,19 @@ const Tag = () => {
 
     const showSuccess = () => {
         if (success) {
-            return <p>Tag is created</p>;
+            return <p style={{ color: 'var(--text-color)' }}>Tag is created</p>;
         }
     };
 
     const showError = () => {
         if (error) {
-            return <p>Tag already exist</p>;
+            return <p style={{ color: 'var(--text-color)' }}>Tag already exist</p>;
         }
     };
 
     const showRemoved = () => {
         if (removed) {
-            return <p>Tag is removed</p>;
+            return <p style={{ color: 'var(--text-color)' }}>Tag is removed</p>;
         }
     };
 
@@ -92,44 +125,35 @@ const Tag = () => {
 
 
 
-    // const showTags = () => {
-    //     return tags.map((c, i) => {
-    //         return (               
-
-    //                 <div className={styles0.gridcontainer00}>
-    //                     <div key={i} className={styles0.griditem00} >{c.name}</div>
-    //                     <div key={i} className={styles0.griditem02} >{c.description}</div>
-    //                     <button className={styles0.griditem03} onClick={() => deleteConfirm(c.slug)}>Delete</button>
-    //                 </div>
-                
-    //         );
-    //     });
-    // };
-
     const showTags = () => {
         return tags.map((c) => {
-          return (
-            <div className={styles0.gridcontainer00} key={c.slug}>
-              <div className={styles0.griditem00}>{c.name}</div>
-              <div className={styles0.griditem02}>{c.description}</div>
-              <button className={styles0.griditem03} onClick={() => deleteConfirm(c.slug)}>Delete</button>
-            </div>
-          );
-        });
-      };
+            return (
+                <div className={styles0.gridcontainer00} key={c.slug}>
+                    <div className={styles0.griditem00}>{c.name}</div>
+                    <div className={styles0.griditem02}>{c.description}</div>
+
+                    {/* <button className={styles0.griditem03} onClick={() => deleteConfirm(c.slug)}>Delete</button> */}
+                    <div onClick={() => showModal(c.slug)} className={styles0.griditem03}>Delete</div>
 
 
-
-    const deleteTag = (slug) => {
-        // console.log('delete', slug);
-        removeTag(slug, token).then(data => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
-                setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
-            }
+                    {ModalOpen && (
+                        <div className="modal">
+                            <div className="modalContent">
+                                <div>Are you sure you want to delete this post ?</div>
+                                <br />
+                                <button className={styles0.deletebtn00} onClick={handleConfirmDelete}> DELETE</button>
+                                <button className={styles0.deletebtn00} onClick={hideModel}>CANCEL</button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
         });
     };
+
+
+
+
 
     const newTagFom = () => (
         <>
@@ -165,7 +189,7 @@ const Tag = () => {
         <AdminDashLayout>
             {head()}
             <h1 className={styles0.Catname}>Tags</h1>
-            <div style={{ height: "20px", marginBottom:"10px" }}>
+            <div style={{ height: "20px", marginBottom: "10px" }}>
                 {showSuccess()}
                 {showError()}
                 {showRemoved()}

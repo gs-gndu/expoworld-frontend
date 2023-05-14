@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getCookie } from '../../actions/auth';
 import { create, getCategories, removeCategory } from '../../actions/category';
 import dynamic from 'next/dynamic';
-const AdminDashLayout = dynamic(() => import('../AdminDashLayout'), {ssr: false});
+const AdminDashLayout = dynamic(() => import('../AdminDashLayout'), { ssr: false });
 import styles0 from "../../styles/tagsCategory.module.css"
 import Head from 'next/head';
 
@@ -24,7 +24,39 @@ const Category = () => {
         </Head>
     );
 
+    const [ModalOpen, setModalOpen] = useState(false);
+    const [currentBlogSlug, setCurrentBlogSlug] = useState("");
 
+
+    const showModal = (slug) => {
+        setModalOpen(true);
+        setCurrentBlogSlug(slug);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const hideModel = () => {
+        setModalOpen(false);
+        setCurrentBlogSlug("");
+        document.body.style.overflow = 'auto';
+
+    };
+
+    const deleteCategory = (slug) => {
+        // console.log('delete', slug);
+        removeCategory(slug, token).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
+            }
+        });
+    };
+
+
+    const handleConfirmDelete = () => {
+        deleteCategory(currentBlogSlug);
+        setModalOpen(false);
+    };
 
     const { name, description, error, success, categories, removed, reload } = values;
     const token = getCookie('token');
@@ -43,24 +75,19 @@ const Category = () => {
         });
     };
 
-    const deleteConfirm = slug => {
-        let answer = window.confirm('Are you sure you want to delete this category?');
-        if (answer) {
-            deleteCategory(slug);
-        }
-    };
+
 
 
 
 
     const clickSubmit = e => {
         e.preventDefault();
-        // console.log('create category', name);
+
         create({ name, description }, token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, success: false });
             } else {
-                setValues({ ...values, error: false, success: false, name: '', description: '', removed: !removed, reload: !reload });
+                setValues({ ...values, error: false, success: true, name: '', description: '', removed: false, reload: !reload });
             }
         });
     };
@@ -74,19 +101,19 @@ const Category = () => {
 
     const showSuccess = () => {
         if (success) {
-            return <p>Category is created</p>;
+            return <p style={{ color: 'var(--text-color)' }}>Category is created</p>;
         }
     };
 
     const showError = () => {
         if (error) {
-            return <p>Category already exist</p>;
+            return <p style={{ color: 'var(--text-color)' }}>Category already exist</p>;
         }
     };
 
     const showRemoved = () => {
         if (removed) {
-            return <p>Category is removed</p>;
+            return <p style={{ color: 'var(--text-color)' }}>Category is removed</p>;
         }
     };
 
@@ -97,31 +124,33 @@ const Category = () => {
 
     const showCategories = () => {
         return categories.map((c) => {
-          return (
-            <div className={styles0.gridcontainer00} key={c.slug}>
-              <div className={styles0.griditem00}>
-                <div>{c.name}</div>
-              </div>
-              <div className={styles0.griditem02}>
-                <div>{c.description}</div>
-              </div>
-              <button className={styles0.griditem03} onClick={() => deleteConfirm(c.slug)}>Delete</button>
-            </div>
-          );
-        });
-      };
+            return (
+                <div className={styles0.gridcontainer00} key={c.slug}>
+                    <div className={styles0.griditem00}>
+                        <div>{c.name}</div>
+                    </div>
+                    <div className={styles0.griditem02}>
+                        <div>{c.description}</div>
+                    </div>
+                    <div onClick={() => showModal(c.slug)} className={styles0.griditem03}>Delete</div>
 
 
-    const deleteCategory = (slug) => {
-        // console.log('delete', slug);
-        removeCategory(slug, token).then(data => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
-                setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
-            }
+                    {ModalOpen && (
+                        <div className="modal">
+                            <div className="modalContent">
+                                <div>Are you sure you want to delete this post ?</div>
+                                <br />
+                                <button className={styles0.deletebtn00} onClick={handleConfirmDelete}> DELETE</button>
+                                <button className={styles0.deletebtn00} onClick={hideModel}>CANCEL</button>
+                            </div>
+                        </div>
+                    )}
+
+                </div>
+            );
         });
     };
+
 
     const newCategoryFom = () => (
         <>
