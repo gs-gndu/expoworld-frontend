@@ -119,11 +119,6 @@ const Tag = () => {
         }
     };
 
-    const mouseMoveHandler = e => {
-        setValues({ ...values, error: false, success: false, removed: '' });
-    };
-
-
 
     const showTags = () => {
         return tags.map((c) => {
@@ -194,9 +189,8 @@ const Tag = () => {
         <AdminDashLayout>
             {head()}
             <h1 className={styles0.Catname}>Tags</h1>
-            <div onMouseMove={mouseMoveHandler}>
+            <div>
                 {newTagFom()}
-                {/* {showCategories()} */}
             </div>
         </AdminDashLayout>
     );

@@ -117,9 +117,9 @@ const Category = () => {
         }
     };
 
-    const mouseMoveHandler = e => {
-        setValues({ ...values, error: false, success: false, removed: '' });
-    };
+    // const mouseMoveHandler = e => {
+    //     setValues({ ...values, error: false, success: false, removed: '' });
+    // };
 
 
     const showCategories = () => {
@@ -195,9 +195,8 @@ const Category = () => {
         <AdminDashLayout>
             {head()}
             <h1 className={styles0.Catname}>Categories</h1>
-            <div onMouseMove={mouseMoveHandler}>
+            <div>
                 {newCategoryFom()}
-                {/* {showCategories()} */}
             </div>
         </AdminDashLayout>
     );
