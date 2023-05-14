@@ -173,6 +173,11 @@ const Tag = () => {
                     </div>
                 </form>
                 <div>
+                <div style={{ textAlign: "center", height: "35px", marginBottom: "10px" }}>
+                        {showSuccess()}
+                        {showError()}
+                        {showRemoved()}
+                    </div>
                     <div className={styles0.gridcontainer000}>
                         <div className={styles0.griditem000} >Name</div>
                         <div className={styles0.griditem000} >Description</div>
@@ -189,11 +194,6 @@ const Tag = () => {
         <AdminDashLayout>
             {head()}
             <h1 className={styles0.Catname}>Tags</h1>
-            <div style={{ height: "20px", marginBottom: "10px" }}>
-                {showSuccess()}
-                {showError()}
-                {showRemoved()}
-            </div>
             <div onMouseMove={mouseMoveHandler}>
                 {newTagFom()}
                 {/* {showCategories()} */}
