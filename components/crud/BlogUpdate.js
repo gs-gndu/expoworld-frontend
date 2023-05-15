@@ -436,4 +436,6 @@ const BlogUpdate = ({ router }) => {
     );
 };
 
-export default withRouter(BlogUpdate);
+// export default withRouter(BlogUpdate);
+
+export default dynamic(() => Promise.resolve(withRouter(BlogUpdate)), { ssr: false })
