@@ -85,7 +85,8 @@ const BlogUpdate = ({ router }) => {
         });
     };
 
-
+    const [posttitle, setposttitle] = useState('');
+    const [postslug, setpostslug] = useState('');
 
     const initBlog = (res) => {
         if (router.query.slug) {
@@ -107,6 +108,9 @@ const BlogUpdate = ({ router }) => {
                     const dateObject = parseISO(isoDateString);
                     setValues({ ...values, title: data.title, body:data.body, mtitle: data.mtitle, date: dateObject, slug: data.slug, mdesc: data.mdesc });
                     // setBody(data.body);
+                    setposttitle(data.title);
+                    setpostslug(data.slug);
+ 
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
                 }
