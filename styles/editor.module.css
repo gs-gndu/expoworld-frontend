@@ -294,4 +294,12 @@
     .gridcontainer00 {
       grid-template-columns: minmax(80px, 1400px)  132px 45px 60px  ;
     }
+
+    .heading{
+      margin-left: 0px;
+    }
+    
+    .heading1{
+      margin-left: 0px;
+    }
   }

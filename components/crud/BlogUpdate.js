@@ -55,14 +55,11 @@ const BlogUpdate = ({ router}) => {
     }, [router]);
 
 
-
-
-
     const initBlog = (res) => {
         if (router.query.slug) {
             singleBlog(router.query.slug).then(data => {
                 if (!data) {
-                    // router.push("/")
+                    
 
                     if (!isAuth()) {
                         Router.push(`/signin`);
@@ -86,7 +83,6 @@ const BlogUpdate = ({ router}) => {
     };
 
     const handlephoto = name => e => {
-        // console.log(e.target.value);
         const value = name === 'photo' ? e.target.files[0] : e.target.value;
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
@@ -144,13 +140,7 @@ const BlogUpdate = ({ router}) => {
         });
     };
 
-
-    const handleBody = e => {
-        setBody(e);
-        formData.set('body', e);
-    };
-
-
+ 
 
     const editBlog = e => {
         e.preventDefault();
@@ -168,7 +158,6 @@ const BlogUpdate = ({ router}) => {
             }
         });
     };
-
 
 
     const setCategoriesArray = blogCategories => {
@@ -295,10 +284,14 @@ const BlogUpdate = ({ router}) => {
         const { formData } = values;
 
         formData.set(name, value);
-        console.log(value);
-        // setValues({...values,[name]: value,formData: formData,error: '',});
         setValues({ ...values, [name]: value, formData, error: '' });
 
+    };
+
+
+   const handleBody = e => {
+        setBody(e);
+        formData.set('body', e);
     };
 
 
@@ -318,6 +311,7 @@ const BlogUpdate = ({ router}) => {
 
                         <SunEditor
                             setContents={body}
+                            value={body}
                             onChange={handleBody} 
                             placeholder="Start typing paragraph here .............."
                             
