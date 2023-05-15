@@ -57,18 +57,23 @@ const BlogUpdate = ({ router }) => {
 
     const editBlog = e => {
         e.preventDefault();
-        // formData.set('body', body);
+        formData.set('body', body);
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
                 setValues({ ...values, success: `Blog titled "${data.title}" is successfully updated` });
 
+
+
+
+                /*
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
                     Router.push(`/${postslug}`);
                 }
-                setTimeout(redirect, 100)
+                 setTimeout(redirect, 100)
+                 */
             }
         });
     };
@@ -268,7 +273,7 @@ const BlogUpdate = ({ router }) => {
 
     const handleBody = (e) => {
         setBody(e);
-        formData.set('body', body);
+        formData.set('body', e);
    };
 
     const Admintopbar = () => {
