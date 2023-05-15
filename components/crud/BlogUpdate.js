@@ -57,7 +57,7 @@ const BlogUpdate = ({ router }) => {
 
     const editBlog = e => {
         e.preventDefault();
-        formData.set('body', body);
+        // formData.set('body', body);
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
@@ -268,8 +268,7 @@ const BlogUpdate = ({ router }) => {
 
     const handleBody = (e) => {
         setBody(e);
-        formData.set('body', e);
-        console.log(e);
+        formData.set('body', body);
    };
 
     const Admintopbar = () => {
