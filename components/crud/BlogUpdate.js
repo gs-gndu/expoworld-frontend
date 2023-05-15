@@ -106,7 +106,7 @@ const BlogUpdate = ({ router }) => {
                 } else {
                     const isoDateString = data.date;
                     const dateObject = parseISO(isoDateString);
-                    setValues({ ...values, title: data.title, body:data.body, mtitle: data.mtitle, date: dateObject, slug: data.slug, mdesc: data.mdesc });
+                    setValues({ ...values, body:data.body, mtitle: data.mtitle, date: dateObject, mdesc: data.mdesc });
                     // setBody(data.body);
                     setposttitle(data.title);
                     setpostslug(data.slug);
