@@ -54,6 +54,39 @@ const BlogUpdate = ({ router }) => {
     }, [router]);
 
 
+
+    const handleBody = e => {
+        const name = 'body';
+        const value = e;
+        const { formData } = values;
+        formData.set(name, value);
+        setValues({ ...values, [name]: value, formData, error: '' });
+        // setBody(e);
+        // formData.set('body', e);
+        // console.log(e);
+    };
+
+
+
+    const editBlog = e => {
+        e.preventDefault();
+        updateBlog(formData, token, router.query.slug).then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error });
+            } else {
+                setValues({ ...values, success: `Blog titled "${data.title}" is successfully updated` });
+
+                let postslug = slugify(slug).toLowerCase();
+                function redirect() {
+                    Router.push(`/${postslug}`);
+                }
+                setTimeout(redirect, 100)
+            }
+        });
+    };
+
+
+
     const initBlog = (res) => {
         if (router.query.slug) {
             singleBlog(router.query.slug).then(data => {
@@ -140,25 +173,6 @@ const BlogUpdate = ({ router }) => {
     };
 
 
-
-    const editBlog = e => {
-        e.preventDefault();
-        updateBlog(formData, token, router.query.slug).then(data => {
-            if (data.error) {
-                setValues({ ...values, error: data.error });
-            } else {
-                setValues({ ...values, success: `Blog titled "${data.title}" is successfully updated` });
-
-                let postslug = slugify(slug).toLowerCase();
-                function redirect() {
-                    Router.push(`/${postslug}`);
-                }
-                setTimeout(redirect, 100)
-            }
-        });
-    };
-
-
     const setCategoriesArray = blogCategories => {
         let ca = [];
         blogCategories.map((c, i) => {
@@ -227,9 +241,6 @@ const BlogUpdate = ({ router }) => {
         }
     };
 
-
-
-
     const showCategories = () => {
         return (
             categories &&
@@ -258,13 +269,6 @@ const BlogUpdate = ({ router }) => {
 
 
 
-
-
-
-
-
-
-
     const handleDateChange = (date) => {
         const name = 'date';
         const value = date;
@@ -275,17 +279,6 @@ const BlogUpdate = ({ router }) => {
 
     };
 
-
-    const handleBody = e => {
-        const name = 'body';
-        const value = e;
-        const { formData } = values;
-        formData.set(name, value);
-        setValues({ ...values, [name]: value, formData, error: '' });
-        // setBody(e);
-        // formData.set('body', e);
-        // console.log(e);
-    };
 
 
     const Admintopbar = () => {
@@ -315,7 +308,7 @@ const BlogUpdate = ({ router }) => {
                     <div className={styles0.column}>
 
                         <SunEditor
-                             value={body}
+                            
                             setContents={body}
                             onChange={handleBody}
 
