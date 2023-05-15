@@ -37,7 +37,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
     }
 
 
-    
+
     const head = () => (
         <Head>
             <title >{`${blog.title} - ${APP_NAME}`}</title>
@@ -51,7 +51,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
             <meta property="og:url" content={`${DOMAIN}/${blog.slug}`} />
             <meta property="og:site_name" content={`${APP_NAME}`} />
 
-            <meta property="og:image" content={`${API}/blog/photo/${blog.slug}`} />S
+            <meta property="og:image" content={`${API}/blog/photo/${blog.slug}`} />
             <meta property="og:image:secure_url" ccontent={`${API}/blog/photo/${blog.slug}`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
@@ -178,7 +178,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
                                 <section>
-                                <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} />
+                                    <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} />
                                 </section>
 
                                 <br /><br />
@@ -186,10 +186,10 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
 
-                            <section>
-              
-                          {parse(blog.body)}
-                                {/* {renderHTML(blog.body)} */}
+                            <section class="postcontent">
+
+                                {parse(blog.body)}
+
                                 <div style={{ textAlign: "center" }}>
                                     <br /><br />
                                     {showBlogCategories(blog)}
@@ -226,16 +226,16 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 export async function getServerSideProps({ query, res }) {
     try {
-      const data = await singleBlog(query.slug);
-      if (!data) {
-        res.statusCode = 404;
-        return { props: { errorCode: 404 } };
-      }
-      return { props: { blog: data } };
+        const data = await singleBlog(query.slug);
+        if (!data) {
+            res.statusCode = 404;
+            return { props: { errorCode: 404 } };
+        }
+        return { props: { blog: data } };
     } catch (error) {
-      console.error(error);
-      return { props: { errorCode: 500 } };
+        console.error(error);
+        return { props: { errorCode: 500 } };
     }
-  }
+}
 
 export default SingleBlog0;
