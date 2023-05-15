@@ -299,7 +299,7 @@ const BlogUpdate = ({ router }) => {
 
                         <SunEditor
                             
-                            setContents={handleBody}
+                            setContents={body}
                             onChange={handleBody}
 
                             height="1500px" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
