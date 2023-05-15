@@ -321,12 +321,10 @@ const BlogUpdate = ({ router}) => {
                             placeholder="Start typing paragraph here .............."
                             onChange={handleBody} 
                             height="1500px" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
-                            
+
                             setOptions={{
 
                                 buttonList: [
-                                    // ["undo", "redo"],
-                                    // [ "fontSize", "formatBlock"],
                                     [
                                         "bold",
                                         "underline",
