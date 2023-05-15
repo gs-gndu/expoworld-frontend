@@ -277,8 +277,13 @@ const BlogUpdate = ({ router }) => {
 
 
     const handleBody = e => {
+        const name = 'body';
+        const value = e;
+        const { formData } = values;
+        formData.set(name, value);
+        setValues({ ...values, [name]: value, formData, error: '' });
         // setBody(e);
-        formData.set('body', e);
+        // formData.set('body', e);
         // console.log(e);
     };
 
@@ -310,7 +315,7 @@ const BlogUpdate = ({ router }) => {
                     <div className={styles0.column}>
 
                         <SunEditor
-                            // value={body}
+                             value={body}
                             setContents={body}
                             onChange={handleBody}
 
