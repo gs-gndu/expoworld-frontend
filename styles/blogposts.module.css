@@ -363,7 +363,7 @@ font-size: 80px;
 @media screen and (max-width:1278px) {
   .comments {
     margin-left: 0px;
-    padding: 10px;
+    padding: 30px;
     width: 100%;
   }
 }
