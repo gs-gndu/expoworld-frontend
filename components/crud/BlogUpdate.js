@@ -269,7 +269,6 @@ const BlogUpdate = ({ router }) => {
         setBody(e);
         formData.set('body', e);
         console.log(e);
-
    };
 
     const Admintopbar = () => {
@@ -300,7 +299,7 @@ const BlogUpdate = ({ router }) => {
 
                         <SunEditor
                             
-                            setContents={e}
+                            setContents={handleBody}
                             onChange={handleBody}
 
                             height="1500px" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
