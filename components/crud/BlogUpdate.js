@@ -21,7 +21,7 @@ import { parseISO } from 'date-fns';
 function darkmode() { document.body.classList.toggle("darkmode"); }
 function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
 
-const BlogUpdate = ({ router}) => {
+const BlogUpdate = ({ router }) => {
 
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
@@ -42,6 +42,7 @@ const BlogUpdate = ({ router}) => {
         slug: '',
         body: '',
         date: '',
+        setContents:''
     });
 
     const { error, success, formData, title, mtitle, mdesc, slug, date } = values;
@@ -59,7 +60,7 @@ const BlogUpdate = ({ router}) => {
         if (router.query.slug) {
             singleBlog(router.query.slug).then(data => {
                 if (!data) {
-                    
+
 
                     if (!isAuth()) {
                         Router.push(`/signin`);
@@ -140,7 +141,7 @@ const BlogUpdate = ({ router}) => {
         });
     };
 
- 
+
 
     const editBlog = e => {
         e.preventDefault();
@@ -148,7 +149,7 @@ const BlogUpdate = ({ router}) => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, title: '', body:'', success: `Blog titled "${data.title}" is successfully updated` });
+                setValues({ ...values, title: '', body: '', success: `Blog titled "${data.title}" is successfully updated` });
 
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
@@ -289,7 +290,7 @@ const BlogUpdate = ({ router}) => {
     };
 
 
-   const handleBody = e => {
+    const handleBody = e => {
         setBody(e);
         formData.set('body', e);
     };
@@ -299,7 +300,7 @@ const BlogUpdate = ({ router}) => {
 
     const updateBlogForm = () => {
         return (
-            <form onSubmit={editBlog} style={{background:"var(--adminBack-color)"}}>
+            <form onSubmit={editBlog} style={{ background: "var(--adminBack-color)" }}>
 
                 <div >
                     <input type="text" value={title} className={styles0.inputs} onChange={handleChange('title')} autoFocus={true} />
@@ -310,11 +311,10 @@ const BlogUpdate = ({ router}) => {
                     <div className={styles0.column}>
 
                         <SunEditor
-onContentChange={setValues}
-                            setContents={body}
-                            // value={body}
-                            onChange={handleBody} 
                             
+                            setContents={body}
+                            onChange={handleBody}
+
                             height="1500px" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
 
                             setOptions={{
@@ -381,16 +381,16 @@ onContentChange={setValues}
 
                         <div className={styles0.fimage}>
                             <div className={styles0.mydiv}>
-                            <h3 style={{marginBottom:"10px"}}>Old Featured Image</h3>
-                            {body && (
-                                        <img src={`${API}/blog/photo/${router.query.slug}`} alt={title} style={{ width: '180px', height: "180px", display: "inline" }} />
-                                    )}
+                                <h3 style={{ marginBottom: "10px" }}>Old Featured Image</h3>
+                                {body && (
+                                    <img src={`${API}/blog/photo/${router.query.slug}`} alt={title} style={{ width: '180px', height: "180px", display: "inline" }} />
+                                )}
 
                                 <h3>New Featured Image</h3>
                                 <div className={styles0.immgpreview} id="imagepreview">
 
 
-                                   
+
 
 
                                     <img id="preview-selected-image" />
@@ -435,7 +435,7 @@ onContentChange={setValues}
 
     return (
         <>
-        
+
             {head()}
             {isAuth() && (
                 <>
