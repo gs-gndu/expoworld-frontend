@@ -27,9 +27,7 @@ const BlogUpdate = ({ router }) => {
     const [tags, setTags] = useState([]);
     const [checked, setChecked] = useState([]); // categories
     const [checkedTag, setCheckedTag] = useState([]); // tags
-
-
-     const [body, setBody] = useState('');
+    const [body, setBody] = useState('');
 
     const [values, setValues] = useState({
         title: '',
@@ -64,16 +62,12 @@ const BlogUpdate = ({ router }) => {
             } else {
                 setValues({ ...values, success: `Blog titled "${data.title}" is successfully updated` });
 
-
-
-
-                /*
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
                     Router.push(`/${postslug}`);
                 }
-                 setTimeout(redirect, 100)
-                 */
+                  setTimeout(redirect, 100)
+                 
             }
         });
     };
@@ -83,8 +77,6 @@ const BlogUpdate = ({ router }) => {
         if (router.query.slug) {
             singleBlog(router.query.slug).then(data => {
                 if (!data) {
-
-
                     if (!isAuth()) {
                         Router.push(`/signin`);
                     } else if (isAuth().role == 1) {
@@ -201,7 +193,7 @@ const BlogUpdate = ({ router }) => {
         } else {
             all.splice(clickedCategory, 1);
         }
-        console.log(all);
+    
         setChecked(all);
         formData.set('categories', all);
     };
@@ -218,7 +210,6 @@ const BlogUpdate = ({ router }) => {
         else {
             all.splice(clickedTag, 1);
         }
-        console.log(all);
         setCheckedTag(all);
         formData.set('tags', all);
     };
@@ -437,5 +428,3 @@ const BlogUpdate = ({ router }) => {
 };
 
 export default withRouter(BlogUpdate);
-
-// export default dynamic(() => Promise.resolve(withRouter(BlogUpdate)), { ssr: false })
