@@ -63,10 +63,6 @@ const CreateBlog = ({ router }) => {
     const token = getCookie('token');
 
 
-
-
-
-
     const publishBlog = e => {
         e.preventDefault();
         setValues({ ...values, publishtext: 'Publishing...' });
