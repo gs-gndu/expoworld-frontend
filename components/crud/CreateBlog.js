@@ -56,9 +56,10 @@ const CreateBlog = ({ router }) => {
         mtitle: '',
         mdesc: '',
         slug: '',
+        publishtext:'Publish Post',
     });
 
-    const { error, success, formData, title, mtitle, mdesc, slug } = values;
+    const { error, success, formData,publishtext, title, mtitle, mdesc, slug } = values;
     const token = getCookie('token');
 
 
@@ -68,7 +69,7 @@ const CreateBlog = ({ router }) => {
 
     const publishBlog = e => {
         e.preventDefault();
-        // console.log('ready to publishBlog');
+        setValues({ ...values, publishtext: 'Publishing...' });
         createBlog(formData, token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
@@ -299,7 +300,7 @@ const CreateBlog = ({ router }) => {
 
                         <div className={styles0.albtn}>
                             <button type="submit" className={styles0.postbtn}>
-                                Publish Post
+                                {publishtext}
                             </button>
                         </div>
 

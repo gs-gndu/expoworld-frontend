@@ -38,9 +38,10 @@ const BlogUpdate = ({ router }) => {
         mdesc: '',
         slug: '',
         date: '',
+        updatetext:'Update Post',
     });
 
-    const { error, success, formData, title, mtitle, mdesc, slug, date } = values;
+    const { error, success, formData, title,updatetext, mtitle, mdesc, slug, date } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -56,6 +57,7 @@ const BlogUpdate = ({ router }) => {
     const editBlog = e => {
         e.preventDefault();
         formData.set('body', body);
+        setValues({ ...values, updatetext: 'Updating...' });
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
@@ -66,7 +68,7 @@ const BlogUpdate = ({ router }) => {
                 function redirect() {
                     Router.push(`/${postslug}`);
                 }
-                  setTimeout(redirect, 100)
+                  setTimeout(redirect, 200)
                  
             }
         });
@@ -339,7 +341,7 @@ const BlogUpdate = ({ router }) => {
 
                         <div className={styles0.albtn}>
                             <button type="submit" className={styles0.postbtn}>
-                                Update Post
+                                {updatetext}
                             </button>
                         </div>
 
