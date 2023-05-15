@@ -42,7 +42,6 @@ const BlogUpdate = ({ router }) => {
         slug: '',
         body: '',
         date: '',
-        setContents:''
     });
 
     const { error, success, formData, title, mtitle, mdesc, slug, date } = values;
@@ -149,13 +148,13 @@ const BlogUpdate = ({ router }) => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, title: '', body: '', success: `Blog titled "${data.title}" is successfully updated` });
+                setValues({ ...values, success: `Blog titled "${data.title}" is successfully updated` });
 
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
                     Router.push(`/${postslug}`);
                 }
-                setTimeout(redirect, 400)
+                setTimeout(redirect, 100)
             }
         });
     };
@@ -293,6 +292,8 @@ const BlogUpdate = ({ router }) => {
     const handleBody = e => {
         setBody(e);
         formData.set('body', e);
+        setValues({ ...values, [body]: e, formData, error: '' });
+        console.log(e);
     };
 
 
