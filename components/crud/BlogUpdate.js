@@ -57,6 +57,7 @@ const BlogUpdate = ({ router }) => {
 
     const editBlog = e => {
         e.preventDefault();
+        formData.set('body', body);
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
@@ -375,11 +376,6 @@ const BlogUpdate = ({ router }) => {
 
                                 <h3>New Featured Image</h3>
                                 <div className={styles0.immgpreview} id="imagepreview">
-
-
-
-
-
                                     <img id="preview-selected-image" />
                                 </div>
 
@@ -436,6 +432,6 @@ const BlogUpdate = ({ router }) => {
     );
 };
 
-// export default withRouter(BlogUpdate);
+export default withRouter(BlogUpdate);
 
-export default dynamic(() => Promise.resolve(withRouter(BlogUpdate)), { ssr: false })
+// export default dynamic(() => Promise.resolve(withRouter(BlogUpdate)), { ssr: false })
