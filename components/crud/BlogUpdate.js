@@ -310,10 +310,10 @@ const BlogUpdate = ({ router}) => {
                     <div className={styles0.column}>
 
                         <SunEditor
+
                             setContents={body}
-                            value={body}
+                            // value={body}
                             onChange={handleBody} 
-                            placeholder="Start typing paragraph here .............."
                             
                             height="1500px" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
 
