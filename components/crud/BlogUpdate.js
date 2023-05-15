@@ -29,14 +29,13 @@ const BlogUpdate = ({ router }) => {
     const [checkedTag, setCheckedTag] = useState([]); // tags
 
 
-    const [body, setBody] = useState('');
+    // const [body, setBody] = useState('');
 
     const [values, setValues] = useState({
         title: '',
         error: '',
         success: '',
         formData: '',
-        title: '',
         mtitle: '',
         mdesc: '',
         slug: '',
@@ -44,7 +43,7 @@ const BlogUpdate = ({ router }) => {
         date: '',
     });
 
-    const { error, success, formData, title, mtitle, mdesc, slug, date } = values;
+    const { error, success, formData, title, body, mtitle, mdesc, slug, date } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -73,8 +72,8 @@ const BlogUpdate = ({ router }) => {
                 } else {
                     const isoDateString = data.date;
                     const dateObject = parseISO(isoDateString);
-                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date: dateObject, slug: data.slug, mdesc: data.mdesc });
-                    setBody(data.body);
+                    setValues({ ...values, title: data.title, body:data.body, mtitle: data.mtitle, date: dateObject, slug: data.slug, mdesc: data.mdesc });
+                    // setBody(data.body);
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
                 }
@@ -262,19 +261,7 @@ const BlogUpdate = ({ router }) => {
 
 
 
-    const Admintopbar = () => {
-        return (
-            <div className={styles0.gridcontainer00}>
-                <div className={styles0.griditem400}><Image className={styles0.Myicon000} src="/Admin.png" width={18} height={18} alt="Image" /></div>
-                <div className={styles0.griditem100}>  {isAuth().name}'s Dashboard</div>
-                <div className={styles0.griditem200} onClick={sighnoutuser}><Image className={styles0.Myicon000} src="/Logout.png" width={18} height={18} alt="Image" />Signout</div>
-                <div className={styles0.griditem300} onClick={darkmode}>
-                    <Image src="/WhiteMoon.png" id="moon" width={16} height={16} alt="Image" />
-                </div>
 
-            </div>
-        )
-    }
 
 
 
@@ -290,14 +277,25 @@ const BlogUpdate = ({ router }) => {
 
 
     const handleBody = e => {
-        setBody(e);
+        // setBody(e);
         formData.set('body', e);
-        // setValues({ ...values, [body]: e, formData, error: '' });
-        console.log(e);
+        // console.log(e);
     };
 
 
+    const Admintopbar = () => {
+        return (
+            <div className={styles0.gridcontainer00}>
+                <div className={styles0.griditem400}><Image className={styles0.Myicon000} src="/Admin.png" width={18} height={18} alt="Image" /></div>
+                <div className={styles0.griditem100}>  {isAuth().name}'s Dashboard</div>
+                <div className={styles0.griditem200} onClick={sighnoutuser}><Image className={styles0.Myicon000} src="/Logout.png" width={18} height={18} alt="Image" />Signout</div>
+                <div className={styles0.griditem300} onClick={darkmode}>
+                    <Image src="/WhiteMoon.png" id="moon" width={16} height={16} alt="Image" />
+                </div>
 
+            </div>
+        )
+    }
 
     const updateBlogForm = () => {
         return (
@@ -312,7 +310,7 @@ const BlogUpdate = ({ router }) => {
                     <div className={styles0.column}>
 
                         <SunEditor
-                            
+                            // value={body}
                             setContents={body}
                             onChange={handleBody}
 
