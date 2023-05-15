@@ -275,7 +275,7 @@ const BlogUpdate = ({ router }) => {
         const { formData } = values;
 
         formData.set(name, value);
-        setValues({ ...values, [name]: value, formData, error: '' });
+        // setValues({ ...values, [name]: value, formData, error: '' });
 
    };
 
