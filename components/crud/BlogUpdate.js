@@ -29,7 +29,7 @@ const BlogUpdate = ({ router }) => {
     const [checkedTag, setCheckedTag] = useState([]); // tags
 
 
-    // const [body, setBody] = useState('');
+     const [body, setBody] = useState('');
 
     const [values, setValues] = useState({
         title: '',
@@ -39,11 +39,10 @@ const BlogUpdate = ({ router }) => {
         mtitle: '',
         mdesc: '',
         slug: '',
-        body: '',
         date: '',
     });
 
-    const { error, success, formData, title, body, mtitle, mdesc, slug, date } = values;
+    const { error, success, formData, title, mtitle, mdesc, slug, date } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -56,14 +55,9 @@ const BlogUpdate = ({ router }) => {
 
 
     const handleBody = e => {
-        const name = 'body';
-        const value = e;
-        const { formData } = values;
-        formData.set(name, value);
-        setValues({ ...values, [name]: value, formData, error: '' });
-        // setBody(e);
-        // formData.set('body', e);
-        // console.log(e);
+         setBody(e);
+         formData.set('body', e);
+         console.log(e);
     };
 
 
@@ -85,8 +79,6 @@ const BlogUpdate = ({ router }) => {
         });
     };
 
-    const [posttitle, setposttitle] = useState('');
-    const [postslug, setpostslug] = useState('');
 
     const initBlog = (res) => {
         if (router.query.slug) {
@@ -106,11 +98,7 @@ const BlogUpdate = ({ router }) => {
                 } else {
                     const isoDateString = data.date;
                     const dateObject = parseISO(isoDateString);
-                    setValues({ ...values, body:data.body, mtitle: data.mtitle, date: dateObject, mdesc: data.mdesc });
-                    // setBody(data.body);
-                    setposttitle(data.title);
-                    setpostslug(data.slug);
- 
+                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date: dateObject, slug: data.slug, mdesc: data.mdesc });
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
                 }
