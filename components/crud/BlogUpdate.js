@@ -310,7 +310,7 @@ const BlogUpdate = ({ router}) => {
                     <div className={styles0.column}>
 
                         <SunEditor
-
+onContentChange={setValues}
                             setContents={body}
                             // value={body}
                             onChange={handleBody} 
