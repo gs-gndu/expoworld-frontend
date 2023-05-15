@@ -292,7 +292,7 @@ const BlogUpdate = ({ router }) => {
     const handleBody = e => {
         setBody(e);
         formData.set('body', e);
-        setValues({ ...values, [body]: e, formData, error: '' });
+        // setValues({ ...values, [body]: e, formData, error: '' });
         console.log(e);
     };
 
