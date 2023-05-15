@@ -25,12 +25,12 @@ const BlogUpdate = ({ router}) => {
 
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
-
     const [checked, setChecked] = useState([]); // categories
     const [checkedTag, setCheckedTag] = useState([]); // tags
 
 
     const [body, setBody] = useState('');
+
     const [values, setValues] = useState({
         title: '',
         error: '',
@@ -72,9 +72,6 @@ const BlogUpdate = ({ router}) => {
                     else if (isAuth().role !== 1) {
                         Router.push(`/user`);
                     }
-
-
-
 
                 } else {
                     const isoDateString = data.date;
@@ -148,9 +145,6 @@ const BlogUpdate = ({ router}) => {
     };
 
 
-
-
-
     const handleBody = e => {
         setBody(e);
         formData.set('body', e);
@@ -164,16 +158,13 @@ const BlogUpdate = ({ router}) => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, title: '', success: `Blog titled "${data.title}" is successfully updated` });
-
-                
+                setValues({ ...values, title: '', body:'', success: `Blog titled "${data.title}" is successfully updated` });
 
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
                     Router.push(`/${postslug}`);
                 }
                 setTimeout(redirect, 400)
-
             }
         });
     };
@@ -208,7 +199,6 @@ const BlogUpdate = ({ router}) => {
 
     const handleToggle = c => () => {
         setValues({ ...values, error: '' });
-        // return the first index or -1
         const clickedCategory = checked.indexOf(c);
         const all = [...checked];
 
@@ -224,7 +214,7 @@ const BlogUpdate = ({ router}) => {
 
     const handleTagsToggle = t => () => {
         setValues({ ...values, error: '' });
-        // return the first index or -1
+
         const clickedTag = checkedTag.indexOf(t);
         const all = [...checkedTag];
 
@@ -237,7 +227,6 @@ const BlogUpdate = ({ router}) => {
         console.log(all);
         setCheckedTag(all);
         formData.set('tags', all);
-
     };
 
 
@@ -328,7 +317,8 @@ const BlogUpdate = ({ router}) => {
                     <div className={styles0.column}>
 
                         <SunEditor
-                            setContents={body} placeholder="Start typing paragraph here .............."
+                            
+                            placeholder="Start typing paragraph here .............."
                             onChange={handleBody} height="1500px" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
                             setOptions={{
 
