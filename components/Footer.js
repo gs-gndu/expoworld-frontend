@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { APP_NAME } from "../config"
-import Image from 'next/image';
 import styles from "../styles/NavbarFooter.module.css"
 import dynamic from 'next/dynamic';
 import { FacebookIcon, WhatsappIcon, LinkedinIcon,TwitterIcon,RedditIcon } from 'next-share'

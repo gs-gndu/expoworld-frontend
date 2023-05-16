@@ -3,8 +3,10 @@ import Layout from "@/components/Layout"
 import styles from "../styles/blogposts.module.css"
 import { listBlogsWithCategoriesAndTags } from '../actions/blog';
 import Card from '../components/blog/Card';
+import Head from "next/head";
+import { APP_DESCRIPTION, DOMAIN, APP_NAME} from "../config"
 
-const Index = ({ blogs, router }) => {
+const Index = ({ blogs }) => {
 
     const showAllBlogs = () => {
         return blogs.map((blog, i) => (
@@ -14,7 +16,30 @@ const Index = ({ blogs, router }) => {
         )).slice(0, 12); ;
     }
 
+
+    const head = () => ( 
+        <Head>
+            <title >{APP_NAME}</title>
+            <meta name="description" content={APP_DESCRIPTION} />
+            <link rel="canonical" href={DOMAIN} />
+            <meta property="og:title" content={APP_NAME} />
+            <meta property="og:description" content={APP_DESCRIPTION} />
+            <meta property="og:type" content="webiste" />
+            <meta name="robots" content="index, follow" />
+            <meta property="og:url" content={DOMAIN} />
+            <meta property="og:site_name" content={DOMAIN} />
+            <meta property="og:image" content={`${DOMAIN}/icon-512.png`} />
+            <meta property="og:image:secure_url" content={`${DOMAIN}/icon-512.png`} />
+            <meta property="og:image:type" content="image/jpg" />
+        </Head>
+    );
+
+
+
+
     return (
+<>
+        {head()}
         <Layout>
 
             <div className={styles.backImg}>
@@ -45,6 +70,7 @@ const Index = ({ blogs, router }) => {
             </div>
 
         </Layout>
+        </>
     );
 }
 

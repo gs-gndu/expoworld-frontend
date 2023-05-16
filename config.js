@@ -1,6 +1,7 @@
 
 const publicRuntimeConfig = {
     APP_NAME: 'Coding4u',
+    APP_DESCRIPTION:'Coding4U is a blog website where users can publish their articles related to programming or computer science field. It is designed to help individuals learn programming concepts, languages, and best practices.',
     API_DEVELOPMENT: 'http://localhost:8000/api',
     API_PRODUCTION:"https://coding4u.onrender.com/",
     API_PRODUCTION:"https://coding4u.onrender.com/api",
@@ -21,7 +22,6 @@ export const DOMAIN = publicRuntimeConfig.PRODUCTION
     ? publicRuntimeConfig.DOMAIN_PRODUCTION
     : publicRuntimeConfig.DOMAIN_DEVELOPMENT;
 
-export const FB_APP_ID = publicRuntimeConfig.FB_APP_ID;
 export const DISQUS_SHORTNAME = publicRuntimeConfig.DISQUS_SHORTNAME;
 
-
+export const APP_DESCRIPTION = publicRuntimeConfig.APP_DESCRIPTION;
