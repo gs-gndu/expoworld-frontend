@@ -79,9 +79,9 @@ const CreateBlog = ({ router }) => {
                 setTimeout(redirect, 200)
 
 
-                // setBody('');
-                // setCategories([]);
-                // setTags([]);
+                setBody('');
+                setCategories([]);
+                setTags([]);
             }
         });
     };
