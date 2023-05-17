@@ -280,6 +280,7 @@ textarea {
 @media screen and (max-width:480px){
          table{
           overflow-x: auto;
+          display: block;
          }
 }
 
