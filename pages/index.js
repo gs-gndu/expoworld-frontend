@@ -12,7 +12,7 @@ const Index = ({ blogs }) => {
             <article key={i} className={styles.box}>
                 <Card blog={blog} />
             </article>
-        )).slice(0, 12); ;
+        )).slice(0, 9); ;
     }
 
 
