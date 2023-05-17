@@ -30,7 +30,9 @@
 .postcontent ul{
   margin-bottom: 40px;
 }
-
+.postcontent ol{
+  margin-bottom: 40px;
+}
 .postcontent li{
   font-size: 17px !important;
   margin-left: 60px;
