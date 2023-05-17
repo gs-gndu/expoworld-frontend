@@ -46,7 +46,7 @@ const Contact = () => {
 
 
                             <section class="mypost">
-                                <p> We'd love to hear from you! If you have any questions, feedback, or suggestions, please feel free to reach out to us using the contact information below:</p>
+                                <p>We'd love to hear from you! If you have any questions, feedback, or suggestions, please feel free to reach out to us using the contact information below:</p>
 
 
                                 <ul>
