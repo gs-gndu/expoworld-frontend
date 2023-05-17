@@ -277,6 +277,12 @@ textarea {
 
 }
 
+@media screen and (max-width:480px){
+         table{
+          display: block;
+         }
+}
+
 @media screen and (max-width:856px) {
 
   textarea {
