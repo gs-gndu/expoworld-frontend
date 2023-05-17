@@ -53,7 +53,7 @@ const Footer = () => {
           <div className={styles.footerheading}>Explore</div>
           <ul>
             <li> <Link href="/about-us">About Us </Link>  </li>
-            <li> <Link href="/contact">Contact Us </Link>  </li>
+            <li> <Link href="/contact-us">Contact Us </Link>  </li>
             <li> <Link href="/disclaimer">Disclaimer </Link>  </li>
             <li> <Link href="/privacy-policy">Privacy Policy </Link>  </li>
             </ul>

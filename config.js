@@ -1,4 +1,3 @@
-
 const publicRuntimeConfig = {
     APP_NAME: 'Coding4u',
     APP_DESCRIPTION:'Coding4U is a blog website where users can publish their articles related to programming or computer science field. It is designed to help individuals learn programming concepts, languages, and best practices.',
@@ -11,7 +10,6 @@ const publicRuntimeConfig = {
     DISQUS_SHORTNAME:"my-cms-7",
     }
 
-
 export const API = publicRuntimeConfig.PRODUCTION
     ? publicRuntimeConfig.API_PRODUCTION
     : publicRuntimeConfig.API_DEVELOPMENT;
@@ -23,5 +21,4 @@ export const DOMAIN = publicRuntimeConfig.PRODUCTION
     : publicRuntimeConfig.DOMAIN_DEVELOPMENT;
 
 export const DISQUS_SHORTNAME = publicRuntimeConfig.DISQUS_SHORTNAME;
-
 export const APP_DESCRIPTION = publicRuntimeConfig.APP_DESCRIPTION;
