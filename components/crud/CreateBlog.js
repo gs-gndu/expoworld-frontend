@@ -259,7 +259,7 @@ const CreateBlog = ({ router }) => {
 
                                 buttonList: [
                                     // ["undo", "redo"],
-                                    // ["fontSize", "formatBlock"],
+                                    ["fontSize"],
                                     [
                                         "bold",
                                         "underline",
@@ -272,7 +272,7 @@ const CreateBlog = ({ router }) => {
                                     ["align", "horizontalRule", "list", "table"],
                                     ["fontColor", "hiliteColor"],
 
-                                    // ["removeFormat"],
+                                    ["removeFormat"],
 
                                     ["link", "image", "video"],
                                     ["preview"],

@@ -305,7 +305,7 @@ const BlogUpdate = ({ router }) => {
                             setOptions={{
 
                                 buttonList: [
-                                    ["fontSize", "formatBlock"],
+                                    ["fontSize"],
                                     [
                                         "bold",
                                         "underline",
