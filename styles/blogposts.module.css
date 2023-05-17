@@ -34,7 +34,7 @@
   background-color: rgb(10, 10, 10);
   margin-top: 60px;
   border-radius: 10px;
-  opacity: 0.95;
+  opacity: 0.85;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -374,7 +374,7 @@ font-size: 80px;
   }
 
   .resizeimg {
-    max-width: 90%;
+    max-width: 100%;
   }
 
   .box{
