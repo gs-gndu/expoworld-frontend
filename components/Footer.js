@@ -82,9 +82,9 @@ const Footer = () => {
             <div className={styles.footerheading}>Articles</div>
             <ul>
             <li> <Link href="/wordpress-vs-react">Wordpress vs React </Link>  </li>
-            <li> <Link href="/nextjs-vs-nuxt.js">Next.js vs Nuxt.js </Link>  </li>
+            <li> <Link href="/next.js-vs-nuxt.js">Next.js vs Nuxt.js </Link>  </li>
             <li> <Link href="/how-much-js-before-react">How much JS before React ? </Link>  </li>
-            <li> <Link href="/reactjs-vs-nextjs">React.js vs Next.js </Link>  </li>
+            <li> <Link href="/react.js-vs-next.js">React.js vs Next.js </Link>  </li>
             <li> <Link href="/what-is-nodejs">What is Node.js </Link>  </li>
             <li> <Link href="/what-is-blogging">What Is Blogging </Link>  </li>
             <li> <Link href="/wordpress-vs-blogger">Wordpress vs Blogger </Link>  </li>
