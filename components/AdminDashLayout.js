@@ -29,7 +29,7 @@ const AdminDashLayout = ({ children }) => {
 
           <div className={styles.gridcontainer}>
             <div className={styles.griditem4}><Image className={styles.Myicon0} src="/Admin.png" width={26} height={26} alt="image" /></div>
-            <div className={styles.griditem1}>  {isAuth().name}'s Dashboard</div>
+            <div className={styles.griditem1}>  {isAuth().name}'s Dashboard- Admin</div>
             <div className={styles.griditem2} onClick={sighnoutuser}><Image className={styles.Myicon0} src="/Logout.png" width={22} height={22} alt="image"/>Signout</div>
             <div className={styles.griditem3} onClick={darkmode}>
               <Image src="/WhiteMoon.png" id="moon" width={21} height={21} alt="image" />
