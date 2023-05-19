@@ -254,7 +254,7 @@ const CreateBlog = ({ router }) => {
 
                         <SunEditor
                             setContents={body} placeholder="Start typing paragraph here .............."
-                            onChange={handleBody} height="1200px" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
+                            onChange={handleBody} height="auto" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
                             setOptions={{
 
                                 buttonList: [
