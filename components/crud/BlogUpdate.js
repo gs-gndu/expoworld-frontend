@@ -53,15 +53,25 @@ const BlogUpdate = ({ router }) => {
 
 
 
-
+    const [message, setMessage] = useState('');
     const editBlog = e => {
         e.preventDefault();
         formData.set('body', body);
         setValues({ ...values, updatetext: 'Updating....' });
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
-            } else {
+                setValues({ ...values });
+
+                setMessage(data.error)
+
+                function removemsg() {
+                    setMessage("")
+                }
+                  setTimeout(removemsg, 2500)
+            } 
+            
+            
+            else {
                 setValues({ ...values,  success: `Blog titled "${data.title}" is successfully updated` });
 
                 let postslug = slugify(slug).toLowerCase();
@@ -73,6 +83,10 @@ const BlogUpdate = ({ router }) => {
             }
         });
     };
+
+    const showError = () => (<div className={styles0.error}>{message}</div>);
+    const showSuccess = () => ( <div className={styles0.success}>{success}</div>);
+
 
 
     const initBlog = (res) => {
@@ -126,8 +140,7 @@ const BlogUpdate = ({ router }) => {
     };
 
     
-    const showError = () => (<div className={styles0.error}>{error}</div>);
-    const showSuccess = () => ( <div className={styles0.success}>{success}</div>);
+ 
  
 
 
