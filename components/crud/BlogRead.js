@@ -61,17 +61,12 @@ const BlogRead = () => {
   const handleConfirmDelete = () => {
     deleteBlog(currentBlogSlug);
     setModalOpen(false);
+    document.body.style.overflow = 'auto';
     setTimeout(() => {
       setMessage("");
     }, 2000);
 
   };
-
-
-
-
-
-
 
 
 

@@ -62,13 +62,13 @@ const BlogUpdate = ({ router }) => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, success: `Blog titled "${data.title}" is successfully updated` });
+                setValues({ ...values,  success: `Blog titled "${data.title}" is successfully updated` });
 
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
                     Router.push(`/${postslug}`);
                 }
-                  setTimeout(redirect, 200)
+                  setTimeout(redirect, 500)
                  
             }
         });
@@ -125,17 +125,10 @@ const BlogUpdate = ({ router }) => {
         setValues({ ...values, [name]: value, formData, error: '' });
     };
 
-    const showError = () => (
-        <div className={styles0.error} style={{ display: error ? '' : 'none' }}>
-            {error}
-        </div>
-    );
-
-    const showSuccess = () => (
-        <div className={styles0.success} style={{ display: success ? '' : 'none' }}>
-            {success}
-        </div>
-    );
+    
+    const showError = () => (<div className={styles0.error}>{error}</div>);
+    const showSuccess = () => ( <div className={styles0.success}>{success}</div>);
+ 
 
 
     const initCategories = () => {
