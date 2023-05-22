@@ -6,7 +6,7 @@ import Link from 'next/link';
 const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 import { useState, useEffect } from 'react';
 import { singleBlog, listRelated } from '../actions/blog';
-import { API, DOMAIN, APP_NAME} from "../config"
+import { API, DOMAIN, APP_NAME } from "../config"
 const SmallCard = dynamic(() => import('../components/blog/SmallCard'), { ssr: false });
 import styles from "../styles/blogposts.module.css"
 const Search = dynamic(() => import('@/components/blog/Search'), { ssr: false });
@@ -73,7 +73,6 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
     useEffect(() => {
         loadRelated();
-
     }, []);
 
 

@@ -41,7 +41,10 @@ const BlogRead = () => {
         setBlogs(data);
       }
     });
-  }; useEffect(() => {
+  };
+  
+  
+  useEffect(() => {
     loadBlogs();
   }, []);
 
@@ -65,7 +68,6 @@ const BlogRead = () => {
     setTimeout(() => {
       setMessage("");
     }, 2000);
-
   };
 
 
