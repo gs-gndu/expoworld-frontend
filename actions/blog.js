@@ -62,7 +62,7 @@ export const allblogs = async () => {
 
 
 
-export const singleBlog = async slug => {
+export const singleBlog = async (slug) => {
     try {
         const response = await fetch(`${API}/blog/${slug}`, {
             method: 'GET'

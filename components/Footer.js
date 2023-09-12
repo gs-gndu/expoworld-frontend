@@ -33,15 +33,6 @@ const Footer = () => {
 
             <div className={styles.Footerlogos}>
               {socialmedia()}
-
-              {/* <Link href="#">   <Image src="/Youtube.png" width={44} height={35} alt='Youtube' style={{ marginBottom: "6px" }} /></Link> */}
-              {/* <Link href="#">     <Image src="/Twitter.png" width={50} height={50} alt='Twitter' style={{ marginLeft: "7px", marginRight: "3px" }} /> </Link> */}
-
-              {/* <Link href="#">     <Image src="/Whatsapp2.png" width={46} height={50} alt='LinkedIn' style={{marginBottom:"6px", paddingTop:"8px"}}/> </Link> */}
-
-              {/* <Link href="#">     <Image src="/Facebook.png" width={50} height={50} alt='Facebook' style={{ marginRight: "2px" }} /> </Link> */}
-              {/* <Link href="#">     <Image src="/Linkedin.png" width={42} height={37} alt='LinkedIn' style={{ marginBottom: "6px", marginLeft: "4px" }} /> </Link> */}
-
             </div>
 
 
