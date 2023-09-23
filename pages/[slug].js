@@ -176,7 +176,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
                                 <section>
-                                    <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} />
+                                    <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} height={600} width={600}/>
                                 </section>
 
                                 <br /><br />

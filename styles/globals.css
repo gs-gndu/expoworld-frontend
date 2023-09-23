@@ -142,6 +142,7 @@ pre{
   background-color: rgb(6, 1, 11);
   white-space: pre-wrap;
   word-wrap: break-word;
+  line-height: 1.9;
 }
 
 

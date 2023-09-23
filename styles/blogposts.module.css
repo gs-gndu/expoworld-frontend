@@ -7,7 +7,7 @@
 .editbutton{
   text-align: right;
 }
-
+ 
 .editbutton a{
   border: 1px solid rgb(85, 238, 43);
   color: rgb(85, 238, 43);
@@ -38,9 +38,6 @@
   word-wrap: break-word;
 }
 
-.topsection {
-  text-align: center;
-}
 
 
 
@@ -149,12 +146,6 @@
   margin: auto;
 }
 
-
-.Imagecontainer{
-  /* width: 342px; */
-  height: 200px;
-  overflow: hidden;
-}
 
 .resizeimgrelated {
   width: 100%;
@@ -302,8 +293,6 @@ font-size: 80px;
 .topsection{
   text-align: center;
   color: white;
-  padding-right: 20px;
-  padding-left: 20px;
 }
 
 
@@ -385,7 +374,7 @@ font-size: 80px;
 
   .mypost{
     width: 95%;
-    padding: 25px;
+    padding: 15px;
     margin-top: 0px;
     opacity: 1;
   }
