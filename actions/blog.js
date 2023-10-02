@@ -60,6 +60,21 @@ export const allblogs = async () => {
     }
 };
 
+export const getAllBlogSlugs = async () => {
+    try {
+        const response = await fetch(`${API}/allblogslugs`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        return await response.json();
+    } catch (err) {
+        return console.log(err);
+    }
+};
+
 
 
 export const singleBlog = async (slug) => {

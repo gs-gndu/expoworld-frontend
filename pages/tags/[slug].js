@@ -2,7 +2,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 const Layout = dynamic(() => import('@/components/Layout'), {ssr: false});
 import { singleTag } from '../../actions/tag';
-import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import { DOMAIN, APP_NAME } from '../../config';
 import Card from '../../components/blog/Card';
 import styles from "../../styles/blogs.module.css"
 import Search from '@/components/blog/Search';
@@ -40,7 +40,6 @@ const Tag = ({ tag, blogs, query, errorCode }) => {
             <meta property="og:image" content={`${DOMAIN}/static/images/seoblog.jpg`} />
             <meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seoblog.jpg`} />
             <meta property="og:image:type" content="image/jpg" />
-            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
         </Head>
     );
 

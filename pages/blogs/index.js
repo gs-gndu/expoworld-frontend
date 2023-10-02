@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 const Layout = dynamic(() => import('@/components/Layout'), {ssr: false});
 import { listBlogsWithCategoriesAndTags } from '../../actions/blog';
 import Card from '../../components/blog/Card';
-import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import { DOMAIN, APP_NAME} from '../../config';
 import styles from "../../styles/blogs.module.css"
 import { useState } from 'react';
 
@@ -36,7 +36,6 @@ const Blogs = ({ blogs, router }) => {
           <meta property="og:image" />
           <meta property="og:image:secure_url" />
           <meta property="og:image:type" content="image/jpg" />
-          <meta property="fb:app_id" content={`${FB_APP_ID}`} />
       </Head>
   );
 

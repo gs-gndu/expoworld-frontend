@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import { userPublicProfile } from '../../actions/user';
-import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import { DOMAIN, APP_NAME} from '../../config';
 import styles from "../../styles/profile.module.css"
 import ContactForm from '../../components/form/ContactForm';
 import Search from '@/components/blog/Search';
@@ -43,7 +43,6 @@ const UserProfile = ({ user, blogs, query, errorCode }) => {
             <meta property="og:image" content={`${DOMAIN}/static/images/seoblog.jpg`} />
             <meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seoblog.jpg`} />
             <meta property="og:image:type" content="image/jpg" />
-            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
         </Head>
     );
 

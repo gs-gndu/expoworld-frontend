@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import Link from 'next/link';
 const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 import { useState, useEffect } from 'react';
-import { singleBlog, listRelated } from '../actions/blog';
+import { singleBlog, listRelated, getAllBlogSlugs } from '../actions/blog';
 import { API, DOMAIN, APP_NAME } from "../config"
 const SmallCard = dynamic(() => import('../components/blog/SmallCard'), { ssr: false });
 import styles from "../styles/blogposts.module.css"
@@ -222,18 +222,42 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
 
-export async function getServerSideProps({ query, res }) {
+// export async function getServerSideProps({ query, res }) {
+//     try {
+//         const data = await singleBlog(query.slug);
+//         if (!data) {
+//             res.statusCode = 404;
+//             return { props: { errorCode: 404 } };
+//         }
+//         return { props: { blog: data } };
+//     } catch (error) {
+//         console.error(error);
+//         return { props: { errorCode: 500 } };
+//     }
+// }
+
+export async function getStaticPaths() {
+    const slugs = await getAllBlogSlugs();
+    const paths = slugs.map((slug) => ({ params: { slug } }));
+    return { paths, fallback: false };
+  }
+  
+
+
+
+export async function getStaticProps({params, res }) {
     try {
-        const data = await singleBlog(query.slug);
-        if (!data) {
-            res.statusCode = 404;
-            return { props: { errorCode: 404 } };
-        }
-        return { props: { blog: data } };
+      const data = await singleBlog(params.slug);
+      if (!data) {
+        res.statusCode = 404;
+        return { props: { errorCode: 404 } };
+      }
+      return { props: { blog: data } };
     } catch (error) {
-        console.error(error);
-        return { props: { errorCode: 500 } };
+      console.error(error);
+      return { props: { errorCode: 500 } };
     }
-}
+  }
+
 
 export default SingleBlog0;
