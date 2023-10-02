@@ -8,11 +8,11 @@ const Footer = () => {
   const socialmedia = () => {
     return (
         <div style={{marginTop:'15px'}} className="Footerlogos">
-          <a href='#'>  <FacebookIcon style={{ padding: "5px" }} size={45} round /> </a>
-          <a href='#'>  <LinkedinIcon style={{ padding: "5px" }} size={45} round /></a>
-          <a href='#'>  <WhatsappIcon style={{ padding: "5px" }} size={45} round /> </a>
-          <a href='#'>  <TwitterIcon style={{ padding: "5px" }} size={45} round /></a>
-          <a href='#'> <RedditIcon style={{ padding: "5px" }} size={45} round /></a>
+          <a href='https://coding4u-project.vercel.app'>  <FacebookIcon style={{ padding: "5px" }} size={45} round /> </a>
+          <a href='https://coding4u-project.vercel.app'>  <LinkedinIcon style={{ padding: "5px" }} size={45} round /></a>
+          <a href='https://coding4u-project.vercel.app'>  <WhatsappIcon style={{ padding: "5px" }} size={45} round /> </a>
+          <a href='https://coding4u-project.vercel.app'>  <TwitterIcon style={{ padding: "5px" }} size={45} round /></a>
+          <a href='https://coding4u-project.vercel.app'> <RedditIcon style={{ padding: "5px" }} size={45} round /></a>
         </div>
     )
 }

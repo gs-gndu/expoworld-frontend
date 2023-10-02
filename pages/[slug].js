@@ -176,9 +176,21 @@ const SingleBlog0 = ({ blog, errorCode }) => {
                                 {socialmedia()}<br />
 
 
-                                <section>
+                                {/* <section>
                                     <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title}/>
+                                </section> */}
+
+
+
+
+                                <section className={styles.imageContainer}>
+                                    <div className={styles.aspectRatioContainer}>
+                                        <Image className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} fill />
+                                    </div>
                                 </section>
+
+
+
 
                                 <br /><br />
                             </section>
@@ -242,24 +254,24 @@ export async function getStaticPaths() {
 
     const paths = slugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
     return { paths, fallback: false };
-  }
-  
+}
 
 
 
-  export async function getStaticProps({ params, res }) {
+
+export async function getStaticProps({ params, res }) {
     try {
-      const data = await singleBlog(params.slug);
-      if (!data) {
-        res.statusCode = 404;
-        return { props: { errorCode: 404 } };
-      }
-      return { props: { blog: data } };
+        const data = await singleBlog(params.slug);
+        if (!data) {
+            res.statusCode = 404;
+            return { props: { errorCode: 404 } };
+        }
+        return { props: { blog: data } };
     } catch (error) {
-      console.error(error);
-      return { props: { errorCode: 500 } };
+        console.error(error);
+        return { props: { errorCode: 500 } };
     }
-  }
+}
 
 
 export default SingleBlog0;
