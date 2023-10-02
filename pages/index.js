@@ -65,19 +65,42 @@ const Index = ({ blogs }) => {
 }
 
 
-export async function getServerSideProps() {
-  const data = await listBlogsWithCategoriesAndTags();
-  if (data.error) {
-    console.log(data.error);
-  }
-  return {
-    props: {
-      blogs: data.blogs,
-      categories: data.categories,
-      tags: data.tags,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const data = await listBlogsWithCategoriesAndTags();
+//   if (data.error) {
+//     console.log(data.error);
+//   }
+//   return {
+//     props: {
+//       blogs: data.blogs,
+//       categories: data.categories,
+//       tags: data.tags,
+//     },
+//   };
+// }
 
+export async function getStaticProps() {
+    try {
+      const data = await listBlogsWithCategoriesAndTags();
+      
+      return {
+        props: {
+          blogs: data.blogs,
+          categories: data.categories,
+          tags: data.tags,
+        },
+      };
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      
+      return {
+        props: {
+          blogs: [],
+          categories: [],
+          tags: [],
+        },
+      };
+    }
+  }
 
 export default Index;
