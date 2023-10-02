@@ -238,14 +238,15 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 export async function getStaticPaths() {
     const slugs = await getAllBlogSlugs();
-    const paths = slugs.map((slug) => ({ params: { slug } }));
+
+    const paths = slugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
     return { paths, fallback: false };
   }
   
 
 
 
-export async function getStaticProps({params, res }) {
+  export async function getStaticProps({ params, res }) {
     try {
       const data = await singleBlog(params.slug);
       if (!data) {
