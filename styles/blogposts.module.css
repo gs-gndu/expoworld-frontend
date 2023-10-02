@@ -3,7 +3,7 @@
   /* object-fit: cover; */
 }
 
-
+ 
 .editbutton{
   text-align: right;
 }
@@ -140,8 +140,10 @@
   text-decoration: underline;
 }
 
+
+
 .resizeimg {
-  max-width: 70%;
+  max-width: 65%;
   height: auto;
   margin: auto;
 }

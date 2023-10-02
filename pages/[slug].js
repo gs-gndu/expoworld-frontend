@@ -12,6 +12,7 @@ import styles from "../styles/blogposts.module.css"
 const Search = dynamic(() => import('@/components/blog/Search'), { ssr: false });
 import { format } from 'date-fns';
 const DisqusThread = dynamic(() => import('../components/DisqusThread'), { ssr: false });
+import Image from 'next/image';
 import {
     FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon,
     TelegramShareButton, TelegramIcon,
@@ -176,7 +177,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
                                 <section>
-                                    <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} height={600} width={600}/>
+                                    <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title}/>
                                 </section>
 
                                 <br /><br />
