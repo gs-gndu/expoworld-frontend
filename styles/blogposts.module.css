@@ -182,8 +182,11 @@
 
 
 
-
-
+.resizeimg0 {
+  max-width: 70%;
+  height: auto;
+  margin: auto;
+}
 
 
 
