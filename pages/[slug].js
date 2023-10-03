@@ -234,26 +234,11 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
 
-
-// export async function getServerSideProps({ query, res }) {
-//     try {
-//         const data = await singleBlog(query.slug);
-//         if (!data) {
-//             res.statusCode = 404;
-//             return { props: { errorCode: 404 } };
-//         }
-//         return { props: { blog: data } };
-//     } catch (error) {
-//         console.error(error);
-//         return { props: { errorCode: 500 } };
-//     }
-// }
-
 export async function getStaticPaths() {
     const slugs = await getAllBlogSlugs();
 
     const paths = slugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
-    return { paths, fallback: false };
+    return { paths, fallback: "blocking" };
 }
 
 
