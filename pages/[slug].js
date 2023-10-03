@@ -182,13 +182,13 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
 
-                                {blog.photo && (
+                                
                                     <section className={styles.imageContainer}>
                                         <div className={styles.aspectRatioContainer}>
                                             <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} />
                                         </div>
                                     </section>
-                                )}
+                                
 
 
 
