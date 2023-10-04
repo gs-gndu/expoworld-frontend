@@ -54,7 +54,7 @@ const BlogRead = () => {
       if (data.error) {
         console.log(data.error);
       } else {
-        setMessage(data.message);
+        setMessage("BlogPost Deleted Successfully");
         loadBlogs();
       }
     });
