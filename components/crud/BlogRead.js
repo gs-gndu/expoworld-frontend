@@ -58,7 +58,7 @@ const BlogRead = () => {
         loadBlogs();
         setTimeout(() => {
           setMessage("");
-        }, 2000);
+        }, 2500);
       }
     });
   };
@@ -68,9 +68,6 @@ const BlogRead = () => {
     deleteBlog(currentBlogSlug);
     setModalOpen(false);
     document.body.style.overflow = 'auto';
-    // setTimeout(() => {
-    //   setMessage("");
-    // }, 2000);
   };
 
 
