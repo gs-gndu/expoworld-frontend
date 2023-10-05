@@ -15,7 +15,7 @@ const SmallCard = ({ blog }) => {
     return (
         < >
          <a href={`/${blog.slug}`} className={styles.relatedtitle}>
-            <section className={styles.Imagecontainer}>
+            <section className={styles.resizeparent}>
                 <img className={styles.resizeimgrelated}  src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} />   
             </section>
 

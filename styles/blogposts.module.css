@@ -155,7 +155,7 @@
 } */
 .imageContainer {
   width: 100%;
-  max-width: 600px; /* Adjust as needed */
+  max-width: 600px;
   margin: auto;
 }
 
@@ -190,7 +190,10 @@
 
 
 
-
+.resizeparent{
+  height: 200px;
+  overflow: hidden;
+}
 
 
 .resizeimgrelated {

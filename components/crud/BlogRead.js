@@ -56,6 +56,9 @@ const BlogRead = () => {
       } else {
         setMessage("BlogPost Deleted Successfully");
         loadBlogs();
+        setTimeout(() => {
+          setMessage("");
+        }, 2000);
       }
     });
   };
@@ -65,9 +68,9 @@ const BlogRead = () => {
     deleteBlog(currentBlogSlug);
     setModalOpen(false);
     document.body.style.overflow = 'auto';
-    setTimeout(() => {
-      setMessage("");
-    }, 2000);
+    // setTimeout(() => {
+    //   setMessage("");
+    // }, 2000);
   };
 
 

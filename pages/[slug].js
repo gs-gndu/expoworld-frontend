@@ -243,13 +243,9 @@ export async function getStaticPaths() {
 
     const slugs = await getAllBlogSlugs();
 
-  // Define slugs to be excluded from static generation
+
   const excludedSlugs = ['/admin/edit-blogs', '/admin/blog'];
-
-  // Filter slugs to exclude unwanted ones
   const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));
-
-  // Create paths array
   const paths = filteredSlugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
 
   return { paths, fallback: "blocking" };
