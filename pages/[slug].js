@@ -12,7 +12,7 @@ import styles from "../styles/blogposts.module.css"
 const Search = dynamic(() => import('@/components/blog/Search'), { ssr: false });
 import { format } from 'date-fns';
 const DisqusThread = dynamic(() => import('../components/DisqusThread'), { ssr: false });
-import Image from 'next/image';
+
 import {
     FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon,
     TelegramShareButton, TelegramIcon,
@@ -258,7 +258,6 @@ export async function getStaticProps({ params, res }) {
     try {
         const data = await singleBlog(params.slug);
         if (!data) {
-            res.statusCode = 404;
             return { props: { errorCode: 404 } };
         }
         return { props: { blog: data } };
