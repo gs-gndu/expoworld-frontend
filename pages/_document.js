@@ -7,7 +7,7 @@ function Document() {
     <Html lang="en-US">
   
       <Head>
-    
+      <meta name="google-site-verification" content="vqWLPPvQJZGZF2_5UnoXCFhDOcNOsQgKxPT7at5kUOE" />
        </Head>
       
       <body>
