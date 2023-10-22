@@ -56,10 +56,11 @@ const CreateBlog = ({ router }) => {
         mtitle: '',
         mdesc: '',
         slug: '',
+        photo: '',
         publishtext:'Publish Post',
     });
 
-    const { error, success, formData,publishtext, title, mtitle, mdesc, slug } = values;
+    const { error, success, formData,publishtext, title, mtitle, mdesc, slug, photo } = values;
     const token = getCookie('token');
 
 
@@ -70,7 +71,7 @@ const CreateBlog = ({ router }) => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, title: '', mtitle: '', mdesc: '', slug: '', error: '', success: `A new blog titled "${data.title}" is created` });
+                setValues({ ...values, title: '', mtitle: '', mdesc: '', slug: '', photo: '', error: '', success: `A new blog titled "${data.title}" is created` });
 
                 let postslug = slugify(slug).toLowerCase();
                 function redirect() {
@@ -86,29 +87,11 @@ const CreateBlog = ({ router }) => {
         });
     };
 
+
     const handleChange = name => e => {
-        const value = name === 'photo' ? e.target.files[0] : e.target.value;
+        const value = e.target.value;
         formData.set(name, value);
-        setValues({ ...values, [name]: value, formData, error: '' });
-
-        const imageFiles = e.target.files;
-        const imageFilesLength = imageFiles.length;
-
-        if (imageFilesLength > 0) {
-            const imageSrc = URL.createObjectURL(imageFiles[0]);
-            const imagePreviewElement = document.querySelector("#preview-selected-image");
-            imagePreviewElement.src = imageSrc;
-            imagePreviewElement.style.display = "block";
-            imagePreviewElement.style.width = "180px";
-            imagePreviewElement.style.height = "180px";
-
-        }
-    };
-
-    const handletitle = name => e => {
-        const value = name === 'photo' ? e.target.files[0] : e.target.value;
-        formData.set(name, value);
-        setValues({ ...values, [name]: value, formData, error: '' });
+        setValues({ ...values, [name]: value, error: '' });
     };
 
 
@@ -245,7 +228,7 @@ const CreateBlog = ({ router }) => {
             <form onSubmit={publishBlog} style={{background:"var(--adminBack-color)"}}>
 
                 <div>
-                    <input placeholder='Title Goes Here' type="text" value={title} className={styles0.inputs} onChange={handletitle('title')} autoFocus={true} />
+                    <input placeholder='Title Goes Here' type="text" value={title} className={styles0.inputs} onChange={handleChange('title')} autoFocus={true} />
                 </div>
 
 
@@ -256,9 +239,7 @@ const CreateBlog = ({ router }) => {
                             setContents={body} placeholder="Start typing paragraph here .............."
                             onChange={handleBody} height="auto" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
                             setOptions={{
-
                                 buttonList: [
-                                    // ["undo", "redo"],
                                     ["fontSize"],
                                     [
                                         "bold",
@@ -313,13 +294,13 @@ const CreateBlog = ({ router }) => {
 
 
                             <div className={styles0.fieldtext}> Title</div>
-                            <input placeholder='Meta Title' type="text" value={mtitle} className={styles0.inputs2} onChange={handletitle('mtitle')} />
+                            <input placeholder='Meta Title' type="text" value={mtitle} className={styles0.inputs2} onChange={handleChange('mtitle')} />
 
                             <div className={styles0.fieldtext}> Meta Description</div>
-                            <textarea style={{ fontSize: "13.5px", padding: "5px", marginTop: "10px", marginBottom: "15px" }} placeholder='Meta Description' value={mdesc} onChange={handletitle('mdesc')} rows="12" cols="26"></textarea>
+                            <textarea style={{ fontSize: "13.5px", padding: "5px", marginTop: "10px", marginBottom: "15px" }} placeholder='Meta Description' value={mdesc} onChange={handleChange('mdesc')} rows="12" cols="26"></textarea>
 
                             <div className={styles0.fieldtext}>Slug or Url</div>
-                            <input placeholder='slug or url' type="text" value={slug} className={styles0.inputs2} onChange={handletitle('slug')} />
+                            <input placeholder='slug or url' type="text" value={slug} className={styles0.inputs2} onChange={handleChange('slug')} />
                         </div>
 
 
@@ -327,17 +308,7 @@ const CreateBlog = ({ router }) => {
                         <div className={styles0.fimage}>
                             <div className={styles0.mydiv}>
                                 <h3>Featured Image</h3>
-                                <div className={styles0.immgpreview} id="imagepreview">
-                                    <img id="preview-selected-image" />
-                                </div>
-
-                                <div className={styles0.maxsize}>Max size: 500 KB</div>
-
-                                <label className={styles0.uploadimage}>
-                                    <Image className={styles0.Myicon200} src="/Plus.png" width={14} height={14} alt="Image" />
-                                    Upload Image
-                                    <input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
-                                </label>
+                                <input placeholder='Image Link' type="text" value={photo} className={styles0.inputs2} onChange={handleChange('photo')} />
                             </div>
                         </div>
 

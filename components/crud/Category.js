@@ -138,7 +138,7 @@ const Category = () => {
                     {ModalOpen && (
                         <div className="modal">
                             <div className="modalContent">
-                                <div>Are you sure you want to delete this post ?</div>
+                                <div>Are you sure you want to delete this Category ?</div>
                                 <br />
                                 <button className={styles0.deletebtn00} onClick={handleConfirmDelete}> DELETE</button>
                                 <button className={styles0.deletebtn00} onClick={hideModel}>CANCEL</button>

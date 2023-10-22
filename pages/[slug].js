@@ -157,8 +157,6 @@ const SingleBlog0 = ({ blog, errorCode }) => {
                                 <header>
                                     <h1 >{blog.title}</h1>
 
-                                    {/* <div className={styles.dateauth}>{formattedDate} &nbsp; by &nbsp; <Link href={`/profile/${blog.postedBy.username}`} className={styles.author}> {blog.postedBy.name}</Link>   </div> */}
-
 
                                     <section className={styles.dateauth}>
                                         {formattedDate} &nbsp; by &nbsp;
@@ -175,22 +173,13 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
                                 {socialmedia()}<br />
 
-
-                                {/* <section>
-                                    <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title}/>
-                                </section> */}
-
-
-
                                 
                                     <section className={styles.imageContainer}>
                                         <div className={styles.aspectRatioContainer}>
-                                            <img className={styles.resizeimg} src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} />
+                                            <img className={styles.resizeimg} src={blog.photo} alt={blog.title} />
                                         </div>
                                     </section>
                                 
-
-
 
                                 <br /><br />
                             </section>
@@ -244,7 +233,7 @@ export async function getStaticPaths() {
     const slugs = await getAllBlogSlugs();
 
 
-  const excludedSlugs = ['/admin/edit-blogs', '/admin/blog'];
+  const excludedSlugs = ['/admin/edit-blogs', '/admin/blog', '/admin/edit-story', '/admin/web-story'];
   const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));
   const paths = filteredSlugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
 

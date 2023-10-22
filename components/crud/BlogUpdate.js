@@ -11,7 +11,6 @@ const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 import 'suneditor/dist/css/suneditor.min.css';
 import styles0 from "../../styles/editor.module.css"
 import Image from 'next/image';
-import { API } from '../../config';
 import slugify from 'slugify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -38,10 +37,11 @@ const BlogUpdate = ({ router }) => {
         mdesc: '',
         slug: '',
         date: '',
+        photo:'',
         updatetext:'Update Post',
     });
 
-    const { error, success, formData, title,updatetext, mtitle, mdesc, slug, date } = values;
+    const { error, success, formData, title,updatetext, mtitle, mdesc, slug, date, photo } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -105,7 +105,7 @@ const BlogUpdate = ({ router }) => {
                 } else {
                     const isoDateString = data.date;
                     const dateObject = parseISO(isoDateString);
-                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date: dateObject, slug: data.slug, mdesc: data.mdesc });
+                    setValues({ ...values, title: data.title, mtitle: data.mtitle, photo:data.photo, date: dateObject, slug: data.slug, mdesc: data.mdesc });
                     setBody(data.body)
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
@@ -114,35 +114,14 @@ const BlogUpdate = ({ router }) => {
         }
     };
 
-    const handlephoto = name => e => {
-        const value = name === 'photo' ? e.target.files[0] : e.target.value;
-        formData.set(name, value);
-        setValues({ ...values, [name]: value, formData, error: '' });
-
-
-        const imageFiles = e.target.files;
-        const imageFilesLength = imageFiles.length;
-
-        if (imageFilesLength > 0) {
-            const imageSrc = URL.createObjectURL(imageFiles[0]);
-            const imagePreviewElement = document.querySelector("#preview-selected-image");
-            imagePreviewElement.src = imageSrc;
-            imagePreviewElement.style.display = "inline";
-            imagePreviewElement.style.width = "180px";
-            imagePreviewElement.style.height = "180px";
-        }
-    };
-
     const handleChange = name => e => {
-        const value = name === 'photo' ? e.target.files[0] : e.target.value;
+        const value = e.target.value;
         formData.set(name, value);
-        setValues({ ...values, [name]: value, formData, error: '' });
+        setValues({ ...values, [name]: value, error: '' });
     };
 
     
  
- 
-
 
     const initCategories = () => {
         getCategories().then(data => {
@@ -373,23 +352,8 @@ const BlogUpdate = ({ router }) => {
 
                         <div className={styles0.fimage}>
                             <div className={styles0.mydiv}>
-                                <h3 style={{ marginBottom: "10px" }}>Old Featured Image</h3>
-                                {body && (
-                                    <img src={`${API}/blog/photo/${router.query.slug}`} alt={title} style={{ width: '180px', height: "180px", display: "inline" }} />
-                                )}
-
-                                <h3>New Featured Image</h3>
-                                <div className={styles0.immgpreview} id="imagepreview">
-                                    <img id="preview-selected-image" />
-                                </div>
-
-                                <div className={styles0.maxsize}>Max size: 500 KB</div>
-
-                                <label className={styles0.uploadimage}>
-                                    <Image className={styles0.Myicon200} src="/Plus.png" width={14} height={14} alt="Image" />
-                                    Upload Image
-                                    <input onChange={handlephoto('photo')} type="file" accept="image/*" hidden />
-                                </label>
+                                <h3>Featured Image</h3>
+                                <input type="text" value={photo} className={styles0.inputs2} onChange={handleChange('photo')} />
                             </div>
                         </div>
 

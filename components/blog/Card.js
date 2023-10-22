@@ -1,4 +1,3 @@
-// /blogs ----- page
 import Link from 'next/link';
 import { API } from '../../config';
 import styles from "../../styles/blogs.module.css"
@@ -36,13 +35,10 @@ const Card = ({ blog }) => {
 
         <>
             <section className={styles.Fimage}>
-                <img src={`${API}/blog/photo/${blog.slug}`} alt={blog.title} className={styles.images} />
+                <img src={blog.photo} alt={blog.title} className={styles.images} />
             </section>
 
             <header><Link className={styles.headcolor} href={`/${blog.slug}`}><h2 className={styles.blogtitle}>{blog.title}</h2></Link></header>
-
-            {/* <section className={styles.dateauthor}>{formattedDate}  &nbsp; by &nbsp; <Link href={`/profile/${blog.postedBy.username}`} className={styles.author}>
-                {blog.postedBy.name}</Link></section> */}
 
                 <section className={styles.dateauthor}>
                 {formattedDate} &nbsp; by &nbsp;

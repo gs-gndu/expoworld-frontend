@@ -12,7 +12,6 @@ const Blogs = ({ blogs, router }) => {
   
     const [currentPage, setCurrentPage] = useState(1);
     const blogsPerPage = 6;
-    // const totalPages = Math.ceil(blogs.length / blogsPerPage);
 
     const head = () => (
       <Head>
@@ -157,8 +156,6 @@ export async function getServerSideProps() {
       return {
           props: {
               blogs: data.blogs,
-              categories: data.categories,
-              tags: data.tags,
           }
       };
   }
