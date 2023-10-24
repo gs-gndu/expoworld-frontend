@@ -27,6 +27,28 @@
   text-align: center;
 }
 
+
+
+.se-component figure{
+  margin: auto !important;
+  display: block !important;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  max-width: 100% !important;
+  
+}  
+
+.se-component figure img{
+  max-width: 98% !important;
+}
+
+
+
+
+
+
+
+
 .postcontent ul{
   margin-bottom: 40px;
 }
