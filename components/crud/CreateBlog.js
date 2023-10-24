@@ -26,7 +26,7 @@ const CreateBlog = ({ router }) => {
         if (localStorage.getItem('blog')) {
             return JSON.parse(localStorage.getItem('blog'));
         } else {
-            return false;
+            return "";
         }
     };
     const [body, setBody] = useState(blogFromLS());
