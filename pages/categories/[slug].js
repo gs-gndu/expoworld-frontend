@@ -160,7 +160,7 @@ const Category = ({ category, blogs, query, errorCode }) => {
 export async function getServerSideProps({ query, res }) {
   try {
       const data = await singleCategory(query.slug);
-      if (data.category === null) {
+      if (data.error) {
           res.statusCode = 404;
           return { props: { errorCode: 404 } };
       }
