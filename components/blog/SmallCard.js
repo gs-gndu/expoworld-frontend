@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { API } from "../../config"
 import styles from "../../styles/blogposts.module.css"
 import { format } from 'date-fns';
 
@@ -16,7 +15,7 @@ const SmallCard = ({ blog }) => {
         < >
          <a href={`/${blog.slug}`} className={styles.relatedtitle}>
             <section className={styles.resizeparent}>
-                <img className={styles.resizeimgrelated}  src={blog.photo} alt={blog.title} />   
+                <img src={blog.photo} className={styles.resizeimgrelated} alt={blog.title} />   
             </section>
 
 
