@@ -1,6 +1,5 @@
 import '../styles/globals.css';
 import Head from 'next/head';
-import { DOMAIN, API } from '@/config';
 import NProgress from 'nprogress';
 import Router from 'next/router';
 Router.events.on('routeChangeStart', () => NProgress.start());

@@ -88,7 +88,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang='hi'>
+      <Html lang='en'>
         <Head>
         </Head>
         <body>
