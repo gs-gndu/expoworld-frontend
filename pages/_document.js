@@ -90,15 +90,16 @@ export default class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          {/* <!-- Google tag (gtag.js) --> */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-V0PSTTP42Z"></script>
-          <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments)}
-            gtag('js', new Date());
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-D18GTPG2SJ" />
 
-            gtag('config', 'G-V0PSTTP42Z');
-          </script>
+          <script dangerouslySetInnerHTML={{
+            __html: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date());
+gtag('config', 'G-D18GTPG2SJ');
+`
+          }} />
         </Head>
         <body>
           <Main />
