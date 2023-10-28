@@ -101,10 +101,10 @@ export default class MyDocument extends Document {
           }} />
         </Head>
         <body>
-<script dangerouslySetInnerHTML={{
+          <noscript dangerouslySetInnerHTML={{
             __html: `
-            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54XZPTFN"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54XZPTFN"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
 `
           }} />
 
