@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
       styles: (
         <>
           {initialProps.styles}
-          <style amp-custom="" dangerouslySetInnerHTML={{
+          {/* <style amp-custom="" dangerouslySetInnerHTML={{
             __html: `
               amp-story-page {
                  background-image: url("/back.webp");
@@ -80,7 +80,7 @@ export default class MyDocument extends Document {
                 height: 40vh;
               }
             `
-          }} />
+          }} /> */}
         </>
       )
     };
