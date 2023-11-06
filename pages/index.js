@@ -53,7 +53,7 @@ const Index = ({ blogs }) => {
 
                 <section className={styles.latestposts}>
                     <h1 className={styles.latestpostheading} >📕 Latest Post 📕</h1>
-                    <div className={styles.grid}>{showAllBlogs()}</div>
+                    {/* <div className={styles.grid}>{showAllBlogs()}</div> */}
                     <br/>
                     <br/>
                 </section>
@@ -68,21 +68,9 @@ const Index = ({ blogs }) => {
 export async function getStaticProps() {
     try {
       const data = await listBlogsWithCategoriesAndTags();
-      
-      return {
-        props: {
-          blogs: data.blogs,
-        },
-      };
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      
-      return {
-        props: {
-          blogs: [],
-        },
-      };
-    }
+      return {props: {blogs: data.blogs},};
+    } catch (error) {console.error("Error fetching data:", error);
+      return {props: {blogs: []},};} 
   }
 
 export default Index;
