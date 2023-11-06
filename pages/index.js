@@ -53,7 +53,7 @@ const Index = ({ blogs }) => {
 
                 <section className={styles.latestposts}>
                     <h1 className={styles.latestpostheading} >📕 Latest Post 📕</h1>
-                    {/* <div className={styles.grid}>{showAllBlogs()}</div> */}
+                    <div className={styles.grid}>{showAllBlogs()}</div>
                     <br/>
                     <br/>
                 </section>
