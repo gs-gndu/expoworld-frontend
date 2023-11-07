@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import styles from "../../styles/blogs.module.css";
-// import { format } from 'date-fns';
-import { parseISO, format } from 'date-fns';
+import { format } from 'date-fns';
 
 const Card = ({ blog }) => {
 
@@ -15,10 +14,8 @@ const Card = ({ blog }) => {
             <div className={styles.tagcatdisplay} key={i}><Link href={`/tags/${t.slug}`} className={styles.category}>{t.name}</Link></div> 
         ));
         
-    // const date = new Date(blog.date);
-    // const formattedDate = format(date, 'dd MMM, yyyy');
-    const parsedDate = parseISO(blog.date);
-    const formattedDate = format(parsedDate, 'dd MMM, yyyy');
+    const date = new Date(blog.date);
+    const formattedDate = format(date, 'dd MMM, yyyy');
 
     return (
         <>
