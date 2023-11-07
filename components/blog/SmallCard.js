@@ -7,10 +7,10 @@ const SmallCard = ({ blog }) => {
     const formattedDate = format(date, 'dd MMM, yyyy');
     return (
         <>
-         <a href={`/${blog.slug}`} className={styles.relatedtitle}>
+         <Link href={`/${blog.slug}`} className={styles.relatedtitle}>
             <section className={styles.resizeparent}><img src={blog.photo} className={styles.resizeimgrelated} alt={blog.title} /></section>
             <section className={styles.givetitlemar}> {blog.title} </section>
-         </a>
+         </Link>
             <section className={styles.dateauth}>
                 {formattedDate} &nbsp; by &nbsp;
                 {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (
