@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import { API } from '../../config';
-import styles from "../../styles/blogs.module.css"
+import styles from "../../styles/blogs.module.css";
 import { format } from 'date-fns';
 
 const Card = ({ blog }) => {
 
     const showBlogCategories = blog =>
         blog.categories.map((c, i) => (
-
             <div className={styles.tagcatdisplay} key={i}>
                 <Link href={`/categories/${c.slug}`} className={styles.category}>
                     {c.name}
@@ -56,8 +54,7 @@ const Card = ({ blog }) => {
                 {showBlogTags(blog)}
 
                 <section>
-                    <div className={styles.para}>{(blog.excerpt)}</div>
-                   
+                    <div className={styles.para}>{(blog.excerpt)}</div>      
                 </section>
             </div>
 

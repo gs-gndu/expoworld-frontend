@@ -1,22 +1,22 @@
-import Layout from "@/components/Layout"
-import styles from "../styles/blogposts.module.css"
+import Layout from "@/components/Layout";
+import styles from "../styles/blogposts.module.css";
 import { listBlogsWithCategoriesAndTags } from '../actions/blog';
 import Card from '../components/blog/Card';
 import Head from "next/head";
-import { APP_DESCRIPTION, DOMAIN, APP_NAME} from "../config"
+import { APP_DESCRIPTION, DOMAIN, APP_NAME } from "../config";
 
 const Index = ({ blogs }) => {
 
     const showAllBlogs = () => {
-        return blogs.map((blog, i) => (
+    return blogs.map((blog, i) => (
             <article key={i} className={styles.box}>
                 <Card blog={blog} />
             </article>
-        )).slice(0, 9); ;
+        )).slice(0, 9);
     }
 
 
-    const head = () => ( 
+    const head = () => (
         <Head>
             <title >{APP_NAME}</title>
             <meta name="description" content={APP_DESCRIPTION} />
@@ -34,32 +34,32 @@ const Index = ({ blogs }) => {
     );
 
     return (
-<>
-        {head()}
-        <Layout>
+        <>
+            {head()}
+            <Layout>
 
-            <div className={styles.backImg}>
-                <br /><br />
-                <br /><br />
+                <div className={styles.backImg}>
+                    <br /><br />
+                    <br /><br />
 
-                <section className={styles.topsection}>
-                    <h1 className={styles.heading}>Talk is cheap. Show me the code</h1>
-                    <p>It’s not at all important to get it right the first time. It’s vitally important to get it right the last time.</p>
+                    <section className={styles.topsection}>
+                        <h1 className={styles.heading}>Talk is cheap. Show me the code</h1>
+                        <p>It's not at all important to get it right the first time. It's vitally important to get it right the last time.</p>
 
-                    <div className={styles.resizeimg0}>📚</div>
-                    <h1>The Best way to predict the future is to invent it.</h1>
-                    <p>Good code is its own best documentation. As you’re about to add a comment, ask yourself, ‘How can I improve the code so that this comment isn’t needed ?</p>
-                </section>
+                        <div className={styles.resizeimg0}>📚</div>
+                        <h1>The Best way to predict the future is to invent it.</h1>
+                        <p>Good code is its own best documentation. As you're about to add a comment, ask yourself, How can I improve the code so that this comment isn't needed ?</p>
+                    </section>
 
-                <section className={styles.latestposts}>
-                    <h1 className={styles.latestpostheading} >📕 Latest Post 📕</h1>
-                    <div className={styles.grid}>{showAllBlogs()}</div>
-                    <br/>
-                    <br/>
-                </section>
-            </div>
+                    <section className={styles.latestposts}>
+                        <h1 className={styles.latestpostheading} >📕 Latest Post 📕</h1>
+                        <div className={styles.grid}>{showAllBlogs()}</div>
+                        <br />
+                        <br />
+                    </section>
+                </div>
 
-        </Layout>
+            </Layout>
         </>
     );
 }
@@ -67,10 +67,12 @@ const Index = ({ blogs }) => {
 
 export async function getStaticProps() {
     try {
-      const data = await listBlogsWithCategoriesAndTags();
-      return {props: {blogs: data.blogs},};
-    } catch (error) {console.error("Error fetching data:", error);
-      return {props: {blogs: []},};} 
-  }
+        const data = await listBlogsWithCategoriesAndTags();
+        return { props: { blogs: data.blogs }, };
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return { props: { blogs: [] }, };
+    }
+}
 
 export default Index;
