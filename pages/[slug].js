@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { isAuth } from '../actions/auth'
-import parse from 'html-react-parser';
 import Link from 'next/link';
 const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
 import { useState, useEffect } from 'react';
@@ -20,9 +19,6 @@ import {
 } from 'next-share'
 
 
-
-
-
 const SingleBlog0 = ({ blog, errorCode }) => {
 
     if (errorCode) {
@@ -36,7 +32,6 @@ const SingleBlog0 = ({ blog, errorCode }) => {
             </Layout>
         );
     }
-
 
 
     const head = () => (
@@ -71,31 +66,19 @@ const SingleBlog0 = ({ blog, errorCode }) => {
         });
     };
 
-
-    useEffect(() => {
-        loadRelated();
-    }, []);
-
-
-
+    useEffect(() => {loadRelated();}, []);
+        
     const showBlogCategories = blog =>
-        blog.categories.map((c, i) => (
-            <Link key={i} href={`/categories/${c.slug}`} className={styles.blogcat}>
-                {c.name}
-            </Link>
+        blog.categories.map((c, i) => ( <Link key={i} href={`/categories/${c.slug}`} className={styles.blogcat}>{c.name}</Link> 
         ));
 
     const showBlogTags = blog =>
-        blog.tags.map((t, i) => (
-            <Link key={i} href={`/tags/${t.slug}`} className={styles.blogtag}>
-                {t.name}
-            </Link>
+        blog.tags.map((t, i) => (<Link key={i} href={`/tags/${t.slug}`} className={styles.blogtag}> {t.name}</Link>    
         ));
 
 
     const showRelatedBlog = () => {
         return (related && related.map((blog, i) => (
-
             <article key={i} className={styles.box}>
                 <SmallCard blog={blog} />
             </article>
@@ -103,19 +86,11 @@ const SingleBlog0 = ({ blog, errorCode }) => {
         )))
     };
 
-
-    const showComments = () => {
-        return (
-            <DisqusThread id={blog._id} title={blog.title} path={`/blog/${blog.slug}`} />
-
-        );
-    };
-
+    const showComments = () => {return (<DisqusThread id={blog._id} title={blog.title} path={`/blog/${blog.slug}`} />);};
+    
     const Posttitle = `${blog.title}`;
     const shareUrl = `${DOMAIN}/${blog.slug}`;
     // const encodedUrl = encodeURIComponent(shareUrl);
-
-
 
     const socialmedia = () => {
         return (
@@ -188,7 +163,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
                             <section class="postcontent">
 
-                                {parse(blog.body)}
+                                <div dangerouslySetInnerHTML={{ __html: blog.body }} />
 
                                 <div style={{ textAlign: "center" }}>
                                     <br /><br />
@@ -243,7 +218,7 @@ export async function getStaticPaths() {
 
 
 
-export async function getStaticProps({ params, res }) {
+export async function getStaticProps({ params}) {
     try {
         const data = await singleBlog(params.slug);
         if (data.error) {return { props: { errorCode: 404 } };}  
