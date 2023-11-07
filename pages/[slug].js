@@ -246,9 +246,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params, res }) {
     try {
         const data = await singleBlog(params.slug);
-        if (data.error) {
-            return { props: { errorCode: 404 } };
-        }
+        if (data.error) {return { props: { errorCode: 404 } };}  
         return { props: { blog: data } };
     } catch (error) {
         console.error(error);

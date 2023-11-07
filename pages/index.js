@@ -78,9 +78,9 @@ export async function getStaticProps() {
 
 
 
-export async function getServerSideProps({ query, res }) {
+export async function getServerSideProps(res) {
     try {
-        const data = await singleCategory(query.slug);
+        const data = await listBlogsWithCategoriesAndTags();
         if (data.error) {
             res.statusCode = 404;
             return { props: { errorCode: 404 } };
