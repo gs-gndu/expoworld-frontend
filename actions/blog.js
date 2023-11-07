@@ -105,15 +105,14 @@ export const feedsApi = async () => {
 };
 
 
-export const listRelated = async blog => {
+export const listRelated = async (slug) => {
     try {
-        const response = await fetch(`${API}/blogs/related`, {
-            method: 'POST',
+        const response = await fetch(`${API}/blog/related/${slug}`, {
+            method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(blog)
         });
         return await response.json();
     } catch (err) {

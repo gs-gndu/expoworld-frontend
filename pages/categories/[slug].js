@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
-const Layout = dynamic(() => import('@/components/Layout'), {ssr: false});
+import Layout from '@/components/Layout';
 import { singleCategory } from '../../actions/category';
 import { DOMAIN, APP_NAME} from '../../config';
 import Card from '../../components/blog/Card';

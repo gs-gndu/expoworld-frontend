@@ -1,25 +1,16 @@
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
-import { isAuth } from '../actions/auth'
+import { isAuth } from '../actions/auth';
 import Link from 'next/link';
-const Layout = dynamic(() => import('@/components/Layout'), { ssr: false });
-import { useState, useEffect } from 'react';
 import { singleBlog, listRelated, getAllBlogSlugs } from '../actions/blog';
-import { API, DOMAIN, APP_NAME } from "../config"
-const SmallCard = dynamic(() => import('../components/blog/SmallCard'), { ssr: false });
+import { DOMAIN, APP_NAME } from "../config"
 import styles from "../styles/blogposts.module.css"
-const Search = dynamic(() => import('@/components/blog/Search'), { ssr: false });
 import { format } from 'date-fns';
-const DisqusThread = dynamic(() => import('../components/DisqusThread'), { ssr: false });
+import DisqusThread from '@/components/DisqusThread';
+import SmallCard from '../components/blog/SmallCard';
+import Layout from '@/components/Layout';
+import Search from '@/components/blog/Search';
 
-import {
-    FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon,
-    TelegramShareButton, TelegramIcon,
-    RedditShareButton, RedditIcon, TwitterShareButton, TwitterIcon,
-} from 'next-share'
-
-
-const SingleBlog0 = ({ blog, errorCode }) => {
+const SingleBlog0 = ({ blog, related, errorCode }) => {
 
     if (errorCode) {
         return (
@@ -33,40 +24,12 @@ const SingleBlog0 = ({ blog, errorCode }) => {
         );
     }
 
-
-    const head = () => (
-        <Head>
-            <title >{`${blog.title} - ${APP_NAME}`}</title>
-
-            <meta name="description" content={blog.mdesc} />
-            <link rel="canonical" href={`${DOMAIN}/${blog.slug}`} />
-            <meta property="og:title" content={`${blog.mtitle}| ${APP_NAME}`} />
-            <meta property="og:description" content={blog.mdesc} />
-            <meta property="og:type" content="webiste" />
-            <meta name="robots" content="index, follow" />
-            <meta property="og:url" content={`${DOMAIN}/${blog.slug}`} />
-            <meta property="og:site_name" content={`${APP_NAME}`} />
-
-            <meta property="og:image" content={`${API}/blog/photo/${blog.slug}`} />
-            <meta property="og:image:secure_url" ccontent={`${API}/blog/photo/${blog.slug}`} />
-            <meta property="og:image:type" content="image/jpg" />
-
-        </Head>
-    );
-
-    const [related, setRelated] = useState([]);
-
-    const loadRelated = () => {
-        listRelated({ blog }).then(data => {
-            if (data && data.error) {
-                console.log(data.error);
-            } else {
-                setRelated(data);
-            }
-        });
+    const showRelatedBlog = () => {
+        return (related && related.map((blog, i) => (
+            <article key={i} className={styles.box}><SmallCard blog={blog} /></article>
+        )))
     };
 
-    useEffect(() => {loadRelated();}, []);
         
     const showBlogCategories = blog =>
         blog.categories.map((c, i) => ( <Link key={i} href={`/categories/${c.slug}`} className={styles.blogcat}>{c.name}</Link> 
@@ -77,44 +40,33 @@ const SingleBlog0 = ({ blog, errorCode }) => {
         ));
 
 
-    const showRelatedBlog = () => {
-        return (related && related.map((blog, i) => (
-            <article key={i} className={styles.box}>
-                <SmallCard blog={blog} />
-            </article>
-
-        )))
-    };
-
     const showComments = () => {return (<DisqusThread id={blog._id} title={blog.title} path={`/blog/${blog.slug}`} />);};
-    
-    const Posttitle = `${blog.title}`;
-    const shareUrl = `${DOMAIN}/${blog.slug}`;
-    // const encodedUrl = encodeURIComponent(shareUrl);
-
-    const socialmedia = () => {
-        return (
-
-            <div style={{ marginTop: '15px' }} className="Footerlogos">
-                <FacebookShareButton url={shareUrl} quote={Posttitle}> <FacebookIcon size={35} round /> </FacebookShareButton>
-                <WhatsappShareButton url={shareUrl} title={Posttitle} style={{ padding: "5px" }}><WhatsappIcon size={35} round /></WhatsappShareButton>
-                <TelegramShareButton url={shareUrl} title={Posttitle} style={{ padding: "5px" }}><TelegramIcon size={35} round /></TelegramShareButton>
-                {/* <LinkedinShareButton url={shareUrl} title={Posttitle} style={{ padding: "5px" }}><LinkedinIcon size={35} round /></LinkedinShareButton> */}
-                <RedditShareButton url={shareUrl} title={Posttitle} style={{ padding: "5px" }}><RedditIcon size={35} round /></RedditShareButton>
-                <TwitterShareButton url={shareUrl} title={Posttitle} style={{ padding: "5px" }}><TwitterIcon size={35} round /></TwitterShareButton>
-            </div>
-        )
-    }
 
 
-    // Date Conversion
+    const head = () => (
+        <Head>
+            <title >{`${blog.title} - ${APP_NAME}`}</title>
+            <meta name="description" content={blog.mdesc} />
+            <link rel="canonical" href={`${DOMAIN}/${blog.slug}`} />
+            <meta property="og:title" content={`${blog.mtitle}| ${APP_NAME}`} />
+            <meta property="og:description" content={blog.mdesc} />
+            <meta property="og:type" content="webiste" />
+            <meta name="robots" content="index, follow" />
+            <meta property="og:url" content={`${DOMAIN}/${blog.slug}`} />
+            <meta property="og:site_name" content={`${APP_NAME}`} />
+            <meta property="og:image" content={`${blog.photo}`} />
+            <meta property="og:image:secure_url" content={`${blog.photo}`} />
+            <meta property="og:image:type" content="image/jpg" />
+        </Head>
+    );
+
     const date = new Date(blog.date);
     const formattedDate = format(date, 'dd MMM, yyyy');
+
 
     return (
 
         <>
-
             {head()}
             <Layout >
 
@@ -126,12 +78,10 @@ const SingleBlog0 = ({ blog, errorCode }) => {
                         <section className={styles.mypost}>
                             <section className={styles.topsection}>
 
-                                {isAuth() && isAuth().role === 1 && (<div className={styles.editbutton}><a href={`${DOMAIN}/admin/${blog.slug}`}>Edit</a></div>)}
-
+                                {/* {isAuth() && isAuth().role === 1 && (<div className={styles.editbutton}><a href={`${DOMAIN}/admin/${blog.slug}`}>Edit</a></div>)} */}
 
                                 <header>
                                     <h1 >{blog.title}</h1>
-
 
                                     <section className={styles.dateauth}>
                                         {formattedDate} &nbsp; by &nbsp;
@@ -146,9 +96,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
                                     </section>
                                 </header>
 
-                                {socialmedia()}<br />
-
-                                
+                                <br/>
                                     <section className={styles.imageContainer}>
                                         <div className={styles.aspectRatioContainer}>
                                             <img className={styles.resizeimg} src={blog.photo} alt={blog.title} />
@@ -161,7 +109,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
 
-                            <section class="postcontent">
+                            <section className="postcontent">
 
                                 <div dangerouslySetInnerHTML={{ __html: blog.body }} />
 
@@ -180,16 +128,13 @@ const SingleBlog0 = ({ blog, errorCode }) => {
                         <section className={styles.mypost2} >
                             <br /> <br /> <br />
                             <section className={styles.comments}> {showComments()} </section>  <br />
-
                             <section className={styles.item0000}> <br /> <Search /> <br /> </section>
-
                             <section className={styles.grid}>{showRelatedBlog()}</section>
                             <br /> <br /><br /><br />
                         </section>
 
                     </article>
                 </main>
-
             </Layout>
         </>
     );
@@ -199,35 +144,26 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
 
 export async function getStaticPaths() {
-    // const slugs = await getAllBlogSlugs();
-
-    // const paths = slugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
-    // return { paths, fallback: "blocking" };
-
-
-    const slugs = await getAllBlogSlugs();
-
-
+  const slugs = await getAllBlogSlugs();
   const excludedSlugs = ['/admin/edit-blogs', '/admin/blog', '/admin/edit-story', '/admin/web-story'];
   const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));
   const paths = filteredSlugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
-
   return { paths, fallback: "blocking" };
 }
-
 
 
 
 export async function getStaticProps({ params}) {
     try {
         const data = await singleBlog(params.slug);
+        const related = await listRelated(params.slug);
+
         if (data.error) {return { props: { errorCode: 404 } };}  
-        return { props: { blog: data } };
+        return { props: { blog: data, related:related} };
     } catch (error) {
         console.error(error);
         return { props: { errorCode: 500 } };
     }
 }
-
 
 export default SingleBlog0;

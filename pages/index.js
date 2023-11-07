@@ -9,9 +9,7 @@ const Index = ({ blogs }) => {
 
     const showAllBlogs = () => {
     return blogs && blogs.map((blog, i) => (
-            <article key={i} className={styles.box}>
-                <Card blog={blog} />
-            </article>
+            <article key={i} className={styles.box}><Card blog={blog} /></article>    
         )).slice(0, 9);
     }
 
