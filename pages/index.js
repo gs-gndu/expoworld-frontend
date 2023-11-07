@@ -64,7 +64,7 @@ const Index = ({ blogs }) => {
     );
 }
 
-/*
+
 export async function getStaticProps() {
     try {
         const data = await listBlogsWithCategoriesAndTags();
@@ -74,24 +74,5 @@ export async function getStaticProps() {
         return { props: { blogs: [] }, };
     }
 }
-*/
-
-
-
-export async function getServerSideProps(res) {
-    try {
-        const data = await listBlogsWithCategoriesAndTags();
-        if (data.error) {
-            res.statusCode = 404;
-            return { props: { errorCode: 404 } };
-        }
-        return { props: { blogs: data.blogs }};
-    } catch (error) {
-        console.error(error);
-        return { props: { errorCode: 500 } };
-    }
-  }
-
-
 
 export default Index;
