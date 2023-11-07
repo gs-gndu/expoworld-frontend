@@ -50,7 +50,7 @@ const AdminDashLayout = ({ children }) => {
                 <a className={styles.Link} href="/admin/edit-story"><li className={styles.list}><Image className={styles.Myicon} src="/create.png" width={23} height={22} alt="image"/>Edit Stories</li></a>
                 <Link target="_blank" className={styles.Link} href="/blogs"><li className={styles.list}><Image className={styles.Myicon} src="/books.png" width={24} height={24} alt="image"/>Blogs</li></Link>
                 <Link target="_blank" className={styles.Link} href="/web-stories"><li className={styles.list}><Image className={styles.Myicon} src="/books.png" width={24} height={24} alt="image"/>Stories</li></Link>
-                <Link className={styles.Link} href="/admin/images"><li className={styles.list}><Image className={styles.Myicon} src="/books.png" width={24} height={24} alt="image"/>Images</li></Link>
+                <a className={styles.Link} href="/admin/images"><li className={styles.list}><Image className={styles.Myicon} src="/books.png" width={24} height={24} alt="image"/>Images</li></a>
               </ul>
             </div>
 
