@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { singleBlog, listRelated, getAllBlogSlugs } from '../actions/blog';
 import { DOMAIN, APP_NAME } from "../config"
 import styles from "../styles/blogposts.module.css"
-import { format } from 'date-fns';
+import { format } from 'date-fns'; 
 import DisqusThread from '@/components/DisqusThread';
 import SmallCard from '../components/blog/SmallCard';
 import Layout from '@/components/Layout';
@@ -60,9 +60,6 @@ const SingleBlog0 = ({ blog, related, errorCode }) => {
         </Head>
     );
 
-    const date = new Date(blog.date);
-    const formattedDate = format(date, 'dd MMM, yyyy');
-
 
     return (
 
@@ -84,7 +81,7 @@ const SingleBlog0 = ({ blog, related, errorCode }) => {
                                     <h1 >{blog.title}</h1>
 
                                     <section className={styles.dateauth}>
-                                        {formattedDate} &nbsp; by &nbsp;
+                                        {blog.date} &nbsp; by &nbsp;
                                         {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (
                                             <Link href={`/profile/${blog.postedBy.username}`} className={styles.author}>
                                                 {blog.postedBy.name}

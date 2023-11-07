@@ -1,12 +1,10 @@
-// import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { getCookie } from '../../actions/auth';
 import { list, removeBlog } from '../../actions/blog';
 import dynamic from 'next/dynamic';
 const AdminDashLayout = dynamic(() => import('../AdminDashLayout'), { ssr: false });
-import styles0 from "../../styles/editblogs.module.css"
-import { format } from 'date-fns';
+import styles0 from "../../styles/editblogs.module.css";
 
 const BlogRead = () => {
   const head = () => (
@@ -93,13 +91,11 @@ const BlogRead = () => {
     const endIndex = Math.min((currentPage + 1) * PAGE_SIZE, blogs.length);
 
     return blogs.slice(startIndex, endIndex).map((blog, i) => {
-      const date = new Date(blog.date);
-      const formattedDate = format(date, "dd MMM, yyyy");
       return (
         <div key={i} className={styles0.blog}>
           <div className={styles0.heading}>{blog.title}</div>
           <section className={styles0.date}>
-            {formattedDate}
+            {blog.date}
             {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (
               <> - {blog.postedBy.name} </>
             ) : (

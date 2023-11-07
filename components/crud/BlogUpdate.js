@@ -9,13 +9,11 @@ import { getTags } from '../../actions/tag';
 import { singleBlog, updateBlog } from '../../actions/blog';
 const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
 import 'suneditor/dist/css/suneditor.min.css';
-import styles0 from "../../styles/editor.module.css"
+import styles0 from "../../styles/editor.module.css";
 import Image from 'next/image';
 import slugify from 'slugify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { parseISO } from 'date-fns';
-
 
 function darkmode() { document.body.classList.toggle("darkmode"); }
 function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
@@ -24,8 +22,8 @@ const BlogUpdate = ({ router }) => {
 
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
-    const [checked, setChecked] = useState([]); // categories
-    const [checkedTag, setCheckedTag] = useState([]); // tags
+    const [checked, setChecked] = useState([]);
+    const [checkedTag, setCheckedTag] = useState([]);
     const [body, setBody] = useState('');
 
     const [values, setValues] = useState({
@@ -41,7 +39,7 @@ const BlogUpdate = ({ router }) => {
         updatetext:'Update Post',
     });
 
-    const { error, success, formData, title,updatetext, mtitle, mdesc, slug, date, photo } = values;
+    const { success, formData, title,updatetext, mtitle, mdesc, slug, date, photo } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -103,9 +101,7 @@ const BlogUpdate = ({ router }) => {
                     }
 
                 } else {
-                    const isoDateString = data.date;
-                    const dateObject = parseISO(isoDateString);
-                    setValues({ ...values, title: data.title, mtitle: data.mtitle, photo:data.photo, date: dateObject, slug: data.slug, mdesc: data.mdesc });
+                    setValues({ ...values, title: data.title, mtitle: data.mtitle, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
                     setBody(data.body)
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
@@ -119,9 +115,6 @@ const BlogUpdate = ({ router }) => {
         formData.set(name, value);
         setValues({ ...values, [name]: value, error: '' });
     };
-
-    
- 
 
     const initCategories = () => {
         getCategories().then(data => {
@@ -281,14 +274,10 @@ const BlogUpdate = ({ router }) => {
                     <div className={styles0.column}>
 
                         <SunEditor
-                            
                             setContents={body}
                             onChange={handleBody}
-
                             height="auto" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
-
                             setOptions={{
-
                                 buttonList: [
                                     ["fontSize"],
                                     [
@@ -302,9 +291,7 @@ const BlogUpdate = ({ router }) => {
                                     ["formatBlock"],
                                     ["align", "horizontalRule", "list", "table"],
                                     ["fontColor", "hiliteColor"],
-
                                     ["removeFormat"],
-
                                     ["link", "image", "video"],
                                     ["preview"],
                                     ["showBlocks", "codeView", "fullScreen"],
@@ -334,6 +321,7 @@ const BlogUpdate = ({ router }) => {
                         <div className={styles0.myinputs} id='myinputs'>
                             <div className={styles0.fieldtext}>Update Date</div>
                             <div style={{ marginBottom: "7px" }}></div>
+
                             <DatePicker id='date' autoComplete="off" showYearDropdown dateFormat="dd MMM, yyyy" required
                                 onChange={handleDateChange} selected={values.date} value={date} />
 
@@ -362,13 +350,11 @@ const BlogUpdate = ({ router }) => {
                         <div className={styles0.cat}>
                             <div className={styles0.heading1}>Categories</div>
                             <br />
-
                             <ul> {showCategories()}</ul>
                             <br /><br />
                             <div className={styles0.heading}>Tags</div>
                             <div style={{ marginTop: "10px" }}></div>
                             <ul> {showTags()}</ul>
-
                         </div>
                     </div>
 

@@ -1,4 +1,3 @@
-// import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCookie } from '../../actions/auth';
 import { list, removeBlog } from '../../actions/blog';
