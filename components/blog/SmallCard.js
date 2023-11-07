@@ -1,12 +1,10 @@
 import Link from 'next/link';
-import styles from "../../styles/blogposts.module.css"
+import styles from "../../styles/blogposts.module.css";
 import { format } from 'date-fns';
 
 
 const SmallCard = ({ blog }) => {
  
-
-
     // Date Conversion
     const date = new Date(blog.date);
     const formattedDate = format(date, 'dd MMM, yyyy');
@@ -17,15 +15,9 @@ const SmallCard = ({ blog }) => {
             <section className={styles.resizeparent}>
                 <img src={blog.photo} className={styles.resizeimgrelated} alt={blog.title} />   
             </section>
-
-
             
-            <section className={styles.givetitlemar}> 
-                 {blog.title} 
-            </section>
+            <section className={styles.givetitlemar}> {blog.title} </section>
             </a>
-
-            {/* <div className={styles.dateauth}>{formattedDate} by  <Link href={`/profile/${blog.postedBy.username}`} className={styles.author}> {blog.postedBy.name}</Link>   </div> */}
 
             <section className={styles.dateauth}>
                 {formattedDate} &nbsp; by &nbsp;
