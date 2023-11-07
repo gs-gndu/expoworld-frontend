@@ -101,7 +101,8 @@ const BlogUpdate = ({ router }) => {
                     }
 
                 } else {
-                    setValues({ ...values, title: data.title, mtitle: data.mtitle, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
+                    const dateFromString = new Date(Date.parse(data.date));
+                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date:dateFromString, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
                     setBody(data.body)
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
@@ -322,8 +323,11 @@ const BlogUpdate = ({ router }) => {
                             <div className={styles0.fieldtext}>Update Date</div>
                             <div style={{ marginBottom: "7px" }}></div>
 
+
+
                             <DatePicker id='date' autoComplete="off" showYearDropdown dateFormat="dd MMM, yyyy" required
                                 onChange={handleDateChange} selected={values.date} value={date} />
+
 
 
                             <div className={styles0.aligncenter}>

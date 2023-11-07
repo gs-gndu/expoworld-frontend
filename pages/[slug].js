@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { singleBlog, listRelated, getAllBlogSlugs } from '../actions/blog';
 import { DOMAIN, APP_NAME } from "../config"
 import styles from "../styles/blogposts.module.css"
-import { format } from 'date-fns'; 
 import DisqusThread from '@/components/DisqusThread';
 import SmallCard from '../components/blog/SmallCard';
 import Layout from '@/components/Layout';
