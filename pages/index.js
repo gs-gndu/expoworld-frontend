@@ -15,7 +15,7 @@ const Index = ({ blogs }) => {
         )).slice(0, 9);
     }
 
-
+    
     const head = () => (
         <Head>
             <title >{APP_NAME}</title>

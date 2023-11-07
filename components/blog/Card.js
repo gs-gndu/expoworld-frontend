@@ -13,10 +13,8 @@ const Card = ({ blog }) => {
             </div>
         ))
 
-
     const showBlogTags = blog =>
         blog.tags.map((t, i) => (
-
             <div className={styles.tagcatdisplay} key={i}>
                 <Link href={`/tags/${t.slug}`} className={styles.category}>
                     {t.name}
@@ -25,19 +23,15 @@ const Card = ({ blog }) => {
         ));
 
         
-    // Date Conversion
     const date = new Date(blog.date);
     const formattedDate = format(date, 'dd MMM, yyyy');
 
     return (
-
         <>
             <section className={styles.Fimage}>
                 <img src={blog.photo} alt={blog.title} className={styles.images} />
             </section>
-
             <header><Link className={styles.headcolor} href={`/${blog.slug}`}><h2 className={styles.blogtitle}>{blog.title}</h2></Link></header>
-
                 <section className={styles.dateauthor}>
                 {formattedDate} &nbsp; by &nbsp;
                 {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (
@@ -57,9 +51,6 @@ const Card = ({ blog }) => {
                     <div className={styles.para}>{(blog.excerpt)}</div>      
                 </section>
             </div>
-
-        
-
         </>
 
     );
