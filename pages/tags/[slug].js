@@ -6,7 +6,7 @@ import Card from '../../components/blog/Card';
 import styles from "../../styles/blogs.module.css"
 import Search from '@/components/blog/Search';
 import { useState } from 'react';
-
+import { format } from 'date-fns';
 
 const Tag = ({ tag, blogs, query, errorCode }) => {
 
@@ -159,8 +159,8 @@ const Tag = ({ tag, blogs, query, errorCode }) => {
 
 
 
-
-
+ 
+/*
 export async function getServerSideProps({ query, res }) {
   try {
       const data = await singleTag(query.slug);
@@ -174,10 +174,19 @@ export async function getServerSideProps({ query, res }) {
       return { props: { errorCode: 500 } };
   }
 }
+*/
 
-
-
-
+export async function getServerSideProps({ query, res }) {
+  try {
+    const data = await singleTag(query.slug);
+    if (data.error) {res.statusCode = 404;return { props: { errorCode: 404 } };}
+    const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate: format(new Date(blog.date), 'dd MMMM, yyyy')}));
+    return { props: { tag: data.tag, blogs: formattedBlogs, query } };
+  } catch (error) {
+    console.error(error);
+    return { props: { errorCode: 500 } };
+  }
+}
 
 
 export default Tag;

@@ -1,13 +1,14 @@
 import Head from 'next/head';
-import { isAuth } from '../actions/auth';
+// import { isAuth } from '../actions/auth';
 import Link from 'next/link';
 import { singleBlog, listRelated, getAllBlogSlugs } from '../actions/blog';
-import { DOMAIN, APP_NAME } from "../config"
-import styles from "../styles/blogposts.module.css"
+import { DOMAIN, APP_NAME } from "../config";
+import styles from "../styles/blogposts.module.css";
 import DisqusThread from '@/components/DisqusThread';
 import SmallCard from '../components/blog/SmallCard';
 import Layout from '@/components/Layout';
 import Search from '@/components/blog/Search';
+import { format } from 'date-fns';
 
 const SingleBlog0 = ({ blog, related, errorCode }) => {
 
@@ -41,6 +42,7 @@ const SingleBlog0 = ({ blog, related, errorCode }) => {
 
     const showComments = () => {return (<DisqusThread id={blog._id} title={blog.title} path={`/blog/${blog.slug}`} />);};
 
+    const formattedDate = blog.formattedDate;
 
     const head = () => (
         <Head>
@@ -82,7 +84,7 @@ const SingleBlog0 = ({ blog, related, errorCode }) => {
                                     <h1 >{blog.title}</h1>
 
                                     <section className={styles.dateauth}>
-                                        {blog.date} &nbsp; by &nbsp;
+                                        {formattedDate} &nbsp; by &nbsp;
                                         {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (
                                             <Link href={`/profile/${blog.postedBy.username}`} className={styles.author}>
                                                 {blog.postedBy.name}
@@ -155,9 +157,12 @@ export async function getStaticProps({ params}) {
     try {
         const data = await singleBlog(params.slug);
         const related = await listRelated(params.slug);
-
         if (data.error) {return { props: { errorCode: 404 } };}  
-        return { props: { blog: data, related:related} };
+
+        const formattedRelated = related.map(blog => ({...blog, formattedDate: format(new Date(blog.date), 'dd MMMM, yyyy')}));
+
+        const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
+        return {props: {blog: {...data, formattedDate }, related: formattedRelated}};     
     } catch (error) {
         console.error(error);
         return { props: { errorCode: 500 } };

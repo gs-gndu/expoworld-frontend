@@ -2,6 +2,9 @@ import Link from 'next/link';
 import styles from "../../styles/blogposts.module.css";
 
 const SmallCard = ({ blog }) => {
+
+    const formattedDate = blog.formattedDate;
+
     return (
         <>
          <Link href={`/${blog.slug}`} className={styles.relatedtitle}>
@@ -9,7 +12,7 @@ const SmallCard = ({ blog }) => {
             <section className={styles.givetitlemar}> {blog.title} </section>
          </Link>
             <section className={styles.dateauth}>
-                {blog.date} &nbsp; by &nbsp;
+                {formattedDate} &nbsp; by &nbsp;
                 {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (
                     <Link href={`/profile/${blog.postedBy.username}`} className={styles.author}>{blog.postedBy.name}</Link>) : (  <span></span>)}
             </section>

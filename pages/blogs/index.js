@@ -4,8 +4,9 @@ import Layout from '@/components/Layout';
 import { listBlogsWithCategoriesAndTags } from '../../actions/blog';
 import Card from '../../components/blog/Card';
 import { DOMAIN, APP_NAME} from '../../config';
-import styles from "../../styles/blogs.module.css"
+import styles from "../../styles/blogs.module.css";
 import { useState } from 'react';
+import { format } from 'date-fns';
 
 const Blogs = ({ blogs, router }) => {
   
@@ -146,17 +147,23 @@ const Blogs = ({ blogs, router }) => {
 
 
 
+/*
+export async function getServerSideProps() {
+  const data = await listBlogsWithCategoriesAndTags();
+  if (data.error) {console.log(data.error);}
+   else {
+    const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
+    return {props: {blogs: {...data, formattedDate }}}; 
+  }
+}
+*/
 
 export async function getServerSideProps() {
   const data = await listBlogsWithCategoriesAndTags();
-  if (data.error) {
-      console.log(data.error);
-  } else {
-      return {
-          props: {
-              blogs: data.blogs,
-          }
-      };
+  if (data.error) {console.log(data.error);} 
+  else {
+    const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate: format(new Date(blog.date), 'dd MMMM, yyyy') }));
+   return { props: { blogs: formattedBlogs } };
   }
 }
 

@@ -5,8 +5,10 @@ import { list, removeBlog } from '../../actions/blog';
 import dynamic from 'next/dynamic';
 const AdminDashLayout = dynamic(() => import('../AdminDashLayout'), { ssr: false });
 import styles0 from "../../styles/editblogs.module.css";
+import { format } from 'date-fns';
 
 const BlogRead = () => {
+
   const head = () => (
     <Head>
       <title>Edit Blogs</title>
@@ -91,11 +93,12 @@ const BlogRead = () => {
     const endIndex = Math.min((currentPage + 1) * PAGE_SIZE, blogs.length);
 
     return blogs.slice(startIndex, endIndex).map((blog, i) => {
+      const formattedDate = format(new Date(blog.date), 'dd MMMM, yyyy');
       return (
         <div key={i} className={styles0.blog}>
           <div className={styles0.heading}>{blog.title}</div>
           <section className={styles0.date}>
-            {blog.date}
+            {formattedDate}
             {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (
               <> - {blog.postedBy.name} </>
             ) : (
