@@ -287,7 +287,6 @@ const CreateBlog = ({ router }) => {
                             </div>
                             <DatePicker id='date' autoComplete="off" onChange={handleDateChange} required
                                 selected={values.date} minDate={new Date()} showYearDropdown dateFormat="dd MMM, yyyy"
-
                             />
 
 

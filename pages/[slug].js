@@ -53,9 +53,11 @@ const SingleBlog0 = ({ blog, related, errorCode }) => {
             <meta name="robots" content="index, follow" />
             <meta property="og:url" content={`${DOMAIN}/${blog.slug}`} />
             <meta property="og:site_name" content={`${APP_NAME}`} />
-            <meta property="og:image" content={`${blog.photo}`} />
-            <meta property="og:image:secure_url" content={`${blog.photo}`} />
+            <meta property="og:image" content={blog.photo} />
+            <meta property="og:image:secure_url" content={blog.photo} />
             <meta property="og:image:type" content="image/jpg" />
+            <meta property="article:published_time" content={blog.date} />
+            <meta property="article:modified_time" content={blog.date} />
         </Head>
     );
 
