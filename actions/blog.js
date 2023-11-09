@@ -121,18 +121,21 @@ export const listRelated = async (slug) => {
 };
 
 
-
-export const list = async username => {
-    let listBlogsEndpoint;
-
-    if (username) {
-        listBlogsEndpoint = `${API}/${username}/blogs`;
-    } else {
-        listBlogsEndpoint = `${API}/blogs`;
-    }
-
+export const list2 = async (username, page) => {
     try {
-        const response = await fetch(`${listBlogsEndpoint}`, {
+        const response = await fetch(`${API}/${username}/userblogs?page=${page}`, {
+            method: 'GET'
+        });
+        return await response.json();
+    } catch (err) {
+        return console.log(err);
+    }
+};
+
+
+export const list = async (page) => {
+    try {
+        const response = await fetch(`${API}/blogs?page=${page}`, {
             method: 'GET'
         });
         return await response.json();
@@ -176,7 +179,7 @@ export const updateBlog = async (blog, token, slug) => {
 
     try {
         const response = await fetch(`${updateBlogEndpoint}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 Accept: 'application/json',
                 Authorization: `Bearer ${token}`

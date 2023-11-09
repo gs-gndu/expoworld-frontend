@@ -1,8 +1,16 @@
 .container{
     margin: 10px;
+    
 }
 
-
+.head{
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 800;
+  font-family: 'Source Sans Pro', 'Arial';
+  font-size: 18px;
+  color: var(--text-color);
+}
 
 .message{
   font-size: 20px;
@@ -14,7 +22,7 @@
     padding: 15px 0px 15px 20px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     background-color: var(--box-backcolor);
     color: var(--text-color);
     
@@ -81,45 +89,54 @@
 }
 
 
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 35px;
-  }
-  
-  .pagination button {
-    background-color: black;
-    border: 1px solid #bbb4b4;
-    color: white;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 15.5px;
-    padding: 5px 10px;
-    margin: 0 5px;
-  }
-  
-  .pagination button:hover {
-    background-color: #020d14;
-  border-color: #3498db;
-  }
-  
-  .pagination button:disabled {
-    color: white;
-    background-color:rgb(87, 87, 87);
-    color: #ffffff;
-    cursor: not-allowed;
-  }
-  
-  /* Current Active Page */
- .pagination button.current{
-background-color: #3498db;
-color: white;
- }
-  
-  .dots{
-    color: var(--text-color);
-  }
+
+.pagination{
+  text-align: center;
+}
+
+
+.pagination span{
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.pagination button {
+  cursor: pointer;
+  padding-right:10px;
+  padding-left: 10px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+  background-color: #000000;
+  color: white;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+ font-weight: 700;
+ font-size: 12px;
+}
+
+.pagination span{
+  color: var(--text-color);
+}
+
+.pagination button:hover{
+  color: #3498db;
+}
+
+
+.pagination button:disabled {
+  background-color: #000000;
+  border-color:grey;
+  color: #999999;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+
+
+
+
 
 
 @media screen and (max-width:700px){
@@ -129,13 +146,5 @@ color: white;
         
     }
 
-    .pagination {
-      margin: 10px 10px 25px 20px;
-      flex-wrap: wrap;
-    }
-
-    .pagination button {
-      margin: 4px;
-      }
 
   }

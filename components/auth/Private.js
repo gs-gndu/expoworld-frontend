@@ -5,11 +5,6 @@ import dynamic from 'next/dynamic';
 
 
 const Private = ({ children }) => {
-    // useEffect(() => {
-    //     if (!isAuth()) {
-    //         Router.push(`/signin`);
-    //     }
-    // }, []);
 
     useEffect(() => {
         if (!isAuth()) {

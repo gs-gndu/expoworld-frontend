@@ -14,10 +14,14 @@ const BlogRead = () => {
       <title>Edit Blogs</title>
     </Head>
   );
+
+
   const [blogs, setBlogs] = useState([]);
+  const [blogscount, setBlogscount] = useState(0);
   const [message, setMessage] = useState('');
   const [ModalOpen, setModalOpen] = useState(false);
   const [currentBlogSlug, setCurrentBlogSlug] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const showModal = (slug) => {
     setModalOpen(true);
@@ -29,24 +33,18 @@ const BlogRead = () => {
     setModalOpen(false);
     setCurrentBlogSlug("");
     document.body.style.overflow = 'auto';
-
   };
 
 
-  const loadBlogs = () => {
-    list().then(data => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        setBlogs(data);
-      }
-    });
-  };
-  
-  
-  useEffect(() => {
-    loadBlogs();
-  }, []);
+  useEffect(() => { fetchData(); }, [currentPage]);
+
+  const fetchData = async () => {
+    try {
+        const data = await list(currentPage); setBlogs(data.data || []); setBlogscount(data.totalBlogs || [])
+    } catch (error) { console.error('Error fetching images:', error); }
+};
+
+const handlePageChange = (newPage) => { setCurrentPage(newPage); };
 
   const token = getCookie('token');
   const deleteBlog = slug => {
@@ -55,7 +53,7 @@ const BlogRead = () => {
         console.log(data.error);
       } else {
         setMessage("BlogPost Deleted Successfully");
-        loadBlogs();
+        fetchData();
         setTimeout(() => {
           setMessage("");
         }, 2500);
@@ -70,29 +68,12 @@ const BlogRead = () => {
     document.body.style.overflow = 'auto';
   };
 
-
-
-  const goToPage = (page) => {
-    setCurrentPage(page);
-  };
-
-  const prevPage = () => {
-    goToPage(Math.max(currentPage - 1, 0));
-  };
-
-  const nextPage = () => {
-    goToPage(Math.min(currentPage + 1, pageCount - 1));
-  };
-  const PAGE_SIZE = 10;
-  const [currentPage, setCurrentPage] = useState(0);
-  const pageCount = Math.ceil(blogs.length / PAGE_SIZE);
-
+   
 
   const showAllBlogs = () => {
-    const startIndex = currentPage * PAGE_SIZE;
-    const endIndex = Math.min((currentPage + 1) * PAGE_SIZE, blogs.length);
 
-    return blogs.slice(startIndex, endIndex).map((blog, i) => {
+
+    return blogs && blogs.map((blog, i) => {
       const formattedDate = format(new Date(blog.date), 'dd MMMM, yyyy');
       return (
         <div key={i} className={styles0.blog}>
@@ -107,8 +88,6 @@ const BlogRead = () => {
           </section>
 
 
-
-          {/* <div onClick={() => deleteConfirm(blog.slug)} onDelete={handleDelete} className={styles0.deletebtn}> */}
           <div onClick={() => showModal(blog.slug)} className={styles0.deletebtn}>Delete</div>
           <a target="_blank" href={`/admin/${blog.slug}`} className={styles0.updatebtn}>Edit</a>
 
@@ -141,54 +120,17 @@ const BlogRead = () => {
       {head()}
       <div className={styles0.container}>
 
-        <div className={styles0.headingDash}>{blogs.length} Posts</div>
-
-
-
-        {/* Pagination */}
-        {pageCount > 1 && (
-          <div className={styles0.pagination}>
-            <button className={currentPage === 0 ? styles0.disabled : ""} disabled={currentPage === 0} onClick={prevPage}>
-              Prev
-            </button>
-            {[...Array(pageCount)].map((_, i) => {
-              const isFirstPage = i === 0;
-              const isLastPage = i === pageCount - 1;
-              const isCurrentPage = i === currentPage;
-              const isNearCurrentPage = Math.abs(i - currentPage) <= 3;
-              const shouldRenderPageNumber = isFirstPage || isLastPage || isCurrentPage || isNearCurrentPage;
-              if (shouldRenderPageNumber) {
-                return (
-                  <button
-                    key={i}
-                    className={isCurrentPage ? styles0.current : ""}
-                    disabled={isCurrentPage}
-                    onClick={() => goToPage(i)}
-                  >
-                    {i + 1}
-                  </button>
-                );
-              } else if ((i === currentPage - 4 || i === currentPage + 4) && !isFirstPage && !isLastPage) {
-                // Add dots for gaps between current page and adjacent pages, except for first and last pages
-                return (
-                  <span key={i} className={styles0.dots}>
-                    ...
-                  </span>
-                );
-              } else {
-                return null;
-              }
-            })}
-
-
-            <button className={currentPage === pageCount - 1 ? styles0.disabled : ""} disabled={currentPage === pageCount - 1} onClick={nextPage}>
-              Next
-            </button>
-          </div>
-        )}
-        {/* Pagination */}
-
         {message && <div id='msg' className={styles0.message}>{message}</div>}
+
+
+        {blogscount ? (<div className={styles0.head}>Total &nbsp; Articles &nbsp; - &nbsp; <span> {blogscount} </span></div>) : (<></>)}
+
+        <div className={styles0.pagination}>
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                <span>{currentPage}</span>
+                <button onClick={() => handlePageChange(currentPage + 1)}>Next</button>
+            </div>
+
 
 
         {showAllBlogs()}
@@ -197,8 +139,6 @@ const BlogRead = () => {
   
     </AdminDashLayout>
   );
-
-
 }
 
 export default BlogRead;
