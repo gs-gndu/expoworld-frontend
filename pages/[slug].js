@@ -1,5 +1,5 @@
 import Head from 'next/head';
-// import { isAuth } from '../actions/auth';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { singleBlog, listRelated, getAllBlogSlugs } from '../actions/blog';
 import { DOMAIN, APP_NAME } from "../config";
@@ -10,7 +10,7 @@ import Layout from '@/components/Layout';
 import Search from '@/components/blog/Search';
 import { format } from 'date-fns';
 
-const SingleBlog0 = ({ blog, related, errorCode }) => {
+const SingleBlog0 = ({ blog, errorCode }) => {
 
     if (errorCode) {
         return (
@@ -24,13 +24,36 @@ const SingleBlog0 = ({ blog, related, errorCode }) => {
         );
     }
 
+    const [related, setrelated] = useState([]);
+
+
+    // useEffect(() => {fetchData(); }, []);
+          
+    
+        useEffect(() => {
+            const delay = 1500;
+            const timerId = setTimeout(() => {fetchData();}, delay);
+            return () => clearTimeout(timerId);
+          }, []);
+
+
+
+    const fetchData = async () => {
+      try {
+          const data = await listRelated(blog.slug); setrelated(data);
+      } catch (error) { console.error('Error fetching Blogs:', error); }
+  };
+
+
+
     const showRelatedBlog = () => {
-        return (related && related.map((blog, i) => (
-            <article key={i} className={styles.box}><SmallCard blog={blog} /></article>
-        )))
+         return (related && related.map((blog, i) => (
+             <article key={i} className={styles.box}><SmallCard blog={blog} /></article>
+         )))
     };
 
         
+
     const showBlogCategories = blog =>
         blog.categories.map((c, i) => ( <Link key={i} href={`/categories/${c.slug}`} className={styles.blogcat}>{c.name}</Link> 
         ));
@@ -156,13 +179,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params}) {
     try {
         const data = await singleBlog(params.slug);
-        const related = await listRelated(params.slug);
         if (data.error) {return { props: { errorCode: 404 } };}  
-
-        const formattedRelated = related.map(blog => ({...blog, formattedDate: format(new Date(blog.date), 'dd MMMM, yyyy')}));
-
         const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
-        return {props: {blog: {...data, formattedDate }, related: formattedRelated}};     
+        return {props: {blog: {...data, formattedDate }, }};  
     } catch (error) {
         console.error(error);
         return { props: { errorCode: 500 } };
