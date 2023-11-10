@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { singleBlog, listRelated, getAllBlogSlugs } from '../actions/blog';
 import { DOMAIN, APP_NAME } from "../config";
 import styles from "../styles/blogposts.module.css";
-import DisqusThread from '@/components/DisqusThread';
+// import DisqusThread from '@/components/DisqusThread';
 import SmallCard from '../components/blog/SmallCard';
 import Layout from '@/components/Layout';
 import Search from '@/components/blog/Search';
@@ -27,23 +27,14 @@ const SingleBlog0 = ({ blog, errorCode }) => {
     const [related, setrelated] = useState([]);
 
 
-    // useEffect(() => {fetchData(); }, []);
-          
-    
-        useEffect(() => {
-            const delay = 1500;
-            const timerId = setTimeout(() => {fetchData();}, delay);
-            return () => clearTimeout(timerId);
-          }, []);
-
-
+     
 
     const fetchData = async () => {
       try {
           const data = await listRelated(blog.slug); setrelated(data);
       } catch (error) { console.error('Error fetching Blogs:', error); }
   };
-
+  useEffect(() => {fetchData(); }, []);
 
 
     const showRelatedBlog = () => {
@@ -63,7 +54,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
         ));
 
 
-    const showComments = () => {return (<DisqusThread id={blog._id} title={blog.title} path={`/blog/${blog.slug}`} />);};
+    // const showComments = () => {return (<DisqusThread id={blog._id} title={blog.title} path={`/blog/${blog.slug}`} />);};
 
     const formattedDate = blog.formattedDate;
 
@@ -150,7 +141,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
                         <section className={styles.mypost2} >
                             <br /> <br /> <br />
-                            <section className={styles.comments}> {showComments()} </section>  <br />
+                            {/* <section className={styles.comments}> {showComments()} </section>  <br /> */}
                             <section className={styles.item0000}> <br /> <Search /> <br /> </section>
                             <section className={styles.grid}>{showRelatedBlog()}</section>
                             <br /> <br /><br /><br />
