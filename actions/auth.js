@@ -82,7 +82,7 @@ export const signout = async next => {
 
 // set cookie
 export const setCookie = (key, value) => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
         cookie.set(key, value, {
             expires: 1
         });
@@ -90,7 +90,7 @@ export const setCookie = (key, value) => {
 };
 
 export const removeCookie = key => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
         cookie.remove(key, {
             expires: 1
         });
@@ -98,19 +98,19 @@ export const removeCookie = key => {
 };
 // get cookie
 export const getCookie = key => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
         return cookie.get(key);
     }
 };
 // localstorage
 export const setLocalStorage = (key, value) => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
         localStorage.setItem(key, JSON.stringify(value));
     }
 };
 
 export const removeLocalStorage = key => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
         localStorage.removeItem(key);
     }
 };
@@ -122,7 +122,7 @@ export const authenticate = (data, next) => {
 };
 
 export const isAuth = () => {
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
         const cookieChecked = getCookie('token');
         if (cookieChecked) {
             if (localStorage.getItem('user')) {
@@ -144,8 +144,6 @@ export const updateUser = (user, next) => {
         }
     }
 };
-
-
 
 
 export const forgotPassword = async email => {

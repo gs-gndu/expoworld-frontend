@@ -9,8 +9,10 @@ import SmallCard from '../components/blog/SmallCard';
 import Layout from '@/components/Layout';
 import Search from '@/components/blog/Search';
 import { format } from 'date-fns';
+import { isAuth } from "../actions/auth";
 
-const SingleBlog0 = ({ blog, errorCode }) => {
+
+const SingleBlog0 = ({ blog, errorCode}) => {
 
     if (errorCode) {
         return (
@@ -32,8 +34,11 @@ const SingleBlog0 = ({ blog, errorCode }) => {
     const fetchData = async () => {
       try {
           const data = await listRelated(blog.slug); setrelated(data);
+
       } catch (error) { console.error('Error fetching Blogs:', error); }
   };
+
+
   useEffect(() => {fetchData(); }, []);
 
 
@@ -78,12 +83,16 @@ const SingleBlog0 = ({ blog, errorCode }) => {
     );
 
 
+
+    const [user, setUser] = useState(null);
+    useEffect(() => { setUser(isAuth()); }, []);
+
     return (
 
         <>
             {head()}
             <Layout >
-
+            {/* <Navbar blog={blog} /> */}
                 <main>
                     <article className={styles.backgroundImg}>
                         <br />
@@ -92,7 +101,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
                         <section className={styles.mypost}>
                             <section className={styles.topsection}>
 
-                                {/* {isAuth() && isAuth().role === 1 && (<div className={styles.editbutton}><a href={`${DOMAIN}/admin/${blog.slug}`}>Edit</a></div>)} */}
+                                {user && isAuth().role === 1 && (<div className={styles.editbutton}><a href={`${DOMAIN}/admin/${blog.slug}`}>Edit</a></div>)}
 
                                 <header>
                                     <h1 >{blog.title}</h1>
@@ -172,7 +181,8 @@ export async function getStaticProps({ params}) {
         const data = await singleBlog(params.slug);
         if (data.error) {return { props: { errorCode: 404 } };}  
         const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
-        return {props: {blog: {...data, formattedDate }, }};  
+
+        return {props: {blog: {...data, formattedDate }}};  
     } catch (error) {
         console.error(error);
         return { props: { errorCode: 500 } };

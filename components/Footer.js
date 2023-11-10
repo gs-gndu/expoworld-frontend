@@ -1,8 +1,7 @@
-import Link from 'next/link'
-import { APP_NAME } from "../config"
-import styles from "../styles/NavbarFooter.module.css"
-import dynamic from 'next/dynamic';
-import { FacebookIcon, WhatsappIcon, LinkedinIcon,TwitterIcon,RedditIcon } from 'next-share'
+import Link from 'next/link';
+import { APP_NAME } from "../config";
+import styles from "../styles/NavbarFooter.module.css";
+import { FacebookIcon, WhatsappIcon, LinkedinIcon,TwitterIcon,RedditIcon } from 'next-share';
 
 const Footer = () => {
   const socialmedia = () => {
@@ -95,6 +94,6 @@ const Footer = () => {
   )
 }
 
-// export default Footer
+export default Footer
 
-export default dynamic(() => Promise.resolve(Footer), { ssr: false })
+// export default dynamic(() => Promise.resolve(Footer), { ssr: false })
