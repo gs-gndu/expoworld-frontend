@@ -7,10 +7,9 @@ import styles from "../styles/blogposts.module.css";
 // import DisqusThread from '@/components/DisqusThread';
 import SmallCard from '../components/blog/SmallCard';
 import Layout from '@/components/Layout';
-import Search from '@/components/blog/Search';
+import Search from '@/components/blog/Search'; 
 import { format } from 'date-fns';
 import { isAuth } from "../actions/auth";
-import { format, parseISO } from 'date-fns-tz';
 
 
 const SingleBlog0 = ({ blog, errorCode }) => {
@@ -41,7 +40,8 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
     const [user, setUser] = useState(null);
 
-    useEffect(() => { fetchData(); setUser(isAuth()); }, [blog.slug]);
+    useEffect(() => { fetchData(); setUser(isAuth()); console.log(formattedDate);
+        console.log(blog.date); }, [blog.slug]);
 
     const showRelatedBlog = () => {
         return (related && related.map((blog, i) => (
@@ -180,12 +180,7 @@ export async function getStaticProps({ params }) {
     try {
         const data = await singleBlog(params.slug);
         if (data.error) { return { props: { errorCode: 404 } }; }
-
-
-        // const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
-        const parsedDate = parseISO(data.date, { timeZone: 'UTC' });
-        const formattedDate = format(parsedDate, 'dd MMMM, yyyy', { timeZone: 'Asia/Kolkata' });
-
+          const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
         return { props: { blog: { ...data, formattedDate } } };
     } catch (error) {
         console.error(error);
