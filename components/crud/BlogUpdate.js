@@ -14,6 +14,7 @@ import Image from 'next/image';
 import slugify from 'slugify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { utcToZonedTime } from 'date-fns-tz';
 
 function darkmode() { document.body.classList.toggle("darkmode"); }
 function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
@@ -232,16 +233,32 @@ const BlogUpdate = ({ router }) => {
     };
 
 
-
+/*
     const handleDateChange = (date) => {
         const name = 'date';
         const value = date;
         const { formData } = values;
-
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
 
     };
+    */
+
+    const handleDateChange = (date) => {
+        const name = 'date';
+        const indianTimeZone = 'Asia/Kolkata';
+        const dateInIndianTimeZone = utcToZonedTime(date, indianTimeZone);
+        const isoFormattedDate = dateInIndianTimeZone.toISOString();
+        const { formData } = values;
+        formData.set(name, isoFormattedDate);
+        setValues({ ...values, [name]: date, formData, error: '' });
+      };
+
+
+
+
+
+
 
     const handleBody = (e) => {
         setBody(e);
