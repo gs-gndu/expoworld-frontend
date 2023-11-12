@@ -4,7 +4,8 @@ import { listBlogsWithCategoriesAndTags } from '../actions/blog';
 import Card from '../components/blog/Card';
 import Head from "next/head";
 import { APP_DESCRIPTION, DOMAIN, APP_NAME } from "../config";
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
+import { format, utcToZonedTime } from 'date-fns-tz';
 
 const Index = ({ blogs }) => {
     const showAllBlogs = () => {
@@ -73,16 +74,35 @@ const Index = ({ blogs }) => {
 //     }
 // }
 
+/*
 export async function getStaticProps() {
     try {
       const data = await listBlogsWithCategoriesAndTags();
 
+
       const utcDate = new Date(data.date);
+      const istDate = utcToZonedTime(utcDate, 'Asia/Kolkata');
+      const formattedDate = format(istDate, 'dd MMM, yyyy', { timeZone: 'Asia/Kolkata' });
+
+      const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate}));
+
+      return { props: { blogs: formattedBlogs } };
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return { props: { blogs: [] } };
+    }
+  }
+  */
+
+  export async function getStaticProps() {
+    try {
+      const data = await listBlogsWithCategoriesAndTags();
+      const formattedBlogs = data.blogs.map(blog => {
+        const utcDate = new Date(blog.date);
         const istDate = utcToZonedTime(utcDate, 'Asia/Kolkata');
         const formattedDate = format(istDate, 'dd MMM, yyyy', { timeZone: 'Asia/Kolkata' });
-
-    //   const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate: format(new Date(blog.date), 'dd MMMM, yyyy')}));
-      const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate}));
+        return { ...blog, formattedDate };
+      });
       return { props: { blogs: formattedBlogs } };
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -90,4 +110,5 @@ export async function getStaticProps() {
     }
   }
 
+  
 export default Index;
