@@ -8,8 +8,9 @@ import styles from "../styles/blogposts.module.css";
 import SmallCard from '../components/blog/SmallCard';
 import Layout from '@/components/Layout';
 import Search from '@/components/blog/Search'; 
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import { isAuth } from "../actions/auth";
+import { format, utcToZonedTime } from 'date-fns-tz';
 
 
 const SingleBlog0 = ({ blog, errorCode }) => {
@@ -179,7 +180,13 @@ export async function getStaticProps({ params }) {
     try {
         const data = await singleBlog(params.slug);
         if (data.error) { return { props: { errorCode: 404 } }; }
-          const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy', { timeZone: 'Asia/Kolkata' });
+
+
+        //   const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy', { timeZone: 'Asia/Kolkata' });
+        const utcDate = new Date(data.date);
+        const istDate = utcToZonedTime(utcDate, 'Asia/Kolkata');
+        const formattedDate = format(istDate, 'dd MMM, yyyy', { timeZone: 'Asia/Kolkata' });
+
         return { props: { blog: { ...data, formattedDate } } };
     } catch (error) {
         console.error(error);
