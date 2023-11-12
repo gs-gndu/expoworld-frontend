@@ -164,8 +164,6 @@ export async function getServerSideProps({ query, res }) {
           res.statusCode = 404;
           return { props: { errorCode: 404 } };
       }
-
-
       return { props: { category: data.category, blogs: data.blogs, query } };
   } catch (error) {
       console.error(error);
@@ -173,6 +171,8 @@ export async function getServerSideProps({ query, res }) {
   }
 }
 */
+
+
 
 export async function getServerSideProps({ query, res }) {
   try {
@@ -185,5 +185,7 @@ export async function getServerSideProps({ query, res }) {
     return { props: { errorCode: 500 } };
   }
 }
+
+
 
 export default Category;
