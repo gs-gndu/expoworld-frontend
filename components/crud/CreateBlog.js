@@ -209,7 +209,7 @@ const CreateBlog = ({ router }) => {
         );
     };
 
-/*
+
     const handleDateChange = (date) => {
         const name = 'date';
         const value = date;
@@ -218,15 +218,7 @@ const CreateBlog = ({ router }) => {
         setValues({ ...values, [name]: value, formData, error: '' });
 
     };
-    */
-
-    const handleDateChange = (date) => {
-        const name = 'date';
-        const indianTimeDate = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
-        const { formData } = values;
-        formData.set(name, indianTimeDate);
-        setValues({ ...values, [name]: indianTimeDate, formData, error: '' });
-      };
+    
       
 
 

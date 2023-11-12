@@ -14,7 +14,6 @@ import Image from 'next/image';
 import slugify from 'slugify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { parseISO } from 'date-fns';
 
 function darkmode() { document.body.classList.toggle("darkmode"); }
 function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
@@ -53,9 +52,11 @@ const BlogUpdate = ({ router }) => {
 
 
     const [message, setMessage] = useState('');
+
+
     const editBlog = e => {
         e.preventDefault();
-        formData.set('body', body);
+        // formData.set('body', body);
         setValues({ ...values, updatetext: 'Updating....' });
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
@@ -102,10 +103,8 @@ const BlogUpdate = ({ router }) => {
                     }
 
                 } else {
-                    // const dateFromString = new Date(Date.parse(data.date));
-                    const isoDateString = data.date;
-                    const dateObject = parseISO(isoDateString);
-                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date:dateObject, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
+                    const dateFromString = new Date(Date.parse(data.date));
+                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date:dateFromString, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
                     setBody(data.body)
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
@@ -234,8 +233,6 @@ const BlogUpdate = ({ router }) => {
         );
     };
 
-
-/*
     const handleDateChange = (date) => {
         const name = 'date';
         const value = date;
@@ -243,21 +240,11 @@ const BlogUpdate = ({ router }) => {
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
     };
-    */
 
-    const handleDateChange = (date) => {
-        const name = 'date';
-        const indianTimeDate = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
-        const { formData } = values;
-        formData.set(name, indianTimeDate);
-        setValues({ ...values, [name]: indianTimeDate, formData, error: '' });
-      };
-    
-
-    const handleBody = (e) => {
-        setBody(e);
-        formData.set('body', e);
-   };
+//     const handleBody = (e) => {
+//         setBody(e);
+//         formData.set('body', e);
+//    };
 
     const Admintopbar = () => {
         return (
@@ -287,7 +274,8 @@ const BlogUpdate = ({ router }) => {
 
                         <SunEditor
                             setContents={body}
-                            onChange={handleBody}
+                            // onChange={handleBody}
+                            onChange={handleChange('body')}
                             height="auto" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
                             setOptions={{
                                 buttonList: [
