@@ -38,7 +38,9 @@ const SingleBlog0 = ({ blog, errorCode}) => {
   };
 
 
-  useEffect(() => {fetchData(); }, [blog.slug]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {fetchData(); setUser(isAuth()); }, [blog.slug]);
 
     const showRelatedBlog = () => {
          return (related && related.map((blog, i) => (
@@ -82,8 +84,7 @@ const SingleBlog0 = ({ blog, errorCode}) => {
 
 
 
-    const [user, setUser] = useState(null);
-    useEffect(() => { setUser(isAuth()); }, []);
+    
 
     return (
 
@@ -179,6 +180,8 @@ export async function getStaticProps({ params}) {
         const data = await singleBlog(params.slug);
         if (data.error) {return { props: { errorCode: 404 } };}  
         const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
+        console.log(data.date);
+        console.log(formattedDate);
 
         return {props: {blog: {...data, formattedDate }}};  
     } catch (error) {

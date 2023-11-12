@@ -209,7 +209,7 @@ const CreateBlog = ({ router }) => {
         );
     };
 
-
+/*
     const handleDateChange = (date) => {
         const name = 'date';
         const value = date;
@@ -219,6 +219,17 @@ const CreateBlog = ({ router }) => {
         setValues({ ...values, [name]: value, formData, error: '' });
 
     };
+    */
+
+    const handleDateChange = (date) => {
+        const name = 'date';
+        const indianTimeZone = 'Asia/Kolkata';
+        const dateInIndianTimeZone = utcToZonedTime(date, indianTimeZone);
+        const isoFormattedDate = dateInIndianTimeZone.toISOString();
+        const { formData } = values;
+        formData.set(name, isoFormattedDate);
+        setValues({ ...values, [name]: date, formData, error: '' });
+      };
 
 
     const createBlogForm = () => {
@@ -286,8 +297,8 @@ const CreateBlog = ({ router }) => {
 
                             </div>
                             <DatePicker id='date' autoComplete="off" onChange={handleDateChange} required
-                                selected={values.date} minDate={new Date()} showYearDropdown dateFormat="dd MMM, yyyy"
-                            />
+                                selected={values.date} minDate={new Date()} showYearDropdown dateFormat="dd MMM, yyyy"/>
+                            
 
 
                             <div className={styles0.fieldtext}> Title</div>
