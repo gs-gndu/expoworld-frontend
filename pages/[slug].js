@@ -179,10 +179,7 @@ export async function getStaticProps({ params }) {
     try {
         const data = await singleBlog(params.slug);
         if (data.error) { return { props: { errorCode: 404 } }; }
-
-
-          const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
-
+          const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy', { timeZone: 'Asia/Kolkata' });
         return { props: { blog: { ...data, formattedDate } } };
     } catch (error) {
         console.error(error);
