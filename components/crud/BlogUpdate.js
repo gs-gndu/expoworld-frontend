@@ -56,7 +56,7 @@ const BlogUpdate = ({ router }) => {
 
     const editBlog = e => {
         e.preventDefault();
-        // formData.set('body', body);
+         formData.set('body', body);
         setValues({ ...values, updatetext: 'Updating....' });
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
@@ -241,10 +241,10 @@ const BlogUpdate = ({ router }) => {
         setValues({ ...values, [name]: value, formData, error: '' });
     };
 
-//     const handleBody = (e) => {
-//         setBody(e);
-//         formData.set('body', e);
-//    };
+     const handleBody = (e) => {
+         setBody(e);
+         formData.set('body', e);
+    };
 
     const Admintopbar = () => {
         return (
@@ -274,8 +274,7 @@ const BlogUpdate = ({ router }) => {
 
                         <SunEditor
                             setContents={body}
-                            // onChange={handleBody}
-                            onChange={handleChange('body')}
+                             onChange={handleBody}
                             height="auto" setDefaultStyle="font-family:trebuchet ms; color:black;font-size:17px;padding:15px"
                             setOptions={{
                                 buttonList: [
