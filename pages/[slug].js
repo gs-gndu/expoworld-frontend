@@ -40,8 +40,7 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
     const [user, setUser] = useState(null);
 
-    useEffect(() => { fetchData(); setUser(isAuth()); console.log(formattedDate);
-        console.log(blog.date); }, [blog.slug]);
+    useEffect(() => { fetchData(); setUser(isAuth()); }, [blog.slug]);
 
     const showRelatedBlog = () => {
         return (related && related.map((blog, i) => (

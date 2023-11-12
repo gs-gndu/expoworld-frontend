@@ -62,7 +62,7 @@ const SigninComponent = () => {
           <p className={styles.paragraph}>Welcome back you've <br /> been missed!</p>
 
 
-          <form autoComplete="off" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input className={styles.inputs} value={email} onChange={handleChange('email')} name="email" type="text" placeholder="Email" />
             <input className={styles.inputs} value={password} onChange={handleChange('password')} name="password" type="password" placeholder="Password" />
 
