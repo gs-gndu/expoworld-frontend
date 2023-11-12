@@ -19,7 +19,7 @@ const Card = ({ blog }) => {
     return (
         <>
             <section className={styles.Fimage}><img src={blog.photo} alt={blog.title} className={styles.images} /></section>
-            <header><a className={styles.headcolor} href={`/${blog.slug}`}><h2 className={styles.blogtitle}>{blog.title}</h2></a></header>
+            <header><Link className={styles.headcolor} href={`/${blog.slug}`}><h2 className={styles.blogtitle}>{blog.title}</h2></Link></header>
                 <section className={styles.dateauthor}>
                 {formattedDate} &nbsp; by &nbsp;
                 {blog.postedBy && blog.postedBy.name && blog.postedBy.username ? (

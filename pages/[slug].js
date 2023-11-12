@@ -34,13 +34,11 @@ const SingleBlog0 = ({ blog, errorCode}) => {
     const fetchData = async () => {
       try {
           const data = await listRelated(blog.slug); setrelated(data);
-
       } catch (error) { console.error('Error fetching Blogs:', error); }
   };
 
 
-  useEffect(() => {fetchData(); }, []);
-
+  useEffect(() => {fetchData(); }, [blog.slug]);
 
     const showRelatedBlog = () => {
          return (related && related.map((blog, i) => (
