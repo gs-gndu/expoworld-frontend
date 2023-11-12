@@ -14,6 +14,7 @@ import Image from 'next/image';
 import slugify from 'slugify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { parseISO } from 'date-fns';
 
 function darkmode() { document.body.classList.toggle("darkmode"); }
 function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
@@ -101,8 +102,10 @@ const BlogUpdate = ({ router }) => {
                     }
 
                 } else {
-                    const dateFromString = new Date(Date.parse(data.date));
-                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date:dateFromString, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
+                    // const dateFromString = new Date(Date.parse(data.date));
+                    const isoDateString = data.date;
+                    const dateObject = parseISO(isoDateString);
+                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date:dateObject, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
                     setBody(data.body)
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
