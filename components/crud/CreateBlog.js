@@ -15,7 +15,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Head from 'next/head';
 function darkmode() { document.body.classList.toggle("darkmode"); }
 function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
-import { utcToZonedTime } from 'date-fns-tz';
 
 
 const CreateBlog = ({ router }) => {
@@ -210,27 +209,16 @@ const CreateBlog = ({ router }) => {
         );
     };
 
-/*
+
     const handleDateChange = (date) => {
         const name = 'date';
         const value = date;
         const { formData } = values;
-
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
 
     };
-    */
-
-    const handleDateChange = (date) => {
-        const name = 'date';
-        const indianTimeZone = 'Asia/Kolkata';
-        const dateInIndianTimeZone = utcToZonedTime(date, indianTimeZone);
-        const isoFormattedDate = dateInIndianTimeZone.toISOString();
-        const { formData } = values;
-        formData.set(name, isoFormattedDate);
-        setValues({ ...values, [name]: date, formData, error: '' });
-      };
+    
 
 
     const createBlogForm = () => {

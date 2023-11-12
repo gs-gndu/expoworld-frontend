@@ -10,9 +10,10 @@ import Layout from '@/components/Layout';
 import Search from '@/components/blog/Search';
 import { format } from 'date-fns';
 import { isAuth } from "../actions/auth";
+import { format, parseISO } from 'date-fns-tz';
 
 
-const SingleBlog0 = ({ blog, errorCode}) => {
+const SingleBlog0 = ({ blog, errorCode }) => {
 
     if (errorCode) {
         return (
@@ -29,33 +30,33 @@ const SingleBlog0 = ({ blog, errorCode}) => {
     const [related, setrelated] = useState([]);
 
 
-     
+
 
     const fetchData = async () => {
-      try {
-          const data = await listRelated(blog.slug); setrelated(data);
-      } catch (error) { console.error('Error fetching Blogs:', error); }
-  };
-
-
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {fetchData(); setUser(isAuth()); }, [blog.slug]);
-
-    const showRelatedBlog = () => {
-         return (related && related.map((blog, i) => (
-             <article key={i} className={styles.box}><SmallCard blog={blog} /></article>
-         )))
+        try {
+            const data = await listRelated(blog.slug); setrelated(data);
+        } catch (error) { console.error('Error fetching Blogs:', error); }
     };
 
-        
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => { fetchData(); setUser(isAuth()); }, [blog.slug]);
+
+    const showRelatedBlog = () => {
+        return (related && related.map((blog, i) => (
+            <article key={i} className={styles.box}><SmallCard blog={blog} /></article>
+        )))
+    };
+
+
 
     const showBlogCategories = blog =>
-        blog.categories.map((c, i) => ( <Link key={i} href={`/categories/${c.slug}`} className={styles.blogcat}>{c.name}</Link> 
+        blog.categories.map((c, i) => (<Link key={i} href={`/categories/${c.slug}`} className={styles.blogcat}>{c.name}</Link>
         ));
 
     const showBlogTags = blog =>
-        blog.tags.map((t, i) => (<Link key={i} href={`/tags/${t.slug}`} className={styles.blogtag}> {t.name}</Link>    
+        blog.tags.map((t, i) => (<Link key={i} href={`/tags/${t.slug}`} className={styles.blogtag}> {t.name}</Link>
         ));
 
 
@@ -84,14 +85,14 @@ const SingleBlog0 = ({ blog, errorCode}) => {
 
 
 
-    
+
 
     return (
 
         <>
             {head()}
             <Layout >
-            {/* <Navbar blog={blog} /> */}
+                {/* <Navbar blog={blog} /> */}
                 <main>
                     <article className={styles.backgroundImg}>
                         <br />
@@ -118,13 +119,13 @@ const SingleBlog0 = ({ blog, errorCode}) => {
                                     </section>
                                 </header>
 
-                                <br/>
-                                    <section className={styles.imageContainer}>
-                                        <div className={styles.aspectRatioContainer}>
-                                            <img className={styles.resizeimg} src={blog.photo} alt={blog.title} />
-                                        </div>
-                                    </section>
-                                
+                                <br />
+                                <section className={styles.imageContainer}>
+                                    <div className={styles.aspectRatioContainer}>
+                                        <img className={styles.resizeimg} src={blog.photo} alt={blog.title} />
+                                    </div>
+                                </section>
+
 
                                 <br /><br />
                             </section>
@@ -166,24 +167,26 @@ const SingleBlog0 = ({ blog, errorCode}) => {
 
 
 export async function getStaticPaths() {
-  const slugs = await getAllBlogSlugs();
-  const excludedSlugs = ['/admin/edit-blogs', '/admin/blog', '/admin/edit-story', '/admin/web-story'];
-  const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));
-  const paths = filteredSlugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
-  return { paths, fallback: "blocking" };
+    const slugs = await getAllBlogSlugs();
+    const excludedSlugs = ['/admin/edit-blogs', '/admin/blog', '/admin/edit-story', '/admin/web-story'];
+    const filteredSlugs = slugs.filter((slugObject) => !excludedSlugs.includes(slugObject.slug));
+    const paths = filteredSlugs.map((slugObject) => ({ params: { slug: slugObject.slug } }));
+    return { paths, fallback: "blocking" };
 }
 
 
 
-export async function getStaticProps({ params}) {
+export async function getStaticProps({ params }) {
     try {
         const data = await singleBlog(params.slug);
-        if (data.error) {return { props: { errorCode: 404 } };}  
-        const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
-        console.log(data.date);
-        console.log(formattedDate);
+        if (data.error) { return { props: { errorCode: 404 } }; }
 
-        return {props: {blog: {...data, formattedDate }}};  
+
+        // const formattedDate = format(new Date(data.date), 'dd MMMM, yyyy');
+        const parsedDate = parseISO(data.date, { timeZone: 'UTC' });
+        const formattedDate = format(parsedDate, 'dd MMMM, yyyy', { timeZone: 'Asia/Kolkata' });
+
+        return { props: { blog: { ...data, formattedDate } } };
     } catch (error) {
         console.error(error);
         return { props: { errorCode: 500 } };
