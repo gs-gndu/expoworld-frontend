@@ -76,7 +76,13 @@ const Index = ({ blogs }) => {
 export async function getStaticProps() {
     try {
       const data = await listBlogsWithCategoriesAndTags();
-      const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate: format(new Date(blog.date), 'dd MMMM, yyyy')}));
+
+      const utcDate = new Date(data.date);
+        const istDate = utcToZonedTime(utcDate, 'Asia/Kolkata');
+        const formattedDate = format(istDate, 'dd MMM, yyyy', { timeZone: 'Asia/Kolkata' });
+
+    //   const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate: format(new Date(blog.date), 'dd MMMM, yyyy')}));
+      const formattedBlogs = data.blogs.map(blog => ({...blog, formattedDate}));
       return { props: { blogs: formattedBlogs } };
     } catch (error) {
       console.error("Error fetching data:", error);
