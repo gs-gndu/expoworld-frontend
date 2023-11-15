@@ -29,9 +29,6 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
     const [related, setrelated] = useState([]);
 
-
-
-
     const fetchData = async () => {
         try {
             const data = await listRelated(blog.slug); setrelated(data);
@@ -41,7 +38,8 @@ const SingleBlog0 = ({ blog, errorCode }) => {
 
     const [user, setUser] = useState(null);
 
-    useEffect(() => { fetchData(); setUser(isAuth()); }, [blog.slug]);
+    useEffect(() => { fetchData()}, [blog.slug]);
+    useEffect(() => {setUser(isAuth()) }, []);
 
     const showRelatedBlog = () => {
         return (related && related.map((blog, i) => (
