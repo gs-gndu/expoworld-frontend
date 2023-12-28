@@ -86,7 +86,7 @@ const SigninComponent = () => {
     )
   }
 
-  const handleGoogleLogin = ()=>{ window.open("http://localhost:8000/auth/google/callback","_self") }
+  const handleGoogleLogin = ()=>{ window.open("https://backend-coding4u.vercel.app/auth/google/callback","_self") }
 
   return (
     <div className={styles.backImg}>
