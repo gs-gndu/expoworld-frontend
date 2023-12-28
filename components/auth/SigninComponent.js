@@ -86,6 +86,7 @@ const SigninComponent = () => {
     )
   }
 
+  const handleGoogleLogin = ()=>{ window.open("http://localhost:8000/auth/google/callback","_self") }
 
   return (
     <div className={styles.backImg}>
@@ -95,6 +96,12 @@ const SigninComponent = () => {
       {showLoading()}
       {showMessage()}
       {showForm && signinForm()}
+
+      <div style={{textAlign:"center"}}>
+      <button style={{background:"white", color:"black", marginTop:"8px", border:"none", cursor:"pointer", padding:"7px"}} onClick={handleGoogleLogin}>Login with Google</button>
+      </div>
+
+
       <br /><br />
     </div>
   )

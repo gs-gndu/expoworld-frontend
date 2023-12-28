@@ -80,7 +80,11 @@ export const signout = async next => {
     }
 };
 
-// set cookie
+
+
+
+
+
 export const setCookie = (key, value) => {
     if (typeof window !== 'undefined') {
         cookie.set(key, value, {
@@ -96,13 +100,13 @@ export const removeCookie = key => {
         });
     }
 };
-// get cookie
+
 export const getCookie = key => {
     if (typeof window !== 'undefined') {
         return cookie.get(key);
     }
 };
-// localstorage
+
 export const setLocalStorage = (key, value) => {
     if (typeof window !== 'undefined') {
         localStorage.setItem(key, JSON.stringify(value));
@@ -120,6 +124,8 @@ export const authenticate = (data, next) => {
     setLocalStorage('user', data.user);
     next();
 };
+
+
 
 export const isAuth = () => {
     if (typeof window !== 'undefined') {
@@ -177,3 +183,5 @@ export const resetPassword = async resetInfo => {
         return console.log(err);
     }
 };
+
+
