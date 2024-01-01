@@ -1,11 +1,11 @@
-  export const API = "https://backend-coding4u.vercel.app/api";
-  export const DOMAIN = "https://coding4u-project.vercel.app";
-  export const BACKEND="https://backend-coding4u.vercel.app"
+   export const API = "https://backend-coding4u.vercel.app/api";
+   export const DOMAIN = "https://coding4u-project.vercel.app";
+   export const BACKEND="https://backend-coding4u.vercel.app";
 
 
-//  export const API = 'http://localhost:8000/api';
-//  export const DOMAIN = "http://localhost:3000";
-//  export const BACKEND="http://localhost:8000";
+  // export const API = 'http://localhost:8000/api';
+  // export const DOMAIN = "http://localhost:3000";
+  // export const BACKEND="http://localhost:8000";
 
 
 

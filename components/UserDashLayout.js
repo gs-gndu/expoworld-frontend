@@ -43,6 +43,7 @@ const UserDashLayout = ({ children }) => {
 
   useEffect(() => {
     getUser();
+    setUser(isAuth())
     setTimeout(() => {
       if (!isAuth()) { Router.push(`/signin`); }
       else if (isAuth().role !== 0) { Router.push(`/admin`); }

@@ -36,13 +36,14 @@ const AdminDashLayout = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         googleauthenticate(data);
-        setUser(isAuth())
+        setUser(isAuth())        
       }
     } catch (error) { console.log("User is not logged In"); }
   };
 
   useEffect(() => {
     getUser();
+    setUser(isAuth())
     setTimeout(() => {
       if (!isAuth()) { Router.push(`/signin`); }
       else if (isAuth().role !== 1) { Router.push(`/user`); }
