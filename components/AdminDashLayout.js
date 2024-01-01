@@ -47,7 +47,7 @@ const AdminDashLayout = ({ children }) => {
     setTimeout(() => {
       if (!isAuth()) { Router.push(`/signin`); }
       else if (isAuth().role !== 1) { Router.push(`/user`); }
-    }, 200);
+    }, 400);
   }, []);
 
 
