@@ -3,7 +3,6 @@ import Router from 'next/router';
 import { isAuth } from '../../actions/auth';
 import dynamic from 'next/dynamic';
 
-
 const Private = ({ children }) => {
 
     useEffect(() => {

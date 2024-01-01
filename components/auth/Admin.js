@@ -3,7 +3,6 @@ import Router from 'next/router';
 import { isAuth } from '../../actions/auth';
 import dynamic from 'next/dynamic';
 
-
 const Admin = ({ children }) => {
     useEffect(() => {
         if (!isAuth()) {
@@ -12,7 +11,6 @@ const Admin = ({ children }) => {
             Router.push(`/user`);
         }
     }, []);
-
 
       return ( 
     <>
