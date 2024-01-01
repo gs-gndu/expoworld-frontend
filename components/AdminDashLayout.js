@@ -1,4 +1,4 @@
-import styles from "../styles/adminDashBoard.module.css"
+import styles from "../styles/adminDashBoard.module.css";
 import { signout, isAuth } from '../actions/auth';
 import Image from "next/image";
 import Link from "next/link";
@@ -28,8 +28,10 @@ const AdminDashLayout = ({ children }) => {
     else { x.style.display = "block" }
   }
 
-
   const [user, setUser] = useState(null);
+
+/*
+  
 
   const getUser = async () => {
     try {
@@ -41,14 +43,15 @@ const AdminDashLayout = ({ children }) => {
       }
     } catch (error) { console.log("User is not logged In"); }
   };
+*/
 
   useEffect(() => {
-    getUser();
+    // getUser();
     setUser(isAuth())
-    //  setTimeout(() => {
-    //    if (!isAuth()) { Router.push(`/signin`); }
-    //    else if (isAuth().role !== 1) { Router.push(`/user`); }
-    //  }, 500);
+      // setTimeout(() => {
+        if (!isAuth()) { Router.push(`/signin`); }
+        else if (isAuth().role !== 1) { Router.push(`/user`); }
+      // }, 400);
   }, []);
 
 
