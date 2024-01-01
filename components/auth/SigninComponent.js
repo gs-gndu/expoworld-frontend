@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { signin, isAuth, authenticate } from '../../actions/auth';
 import Router from 'next/router';
 import Link from "next/link";
-
+import { BACKEND } from "@/config";
 
 const SigninComponent = () => {
   const [values, setValues] = useState({
@@ -41,6 +41,11 @@ const SigninComponent = () => {
       }
     });
   };
+
+
+
+
+  
 
   const handleChange = name => e => {
     setValues({ ...values, error: false, [name]: e.target.value });
@@ -86,7 +91,8 @@ const SigninComponent = () => {
     )
   }
 
-  const handleGoogleLogin = ()=>{ window.open("https://backend-coding4u.vercel.app/auth/google/callback","_self") }
+
+  const handleGoogleLogin = ()=>{ window.open(`${BACKEND}/auth/google/callback`,"_self") }
 
   return (
     <div className={styles.backImg}>

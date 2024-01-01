@@ -68,7 +68,7 @@ export const signin = async user => {
 export const signout = async next => {
     removeCookie('token');
     removeLocalStorage('user');
-    next();
+    // next();
 
     try {
         const response = await fetch(`${API}/signout`, {
@@ -125,7 +125,10 @@ export const authenticate = (data, next) => {
     next();
 };
 
-
+export const googleauthenticate = (data) => {
+    setCookie('token', data.token);
+    setLocalStorage('user', data.user);
+};
 
 export const isAuth = () => {
     if (typeof window !== 'undefined') {

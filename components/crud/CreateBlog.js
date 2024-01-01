@@ -7,14 +7,16 @@ import { getTags } from '../../actions/tag';
 import { createBlog } from '../../actions/blog';
 import styles0 from "../../styles/editor.module.css"
 import Image from 'next/image';
-const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false });
+const SunEditor = dynamic(() => import("suneditor-react"), { ssr: false }); 
 import 'suneditor/dist/css/suneditor.min.css';
 import slugify from 'slugify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Head from 'next/head';
+import { BACKEND } from '@/config';
+
 function darkmode() { document.body.classList.toggle("darkmode"); }
-function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
+function sighnoutuser() { signout();   window.open(`${BACKEND}/logout`,"_self") }
 
 
 const CreateBlog = ({ router }) => {

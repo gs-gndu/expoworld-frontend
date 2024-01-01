@@ -1,10 +1,10 @@
 import styles from "../styles/adminDashBoard.module.css"
 import { signout, isAuth } from '../actions/auth';
-import Router from 'next/router';
+// import Router from 'next/router';
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-
+import { BACKEND } from "@/config";
 
 const UserDashLayout = ({ children }) => {
   function darkmode() {
@@ -12,7 +12,9 @@ const UserDashLayout = ({ children }) => {
   }
   
   function sighnoutuser() {
-    signout(() => Router.replace(`/signin`))
+    // signout(() => Router.replace(`/signin`))
+    signout();
+    window.open(`${BACKEND}/logout`,"_self")
   }
   
   function toggledashbar() {

@@ -1,9 +1,10 @@
 import styles from "../styles/adminDashBoard.module.css"
 import { signout, isAuth } from '../actions/auth';
-import Router from 'next/router';
+// import Router from 'next/router';
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { BACKEND } from "@/config";
 
 
 const AdminDashLayout = ({ children }) => {
@@ -12,9 +13,12 @@ const AdminDashLayout = ({ children }) => {
   }
   
   function sighnoutuser() {
-    signout(() => Router.replace(`/signin`))
+    // signout(() => Router.replace(`/signin`))
+    signout();
+    window.open(`${BACKEND}/logout`,"_self")
   }
   
+
   function toggledashbar() {
     let x = document.getElementById("mydashbar")
     if (x.style.display === "block") {
@@ -22,6 +26,9 @@ const AdminDashLayout = ({ children }) => {
     }
     else { x.style.display = "block" }
   }
+
+
+
   return (
     <>
       {isAuth() && isAuth().role === 1 && (

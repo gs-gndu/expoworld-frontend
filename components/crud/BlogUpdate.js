@@ -14,9 +14,10 @@ import Image from 'next/image';
 import slugify from 'slugify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { BACKEND } from '@/config';
 
 function darkmode() { document.body.classList.toggle("darkmode"); }
-function sighnoutuser() { signout(() => Router.replace(`/signin`)) }
+function sighnoutuser() { signout();   window.open(`${BACKEND}/logout`,"_self")  }
 
 const BlogUpdate = ({ router }) => {
 
@@ -95,12 +96,13 @@ const BlogUpdate = ({ router }) => {
                 if (!data) {
                     if (!isAuth()) {
                         Router.push(`/signin`);
-                    } else if (isAuth().role == 1) {
-                        Router.push(`/admin`);
-                    }
-                    else if (isAuth().role !== 1) {
-                        Router.push(`/user`);
-                    }
+                    } 
+                    // else if (isAuth().role == 1) {
+                    //     Router.push(`/admin`);
+                    // }
+                    // else if (isAuth().role !== 1) {
+                    //     Router.push(`/user`);
+                    // }
 
                 } else {
                     const dateFromString = new Date(Date.parse(data.date));

@@ -1,29 +1,29 @@
 import Link from 'next/link';
-import { APP_NAME } from "../config";
+import { APP_NAME, BACKEND } from "../config";
 import { isAuth } from '../actions/auth';
 import styles from "../styles/NavbarFooter.module.css";
 import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-fetch';
+import { googleauthenticate } from '../actions/auth';
 
 const Navbar = () => {
 
   const [user, setUser] = useState(null);
-  const [userdata, setUserdata] = useState({});
 
   const getUser = async () => {
     try {
-      const response = await fetch("https://backend-coding4u.vercel.app/login/success", { method: "GET", credentials: "include" });
+      const response = await fetch(`${BACKEND}/login/success`, { method: "GET", credentials: "include" });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        setUserdata(data.user);
-      } else { throw new Error('Network response was not ok.'); }
-    } catch (error) { console.log("error", error); }
+        googleauthenticate(data);
+        setUser(isAuth());
+      }
+    } catch (error) { console.log("User is not logged In"); }
   };
-  
-  
-  useEffect(() => { setUser(isAuth()); }, []);
-  useEffect(() => {getUser()}, [])
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   function disablenavbar2() {
     let x = document.getElementById("disable")
@@ -51,11 +51,11 @@ const Navbar = () => {
 
 
           {!user && (<><li><Link href="/signin">Signin </Link></li><li><Link href="/signup">Signup</Link></li></>)}
-            
+
           {user && isAuth().role === 1 && (<li><a className={styles.userdash} href="/admin"> {`${isAuth().name} ‒ Admin`}</a></li>)}
           {user && isAuth().role === 0 && (<li><a className={styles.userdash} href="/admin"> {`${isAuth().name} ‒ User`}</a></li>)}
-              
-        
+
+
         </ul>
       </nav>
 
