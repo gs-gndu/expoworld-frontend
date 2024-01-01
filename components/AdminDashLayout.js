@@ -44,10 +44,10 @@ const AdminDashLayout = ({ children }) => {
   useEffect(() => {
     getUser();
     setUser(isAuth())
-    setTimeout(() => {
-      if (!isAuth()) { Router.push(`/signin`); }
-      else if (isAuth().role !== 1) { Router.push(`/user`); }
-    }, 800);
+    // setTimeout(() => {
+    //   if (!isAuth()) { Router.push(`/signin`); }
+    //   else if (isAuth().role !== 1) { Router.push(`/user`); }
+    // }, 2000);
   }, []);
 
 
