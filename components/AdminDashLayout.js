@@ -7,6 +7,7 @@ import { BACKEND } from "@/config";
 import { useEffect, useState } from "react";
 import Router from "next/router";
 import { googleauthenticate } from "../actions/auth";
+import fetch from "isomorphic-fetch";
 
 const AdminDashLayout = ({ children }) => {
 
@@ -44,10 +45,10 @@ const AdminDashLayout = ({ children }) => {
   useEffect(() => {
     getUser();
     setUser(isAuth())
-    // setTimeout(() => {
-    //   if (!isAuth()) { Router.push(`/signin`); }
-    //   else if (isAuth().role !== 1) { Router.push(`/user`); }
-    // }, 2000);
+    //  setTimeout(() => {
+    //    if (!isAuth()) { Router.push(`/signin`); }
+    //    else if (isAuth().role !== 1) { Router.push(`/user`); }
+    //  }, 500);
   }, []);
 
 
