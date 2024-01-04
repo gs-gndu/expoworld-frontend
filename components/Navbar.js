@@ -15,6 +15,7 @@ const Navbar = () => {
       const response = await fetch(`${BACKEND}/login/success`, { method: "GET", credentials: "include" });
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         googleauthenticate(data);
         setUser(isAuth());
       }
