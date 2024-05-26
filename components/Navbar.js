@@ -22,9 +22,7 @@ const Navbar = () => {
     } catch (error) { console.log("User is not logged In"); }
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  useEffect(() => { getUser(); }, []);
 
   function disablenavbar2() {
     let x = document.getElementById("disable")
