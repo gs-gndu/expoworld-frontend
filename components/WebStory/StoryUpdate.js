@@ -190,6 +190,8 @@ const StoryUpdate = ({ router }) => {
                                     <div key={index} className={styles.slide}>
                                         <div className={styles.divspan}>  <span className={styles.storynum}>{index + 1}</span></div>
 
+                                        
+
                                         <div className={styles.INP}>Image</div>
                                         <input type="text" placeholder="Image URL" value={slide.image} onChange={handleSlideChange(index, 'image')} />
                                         <div className={styles.INP}>Heading</div>
@@ -216,23 +218,13 @@ const StoryUpdate = ({ router }) => {
     };
 
     const head = () => (
-        <Head>
-            <title>Update This Story</title>
-        </Head>
+        <Head><title>Update This Story</title></Head>  
     );
-
 
     return (
         <>
-
             {head()}
-            {isAuth() && (
-                <>
-
-                    {updateStoryForm()}
-
-                </>
-            )}
+            {isAuth() && (<>{updateStoryForm()}</> )} 
         </>
     );
 };

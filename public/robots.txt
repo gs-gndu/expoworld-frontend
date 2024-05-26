@@ -7,4 +7,4 @@ Disallow: /admin/
 
 
 # Sitemaps
-Sitemap: https://coding4u-project.vercel.app/sitemap.xml
+Sitemap: https://dirmatech.com/sitemap.xml
