@@ -27,7 +27,7 @@ const Footer = () => {
 
           <div className={styles.footerbox1} >
           <div className={styles.footerheading00}>📚 {APP_NAME}</div>
-            <div>Coding4U is a blog website where users can publish their articles related to programming or computer science field. It is designed to help individuals learn programming concepts, languages, and best practices. </div>
+            <div>ExpoWorld.com is a website where user can share blogs post on different ideas places etc. </div>
 
 
             <div className={styles.Footerlogos}>
@@ -54,12 +54,12 @@ const Footer = () => {
           <div className={styles.footerbox}>
           <div className={styles.footerheading}>Categories</div>
           <ul>
-            <li> <Link href="/categories/react">React </Link>  </li>
-            <li> <Link href="/categories/wordpress">Wordpress </Link>  </li>
-            <li> <Link href="/categories/django">Django </Link>  </li>
-            <li> <Link href="/categories/javascript">Javascript </Link>  </li>
-            <li> <Link href="/categories/seo">SEO </Link>  </li>
-            <li> <Link href="/categories/python">Python </Link>  </li>
+            <li> <Link href="/categories/react">POSTS</Link>  </li>
+            <li> <Link href="/categories/wordpress">Hotels </Link>  </li>
+            <li> <Link href="/categories/django"> Resturant </Link>  </li>
+            <li> <Link href="/categories/javascript"> CITIES </Link>  </li>
+            <li> <Link href="/categories/seo">Country </Link>  </li>
+            <li> <Link href="/categories/python">STATE </Link>  </li>
             </ul>
           </div>
 
@@ -71,13 +71,13 @@ const Footer = () => {
             
             <div className={styles.footerheading}>Articles</div>
             <ul>
-            <li> <Link href="/wordpress-vs-react">Wordpress vs React </Link>  </li>
-            <li> <Link href="/next.js-vs-nuxt.js">Next.js vs Nuxt.js </Link>  </li>
-            <li> <Link href="/how-much-js-before-react">How much JS before React ? </Link>  </li>
-            <li> <Link href="/react.js-vs-next.js">React.js vs Next.js </Link>  </li>
-            <li> <Link href="/what-is-nodejs">What is Node.js </Link>  </li>
-            <li> <Link href="/what-is-blogging">What Is Blogging </Link>  </li>
-            <li> <Link href="/wordpress-vs-blogger">Wordpress vs Blogger </Link>  </li>
+            <li> <Link href="/wordpress-vs-react"> HOTELS </Link>  </li>
+            <li> <Link href="/next.js-vs-nuxt.js">OLD GOLD RESTURANTS </Link>  </li>
+            <li> <Link href="/how-much-js-before-react"> PLACES </Link>  </li>
+            <li> <Link href="/react.js-vs-next.js">HISTORICAL </Link>  </li>
+            <li> <Link href="/what-is-nodejs"> NATURE </Link>  </li>
+            <li> <Link href="/what-is-blogging">POSTS </Link>  </li>
+            <li> <Link href="/wordpress-vs-blogger"> FOOD </Link>  </li>
             </ul>
           </div>
 

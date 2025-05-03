@@ -41,13 +41,19 @@ const Navbar = () => {
         <Link href="/"><div className={styles.logo}> 📚 {APP_NAME}</div></Link>
 
         <ul id="disable" onClick={disablenavbar}>
-          <li><Link href="/categories/react" >React</Link></li>
+          {/* <li><Link href="/categories/react" >React</Link></li>
           <li><Link href="/categories/javascript">Javascript</Link></li>
           <li><Link href="/categories/django">Django</Link></li>
           <li><Link href="/categories/python">Python</Link></li>
           <li><Link href="/categories/seo">SEO</Link></li>
-          <li><Link href="/categories/wordpress">Wordpress</Link></li>
-
+          <li><Link href="/categories/wordpress">Wordpress</Link></li> */}
+ <li> <Link href="/wordpress-vs-react"> HOTELS </Link>  </li>
+            <li> <Link href="/next.js-vs-nuxt.js">OLD GOLD RESTURANTS </Link>  </li>
+            <li> <Link href="/how-much-js-before-react"> PLACES </Link>  </li>
+            <li> <Link href="/react.js-vs-next.js">HISTORICAL </Link>  </li>
+            <li> <Link href="/what-is-nodejs"> NATURE </Link>  </li>
+            <li> <Link href="/what-is-blogging">POSTS </Link>  </li>
+            <li> <Link href="/wordpress-vs-blogger"> FOOD </Link>  </li>
 
           {!user && (<><li><Link href="/signin">Signin </Link></li><li><Link href="/signup">Signup</Link></li></>)}
 

@@ -50,9 +50,9 @@ const Contact = () => {
 
 
                                 <ul>
-                                    <li><strong>Email:</strong> divrawat2001@gmail.com</li>
-                                    <li><strong>Phone:</strong>+91 99881 77179</li>
-                                    <li><strong>Address:</strong> Amritsar, Punjab</li>
+                                    <li><strong>Email:</strong> EXPOWORLD.COM</li>
+                                    <li><strong>Phone:</strong>23J2J049</li>
+                                    <li><strong>Address:</strong>858 </li>
                                 </ul>
                             </section>
                         </section>

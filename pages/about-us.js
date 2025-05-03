@@ -47,10 +47,10 @@ const About = () => {
 
 
                             <section class="mypost">
-                              <p>At Coding4u, we are passionate about creating an online space where ideas, knowledge, and inspiration converge. Our mission is to provide engaging and thought-provoking content that caters to diverse interests, all in one place. Whether you're seeking practical tips, insightful perspectives, or simply a moment of entertainment, we've got you covered.</p>
+                              <p>At EXPOWORLD, we are passionate about creating an online space where ideas, knowledge, and inspiration converge. Our mission is to provide engaging and thought-provoking content that caters to diverse interests, all in one place. </p>
 
 
-                              <p><b>Who We Are</b> - We are a team of dedicated writers, researchers, and enthusiasts who are committed to sharing valuable insights and experiences with our readers. Our diverse backgrounds and areas of expertise allow us to cover a wide range of topics, ensuring that there's something for everyone. From technology to travel, health to home improvement, lifestyle to literature, we strive to offer content that is both informative and enjoyable.</p>
+                              <p><b>Who We Are</b> - We are a team of dedicated writers, researchers, BACKPACERS ,TRAVELERS and enthusiasts who are committed to sharing valuable insights and experiences with our readers. Our diverse backgrounds and areas of expertise allow us to cover a wide range of topics, ensuring that there's something for everyone. From technology to travel, health to home improvement, lifestyle to literature, we strive to offer content that is both informative and enjoyable.</p>
 
                               <p><b>What We Believe</b> - We believe in the power of knowledge and its ability to transform lives. Our aim is to inspire and empower our readers to pursue their passions, make informed decisions, and lead fulfilling lives. We value authenticity, integrity, and open-mindedness, and we approach every topic with curiosity and respect. We encourage our readers to join us on this journey of exploration and growth.</p>
 

@@ -19,14 +19,14 @@ const Blogs = ({ blogs, router }) => {
 
           <meta
               name="description"
-              content="Programming blogs and tutorials on react node next vue php laravel and web developoment"
+              content="HOTELS WITH THERE LEGEACY OF HOSPATALITY"
           />
-          <meta name="robots" content="index, follow" />
+          <meta name="HOTELS" content="index, follow" />
           <link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
-          <meta property="og:title" content={`Latest web developoment tutorials | ${APP_NAME}`} />
+          <meta property="og:title" content={`HOTELS | ${APP_NAME}`} />
           <meta
               property="og:description"
-              content="Programming blogs and tutorials on react node next vue php laravel and web developoment"
+              content="HOTELS"
           />
           <meta property="og:type" content="webiste" />
           <meta property="og:url" content={`${DOMAIN}${router.pathname}`} />

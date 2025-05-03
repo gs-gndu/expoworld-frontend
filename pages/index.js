@@ -42,12 +42,12 @@ const Index = ({ blogs }) => {
                     <br /><br />
 
                     <section className={styles.topsection}>
-                        <h1 className={styles.heading}>Talk is cheap. Show me the code</h1>
+                        <h1 className={styles.heading}>TRAVEL UNTIL LIFE </h1>
                         <p>It's not at all important to get it right the first time. It's vitally important to get it right the last time.</p>
 
-                        <div className={styles.resizeimg0}>📚</div>
-                        <h1>The Best way to predict the future is to invent it.</h1>
-                        <p>Good code is its own best documentation. As you're about to add a comment, ask yourself, How can I improve the code so that this comment isn't needed ?</p>
+                        <div className={styles.resizeimg0}></div>
+                        <h1>The Best way to Enjoy the future is to make it.</h1>
+                        <p>Good habit is to travel it ?</p>
                     </section>
 
                     <section className={styles.latestposts}>
