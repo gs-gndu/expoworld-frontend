@@ -10,19 +10,18 @@ const Navbar = () => {
 
   const [user, setUser] = useState(null);
 
-  const getUser = async () => {
-    try {
-      const response = await fetch(`${BACKEND}/login/success`, { method: "GET", credentials: "include" });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        googleauthenticate(data);
-        setUser(isAuth());
-      }
-    } catch (error) { console.log("User is not logged In"); }
-  };
 
-  useEffect(() => { getUser(); }, []);
+
+  useEffect(() => { 
+    
+    const getUser = () => {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    };
+    
+    getUser(); }, []);
 
   function disablenavbar2() {
     let x = document.getElementById("disable")
