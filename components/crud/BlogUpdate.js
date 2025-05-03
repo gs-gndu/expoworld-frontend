@@ -105,11 +105,11 @@ const BlogUpdate = ({ router }) => {
                     // }
 
                 } else {
-                    const dateFromString = new Date(Date.parse(data.date));
-                    setValues({ ...values, title: data.title, mtitle: data.mtitle, date:dateFromString, photo:data.photo, slug: data.slug, mdesc: data.mdesc });
-                    setBody(data.body)
-                    setCategoriesArray(data.categories);
-                    setTagsArray(data.tags);
+                    const dateFromString = new Date(Date.parse(data?.date));
+                    setValues({ ...values, title: data?.title, mtitle: data?.mtitle, date:dateFromString, photo:data?.photo, slug: data?.slug, mdesc: data?.mdesc });
+                    setBody(data?.body)
+                    setCategoriesArray(data?.categories);
+                    setTagsArray(data?.tags);
                 }
             });
         }
