@@ -37,7 +37,7 @@ const Navbar = () => {
 
         <div className={styles.span} onClick={disablenavbar2}>☰</div>
 
-        <Link href="/"><div className={styles.logo}> 📚 {APP_NAME}</div></Link>
+        <Link href="/"><div className={styles.logo}>  {APP_NAME}</div></Link>
 
         <ul id="disable" onClick={disablenavbar}>
           {/* <li><Link href="/categories/react" >React</Link></li>
