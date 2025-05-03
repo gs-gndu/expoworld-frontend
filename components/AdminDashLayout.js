@@ -9,6 +9,7 @@ import Router from "next/router";
 import { googleauthenticate } from "../actions/auth";
 import fetch from "isomorphic-fetch";
 
+
 const AdminDashLayout = ({ children }) => {
 
   function darkmode() {
@@ -17,7 +18,8 @@ const AdminDashLayout = ({ children }) => {
 
   function sighnoutuser() {
     signout();
-    window.open(`${BACKEND}/logout`, "_self")
+     Router.push(`/signin`);
+    //window.open(`${BACKEND}/logout`, "_self")
   }
 
   function toggledashbar() {
