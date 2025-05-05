@@ -71,13 +71,13 @@ const Footer = () => {
             
             <div className={styles.footerheading}>Articles</div>
             <ul>
-            <li> <Link href="/wordpress-vs-react"> HOTELS </Link>  </li>
-            <li> <Link href="/next.js-vs-nuxt.js">OLD GOLD RESTURANTS </Link>  </li>
-            <li> <Link href="/how-much-js-before-react"> PLACES </Link>  </li>
-            <li> <Link href="/react.js-vs-next.js">HISTORICAL </Link>  </li>
-            <li> <Link href="/what-is-nodejs"> NATURE </Link>  </li>
-            <li> <Link href="/what-is-blogging">POSTS </Link>  </li>
-            <li> <Link href="/wordpress-vs-blogger"> FOOD </Link>  </li>
+            <li> <Link href=""> HOTELS </Link>  </li>
+            <li> <Link href="">OLD GOLD RESTURANTS </Link>  </li>
+            <li> <Link href=""> PLACES </Link>  </li>
+            <li> <Link href="">HISTORICAL </Link>  </li>
+            <li> <Link href=""> NATURE </Link>  </li>
+            <li> <Link href="">POSTS </Link>  </li>
+            <li> <Link href=""> FOOD </Link>  </li>
             </ul>
           </div>
 

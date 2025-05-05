@@ -59,7 +59,7 @@ const BlogUpdate = ({ router }) => {
         e.preventDefault();
          formData.set('body', body);
         setValues({ ...values, updatetext: 'Updating....' });
-        updateBlog(formData, token, router.query.slug).then(data => {
+        updateBlog(formData, token, router.query?.slug).then(data => {
             if (data.error) {
                 setValues({ ...values });
 
@@ -91,8 +91,8 @@ const BlogUpdate = ({ router }) => {
 
 
     const initBlog = (res) => {
-        if (router.query.slug) {
-            singleBlog(router.query.slug).then(data => {
+        if (router.query?.slug) {
+            singleBlog(router.query?.slug).then(data => {
                 if (!data) {
                     if (!isAuth()) {
                         Router.push(`/signin`);
@@ -123,7 +123,7 @@ const BlogUpdate = ({ router }) => {
 
     const initCategories = () => {
         getCategories().then(data => {
-            if (data.error) {
+            if (data?.error) {
                 setValues({ ...values, error: data.error });
             } else {
                 setCategories(data);
@@ -133,7 +133,7 @@ const BlogUpdate = ({ router }) => {
 
     const initTags = () => {
         getTags().then(data => {
-            if (data.error) {
+            if (data?.error) {
                 setValues({ ...values, error: data.error });
             } else {
                 setTags(data);
@@ -144,7 +144,7 @@ const BlogUpdate = ({ router }) => {
 
     const setCategoriesArray = blogCategories => {
         let ca = [];
-        blogCategories.map((c, i) => {
+        blogCategories?.map((c, i) => {
             ca.push(c._id);
         });
         setChecked(ca);
@@ -152,15 +152,15 @@ const BlogUpdate = ({ router }) => {
 
     const setTagsArray = blogTags => {
         let ta = [];
-        blogTags.map((t, i) => {
-            ta.push(t._id);
+        blogTags?.map((t, i) => {
+            ta?.push(t._id);
         });
         setCheckedTag(ta);
     };
 
 
     const findOutCategory = c => {
-        const result = checked.indexOf(c);
+        const result = checked?.indexOf(c);
         if (result !== -1) {
             return true;
         } else {
@@ -170,13 +170,13 @@ const BlogUpdate = ({ router }) => {
 
     const handleToggle = c => () => {
         setValues({ ...values, error: '' });
-        const clickedCategory = checked.indexOf(c);
+        const clickedCategory = checked?.indexOf(c);
         const all = [...checked];
 
         if (clickedCategory === -1) {
-            all.push(c);
+            all?.push(c);
         } else {
-            all.splice(clickedCategory, 1);
+            all?.splice(clickedCategory, 1);
         }
     
         setChecked(all);
@@ -190,10 +190,10 @@ const BlogUpdate = ({ router }) => {
         const all = [...checkedTag];
 
         if (clickedTag === -1) {
-            all.push(t);
+            all?.push(t);
         }
         else {
-            all.splice(clickedTag, 1);
+            all?.splice(clickedTag, 1);
         }
         setCheckedTag(all);
         formData.set('tags', all);
@@ -201,7 +201,7 @@ const BlogUpdate = ({ router }) => {
 
 
     const findOutTag = t => {
-        const result = checkedTag.indexOf(t);
+        const result = checkedTag?.indexOf(t);
         if (result !== -1) {
             return true;
         } else {
@@ -212,10 +212,10 @@ const BlogUpdate = ({ router }) => {
     const showCategories = () => {
         return (
             categories &&
-            categories.map((c, i) => (
+            categories?.map((c, i) => (
 
                 <li key={i} className={styles0.listitem}>
-                    &nbsp;&nbsp;&nbsp;&nbsp;    <input onChange={handleToggle(c._id)} checked={findOutCategory(c._id)} type="checkbox" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;    <input onChange={handleToggle(c?._id)} checked={findOutCategory(c?._id)} type="checkbox" />
                     <label >&nbsp;&nbsp; {c.name}</label>
                 </li>
 
@@ -226,10 +226,10 @@ const BlogUpdate = ({ router }) => {
     const showTags = () => {
         return (
             tags &&
-            tags.map((t, i) => (
+            tags?.map((t, i) => (
                 <li key={i} className={styles0.listitem}>
-                    &nbsp;&nbsp;&nbsp;&nbsp;  <input onChange={handleTagsToggle(t._id)} checked={findOutTag(t._id)} type="checkbox" />
-                    <label>&nbsp;&nbsp;{t.name}</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  <input onChange={handleTagsToggle(t?._id)} checked={findOutTag(t?._id)} type="checkbox" />
+                    <label>&nbsp;&nbsp;{t?.name}</label>
                 </li>
             ))
         );
@@ -245,7 +245,7 @@ const BlogUpdate = ({ router }) => {
 
      const handleBody = (e) => {
          setBody(e);
-         formData.set('body', e);
+         formData?.set('body', e);
     };
 
     const Admintopbar = () => {
