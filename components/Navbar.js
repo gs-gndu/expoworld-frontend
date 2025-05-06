@@ -41,7 +41,7 @@ const Navbar = () => {
 
         <ul id="disable" onClick={disablenavbar}>
  <li> <Link href="/categories/hotels"> HOTELS </Link>  </li>
-            <li> <Link href="/old-and-gold-resturants">OLD GOLD RESTURANTS </Link>  </li>
+            <li> <Link href="/categories/old-and-gold-resturants">OLD GOLD RESTURANTS </Link>  </li>
             <li> <Link href="/categories/places"> PLACES </Link>  </li>
             <li> <Link href="/categories/historical">HISTORICAL </Link>  </li>
             <li> <Link href="/categories/nature"> NATURE </Link>  </li>
